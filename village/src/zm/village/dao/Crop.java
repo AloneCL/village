@@ -12,29 +12,29 @@ public class Crop implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 284382142246199178L;
 	
+	//rel_land_id
 	private Integer id;
-	//作物所属土地
+	//作物所属土地，对应rel_land_type
 	private Land land;
-	//作物名称
+	//作物名称，对应rel_land_crop_type
 	private CropDir crop;
-	//作物类型
-	private Integer type;
-	//作物单位价格
+	//作物单位价格，对应rel_land_crop_price
 	private Double price;
-	//可种植的最早时间
+	//可种植的最早时间，对应rel_land_crop_starttime
 	private Timestamp startTime;
-	//可种植的最晚时间
+	//可种植的最晚时间，对应rel_land_crop_endtime
 	private Timestamp endTime;
 	
 	public Crop() {
 	}
 	
-	public Crop(Land land, Integer type, Double price, Timestamp startTime, Timestamp endTime) {
+	public Crop(Land land, CropDir crop, Double price, Timestamp startTime, Timestamp endTime) {
 		this();
 		this.land = land;
 		this.price = price;
 		this.endTime = endTime;
 		this.startTime = startTime;
+		this.setCrop(crop);
 	}
 	
 	public Integer getId() {
@@ -48,12 +48,6 @@ public class Crop implements java.io.Serializable {
 	}
 	public void setLand(Land land) {
 		this.land = land;
-	}
-	public Integer getType() {
-		return type;
-	}
-	public void setType(Integer type) {
-		this.type = type;
 	}
 	public Double getPrice() {
 		return price;
@@ -72,6 +66,14 @@ public class Crop implements java.io.Serializable {
 	}
 	public void setEndTime(Timestamp endTime) {
 		this.endTime = endTime;
+	}
+
+	public CropDir getCrop() {
+		return crop;
+	}
+
+	public void setCrop(CropDir crop) {
+		this.crop = crop;
 	}
 	
 	

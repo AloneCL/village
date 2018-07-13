@@ -13,25 +13,33 @@ import zm.village.util.tools.SystemTimeUtil;
 public class OrderCrop implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1150189979015832462L;
+	
+	//尚未开始种植
+	public static final int STATUS_NEW = 0;
+	//已开始种植
+	public static final int STATUS_PLANT = 1;
+	//已完成
+	public static final int STATUS_FINISH = 2;
 
+	//ordercrop_id
 	private Integer id;
-	//父订单
+	//父订单，对应ordercrop_order_id
 	private Order sourceOrder;
-	//所属土地
+	//所属土地，对应ordercrop_land_id
 	private Land land;
-	//作物
+	//作物，对应ordercrop_crop_id
 	private Crop crop;
-	//种植面积
+	//种植面积，对应ordercrop_size
 	private Double plantSize;
-	//子订单状态
+	//子订单状态，对应ordercrop_crop_status
 	private Integer status;
-	//子订单完成状况图片URL(由农民负责上传)
+	//子订单完成状况图片URL(由农民负责上传)，对应ordercrop_img_url
 	private String imgUrl;
-	//开始时间
+	//开始时间，对应ordercrop_expecttime
 	private Timestamp startTime;
-	//预计完成时间
+	//预计完成时间，对应ordercrop_expecttime
 	private Timestamp expectTime;
-	//实际完成时间
+	//实际完成时间，对应ordercrop_finishtime
 	private Timestamp finishTime;
 	
 	public OrderCrop() {

@@ -9,9 +9,16 @@ public class CropDir implements java.io.Serializable {
 
 	private static final long serialVersionUID = -568746960463257557L;
 	
+	//dir_crop_id
 	private Integer id;
 	
+	//作物名称，对应dir_crop_name
 	private String name;
+	
+	@Override
+	public String toString() {
+		return "[CropDir id = " + id + " , name = " + name + "]";
+	}
 
 	public Integer getId() {
 		return id;

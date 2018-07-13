@@ -22,36 +22,37 @@ public class Order implements java.io.Serializable {
 	//订单已完成
 	public static final int STATUS_FINISH = 2;
 
+	//order_id
 	private Integer id;
-	//订单号码
+	//订单号码，对应order_uuid
 	private String uuid;
-	//订单创建时间
+	//订单创建时间，对应order_time
 	private Timestamp createTime;
-	//订单完成时间
+	//订单完成时间，对应order_finishtime
 	private Timestamp finishTime;
-	//订单种植面积
+	//订单种植面积，对应order_plant_size
 	private Double plantSize;
-	//订单中包含的作物种类数量
+	//订单中包含的作物种类数量，对应order_crop_num
 	private Integer cropNum;
-	//订单中已完成的作物种类数量
+	//订单中已完成的作物种类数量，对应order_finishcrop_num
 	private Integer finishCropNum;
-	//订单状态
+	//订单状态，对应order_status
 	private Integer status;
-	//订单收货地址
+	//订单收货地址，对应order_address
 	private String address;
-	//订单成交总额
+	//订单成交总额，对应order_price
 	private Double price;
-	//订单备注
+	//订单备注，对应order_remark
 	private String remark;
-	//买家
+	//买家，对应order_buyuser_id
 	private User buyer;
-	//卖家(农民)
+	//卖家(农民)，对应order_selluser_id
 	private User seller;
-	//所属土地
+	//所属土地，对应order_land_id
 	private Land land;
-	//卖家(农民)昵称
+	//卖家(农民)昵称，对应order_selluser_name
 	private String sellerName;
-	//卖家(农民)电话
+	//卖家(农民)电话，对应order_selluser_tel
 	private String sellerTel;
 
 	public Order() {

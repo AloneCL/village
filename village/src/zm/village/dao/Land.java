@@ -10,23 +10,23 @@ public class Land implements java.io.Serializable {
 	
 	private static final long serialVersionUID = -575600090172124355L;
 	
-	//土地在数据库ID
+	//土地在数据库ID，对应land_id
 	private Integer id;
-	//土地所有者
+	//土地所有者，对应land_user_id
 	private User ownerUser;
-	//土地名称
+	//土地名称，对应land_name
 	private String name;
-	//土地类型
+	//土地类型，对应land_type
 	private Integer type;
-	//土地大小
+	//土地大小，对应land_size
 	private Double size;
-	//土地未使用大小
+	//土地未使用大小，对应land_unused_size
 	private Double unusedSize;
-	//土地简介
+	//土地简介，对应land_introduce
 	private String introduce;
-	//是否整块出售,true代表只可整块出售
+	//是否整块出售,true代表只可整块出售，对应land_split
 	private boolean split;
-	//该土地的状态，是否可种植
+	//该土地的状态，是否可种植，对应land_status
 	private Integer status;
 	
 	public Land() {

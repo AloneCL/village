@@ -41,7 +41,7 @@ public class OrderCrop implements java.io.Serializable {
 	private Timestamp expectTime;
 	//实际完成时间，对应ordercrop_finishtime
 	private Timestamp finishTime;
-	
+	 
 	public OrderCrop() {
 	}
 	

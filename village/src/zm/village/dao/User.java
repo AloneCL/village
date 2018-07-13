@@ -47,7 +47,6 @@ public class User implements java.io.Serializable {
 		this.userType = userType;
 	}
 	
-	
 	public Integer getId() {
 		return id;
 	}

@@ -46,7 +46,7 @@ public class Evaluate implements java.io.Serializable {
 		this.buyerName = buyer.getName();
 		this.content = content;
 		this.star = star;
-	}
+	} 
 	
 	public Integer getId() {
 		return id;

@@ -43,7 +43,7 @@ public class Land implements java.io.Serializable {
 		this.unusedSize = 0.0;
 		this.split = split;
 	}
-	
+	  
 	public Integer getId() {
 		return id;
 	}

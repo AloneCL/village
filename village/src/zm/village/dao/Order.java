@@ -41,7 +41,7 @@ public class Order implements java.io.Serializable {
 	//订单收货地址，对应order_address
 	private String address;
 	//订单成交总额，对应order_price
-	private Double price;
+	private Double price; 
 	//订单备注，对应order_remark
 	private String remark;
 	//买家，对应order_buyuser_id

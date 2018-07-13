@@ -24,7 +24,7 @@ public class Crop implements java.io.Serializable {
 	private Timestamp startTime;
 	//可种植的最晚时间，对应rel_land_crop_endtime
 	private Timestamp endTime;
-	
+	 
 	public Crop() {
 	}
 	

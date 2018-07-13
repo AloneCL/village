@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 开启包扫描(扫描生成bean的注解) -->
-    <context:component-scan base-package="zhumeng.zyhs"/>
+    <context:component-scan base-package="zm.village"/>
 
 	<!--使用mvc:annotation-driven标签替代上两个标签配置
 		另外该标签会加载很多参数绑定的方法：例如json解析转换器
@@ -25,16 +25,6 @@
 		<!--<property name="suffix" value=".jsp"></property>&ndash;&gt;-->
 	<!--</bean>-->
 
-	<!-- 自定义开发参数绑定转换器 -->
-	 <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
-       <!--  转换器 -->
-        <property name="converters">
-            <list>
-               <!--  日期类型转换（可配置多个） -->
-                <bean class="zhumeng.zyhs.ssm.converter.DateConverter"/>
-           </list>
-        </property>
-    </bean> 
 
 	<!-- 配置校验器 -->
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">

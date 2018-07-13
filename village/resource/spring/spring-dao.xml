@@ -63,7 +63,7 @@
 
 	<!-- 配置mapper扫描器 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="zhumeng.zyhs.ssm.mapper"/>
+		<property name="basePackage" value="zm.village.ssm.mapper"/>
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
 	</bean>
 

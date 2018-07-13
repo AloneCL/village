@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <session-config>
     <session-timeout>30</session-timeout>
     <cookie-config>
@@ -47,7 +49,7 @@
   <!-- 用来获得项目的根路径 -->
   <context-param>  
         <param-name>webAppRootKey</param-name>   
-        <param-value>evan.webappzyhs</param-value>  
+        <param-value>evan.webappvillage</param-value>  
   </context-param>  
   <listener>   
        <listener-class>org.springframework.web.util.WebAppRootListener</listener-class>   

@@ -29,6 +29,8 @@ public class Order implements java.io.Serializable {
 	private Timestamp createTime;
 	//订单完成时间
 	private Timestamp finishTime;
+	//订单种植面积
+	private Double plantSize;
 	//订单中包含的作物种类数量
 	private Integer cropNum;
 	//订单中已完成的作物种类数量
@@ -58,13 +60,14 @@ public class Order implements java.io.Serializable {
 		// TODO 订单号码生成
 	}
 
-	public Order(User buyer, User seller, Land land, Integer cropNum, String address, 
+	public Order(User buyer, User seller, Land land, Double plantSize,Integer cropNum, String address, 
 			Double price, String remark) {
 		this();
 		this.status = STATUS_NEW;
 		this.buyer = buyer;
 		this.seller = seller;
 		this.land = land;
+		this.plantSize = plantSize;
 		this.cropNum = cropNum;
 		this.address = address;
 		this.price = price;
@@ -191,5 +194,13 @@ public class Order implements java.io.Serializable {
 
 	public void setSellerTel(String sellerTel) {
 		this.sellerTel = sellerTel;
+	}
+
+	public Double getPlantSize() {
+		return plantSize;
+	}
+
+	public void setPlantSize(Double plantSize) {
+		this.plantSize = plantSize;
 	}
 }

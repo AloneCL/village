@@ -16,7 +16,7 @@ public class User implements java.io.Serializable {
 	public static final int TYPE_BUYER = 1;
 	public static final int TYPE_ADMIN = 2;
 	
-	//用户ID，对应user_id
+	//用户ID，对应user_id 
 	private Integer id;
 	//手机号码，对应user_tel
 	private String telephone;

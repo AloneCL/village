@@ -3,7 +3,7 @@ package zm.village.dao;
 * @author 李子帆
 * @version 1.0
 * @date 2018年7月13日 下午5:33:48
-* @Description 作物字典类，对应dir_crop_inf表
+* @Description 作物字典类,对应dir_crop_inf表
 */
 public class CropDir implements java.io.Serializable {
 

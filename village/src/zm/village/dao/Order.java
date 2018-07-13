@@ -8,7 +8,7 @@ import zm.village.util.tools.SystemTimeUtil;
  * @author 李子帆
  * @version 1.0
  * @date 2018年7月13日 下午4:14:10
- * @Description 订单类
+ * @Description 订单类 
  */
 public class Order implements java.io.Serializable {
 

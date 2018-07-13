@@ -4,7 +4,7 @@ package zm.village.dao;
  * @author 李子帆
  * @version 1.0
  * @date 2018年7月13日
- * @Description 土地类
+ * @Description 土地类 
  */
 public class Land implements java.io.Serializable {
 	

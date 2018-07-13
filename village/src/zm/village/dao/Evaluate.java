@@ -8,7 +8,7 @@ import zm.village.util.tools.SystemTimeUtil;
 * @author 李子帆
 * @version 1.0
 * @date 2018年7月13日 下午5:46:23
-* @Description 评论类，对应eva_inf表
+* @Description 评论类,对应eva_inf表
 */
 public class Evaluate implements java.io.Serializable {
 

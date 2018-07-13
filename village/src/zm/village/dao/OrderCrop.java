@@ -8,7 +8,7 @@ import zm.village.util.tools.SystemTimeUtil;
  * @author 李子帆
  * @version 1.0
  * @date 2018年7月13日 下午4:38:36
- * @Description 子订单类，每种作物对应一个OrderCrop，数据库对应ordercrop_inf表
+ * @Description 子订单类,每种作物对应一个OrderCrop,数据库对应ordercrop_inf表
  */
 public class OrderCrop implements java.io.Serializable {
 

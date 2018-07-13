@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 /**
  * @author 李子帆
- * @version 1.0
+ * @version 1.0 
  * @date 2018年7月13日 下午4:48:16
  * @Description 土地可种植(待售)的作物类，数据库对应rel_land_inf表
  */

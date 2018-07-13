@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 * @author 李子帆
 * @version 1.0
 * @date 2018年7月13日 下午2:55:33
-* @Description 用户实体类
+* @Description 用户实体类 
 */
 public class User implements java.io.Serializable {
 	

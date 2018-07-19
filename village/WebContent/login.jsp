@@ -9,6 +9,6 @@
 </head>
 <body>
 66666666<br>
- <a href="login.action" target="_blank">后台登陆</a> 
+ <a href="addpicturetest.jsp" target="_blank">后台登陆</a> 
 </body>
 </html>

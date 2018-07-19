@@ -6,6 +6,13 @@ import org.springframework.stereotype.Repository;
 
 import zm.village.dao.Order;
 
+/**
+* @ClassName: OrderMapper.java
+* @Description: 订单类数据库映射接口
+* @version: v1.0.0
+* @author: 陈光磊
+* @date: 2018年7月19日 上午9:39:18 
+ */
 @Repository
 public interface OrderMapper {
     

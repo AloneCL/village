@@ -17,7 +17,7 @@ public interface OrderService {
 	List<Order> getAll();
 	//根据订单id获取单个订单详细信息
 	Order getById(int id);
-    //根据uuId查询订单
+    //根据订单编号查询订单
 	Order getByUUId(String uuid);
 	//插入订单
 	Order insert(Order vo);

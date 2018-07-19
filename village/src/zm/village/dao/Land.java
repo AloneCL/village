@@ -102,4 +102,11 @@ public class Land implements java.io.Serializable {
 	public void setSplit(boolean split) {
 		this.split = split;
 	}
+
+	@Override
+	public String toString() {
+		return "Land [id=" + id + ", ownerUser=" + ownerUser + ", name=" + name + ", type=" + type + ", size=" + size
+				+ ", unusedSize=" + unusedSize + ", introduce=" + introduce + ", split=" + split + ", status=" + status
+				+ "]";
+	}
 }

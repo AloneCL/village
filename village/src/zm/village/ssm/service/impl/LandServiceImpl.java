@@ -2,8 +2,12 @@ package zm.village.ssm.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import zm.village.dao.Land;
 import zm.village.service.LandService;
+import zm.village.ssm.mapper.LandMapper;
 
 /**
 * @ClassName: LandServiceImpl.java
@@ -12,8 +16,13 @@ import zm.village.service.LandService;
 * @author: 陈光磊
 * @date: 2018年7月13日 下午5:45:19 
  */
-public class LandServiceImpl implements LandService {
 
+@Service
+public class LandServiceImpl implements LandService {
+    
+	@Autowired
+	private LandMapper mapper; 
+	
 	@Override
 	public List<Land> getAll() {
 		// TODO Auto-generated method stub

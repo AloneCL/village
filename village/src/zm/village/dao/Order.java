@@ -28,7 +28,7 @@ public class Order implements java.io.Serializable {
 	private String uuid;
 	//订单创建时间，对应order_time
 	private Timestamp createTime;
-	//订单完成时间，对应order_finishtime
+	//订单完成时间，对应order_finish_time
 	private Timestamp finishTime;
 	//订单种植面积，对应order_plant_size
 	private Double plantSize;

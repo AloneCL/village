@@ -10,7 +10,7 @@ import zm.village.util.tools.SystemTimeUtil;
  * @date 2018年7月13日 下午4:38:36
  * @Description 子订单类,数据库对应orderson_inf表
  */
-public class OrderSon implements java.io.Serializable {
+public final class OrderSon implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1150189979015832462L;
 	

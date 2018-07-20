@@ -10,7 +10,7 @@ import zm.village.util.tools.SystemTimeUtil;
 * @date 2018年7月13日 下午5:46:23
 * @Description 评论类,对应eva_inf表
 */
-public class Evaluate implements java.io.Serializable {
+public final class Evaluate implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1558953088626824682L;
 	

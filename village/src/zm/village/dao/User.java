@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 * @date 2018年7月13日 下午2:55:33
 * @Description 用户实体类 
 */
-public class User implements java.io.Serializable {
+public final class User implements java.io.Serializable {
 	
 	private static final long serialVersionUID = -395141608464880627L;
 	
@@ -19,26 +19,37 @@ public class User implements java.io.Serializable {
 	
 	//用户ID，对应user_id 
 	private Integer id;
+	
 	//手机号码，对应user_tel
 	private String telephone;
+	
 	//密码，对应user_pass
 	private String password;
+	
 	//用户头像在服务器上的存储路径，对应user_img
 	private String imagePath;
+	
 	//用户昵称，对应user_name
 	private String name;
+	
 	//用户所在地，对应user_address
 	private String address;
+	
 	//用户收货地址集合,对应user_post_address
 	private String postAddress;
+	
 	//注册时间，对应user_regtime
 	private Timestamp regTime;
+	
 	//用户类型，0代表农民，1代表买家，对应user_type
 	private Integer userType;
+	
 	//用户真实姓名(供农民身份验证使用),对应user_real_name
 	private String realName;
+	
 	//用户身份证号(供农民身份验证使用),对应user_id_card_number
 	private String idCardNumber;
+	
 	//用户星级，对应user_starlevel
 	private Double starLevel;
 	
@@ -302,7 +313,7 @@ public class User implements java.io.Serializable {
 		
 		StringBuilder sb = new StringBuilder();
 		for(int i = 0; i < addressArray.length; i++) {
-			if(address.equals(remove)) {
+			if(addressArray[i].equals(remove)) {
 				continue;
 			}
 			if(i == addressArray.length - 1) {

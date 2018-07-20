@@ -5,7 +5,7 @@ package zm.village.dao;
 * @date 2018年7月13日 下午5:33:48
 * @Description 数据字典，对应dir_inf表
 */
-public class Dictionary implements java.io.Serializable {
+public final class Dictionary implements java.io.Serializable {
 
 	private static final long serialVersionUID = -568746960463257557L;
 	

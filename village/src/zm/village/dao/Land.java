@@ -6,7 +6,7 @@ package zm.village.dao;
  * @date 2018年7月13日
  * @Description 土地类 
  */
-public class Land implements java.io.Serializable {
+public final class Land implements java.io.Serializable {
 	
 	private static final long serialVersionUID = -575600090172124355L;
 	

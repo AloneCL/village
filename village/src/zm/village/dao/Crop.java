@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * @date 2018年7月13日 下午4:48:16
  * @Description 土地可种植(待售)的作物类，数据库对应rel_land_inf表
  */
-public class Crop implements java.io.Serializable {
+public final class Crop implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 284382142246199178L;
 	
@@ -121,6 +121,27 @@ public class Crop implements java.io.Serializable {
 	public Dictionary getCrop() {
 		return crop;
 	}
+	
+	/**
+	 * @return 字典对应的农作物名称
+	 */
+	public String getCropName() {
+		return crop.getName();
+	}
+	
+	/**
+	 * @return 字典对应的默认图片
+	 */
+	public String getCropImgURL() {
+		return crop.getImgURL();
+	}
+	
+	/**
+	 * @return 字典对应的介绍
+	 */
+	public String getCropIntroduce() {
+		return crop.getIntroduce();
+	}
 
 	/**
 	 * 设置作物类型
@@ -129,6 +150,4 @@ public class Crop implements java.io.Serializable {
 	public void setCrop(Dictionary crop) {
 		this.crop = crop;
 	}
-	
-	
 }

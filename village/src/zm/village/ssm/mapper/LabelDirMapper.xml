@@ -14,14 +14,17 @@
     from label_inf
     where label_id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from label_inf
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from label_inf
     where label_id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="zm.village.dao.LabelDir">
-    insert into label_inf (label_id, label_name)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
-  </insert>
   <insert id="insertSelective" parameterType="zm.village.dao.LabelDir">
     insert into label_inf
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -48,11 +51,6 @@
         label_name = #{name,jdbcType=VARCHAR},
       </if>
     </set>
-    where label_id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="zm.village.dao.LabelDir">
-    update label_inf
-    set label_name = #{name,jdbcType=VARCHAR}
     where label_id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

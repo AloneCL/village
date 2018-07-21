@@ -1,5 +1,7 @@
 package zm.village.ssm.mapper;
 
+import java.util.List;
+
 import zm.village.dao.LabelDir;
 
 /**
@@ -10,15 +12,39 @@ import zm.village.dao.LabelDir;
 * @date: 2018年7月21日 上午11:39:15 
  */
 public interface LabelDirMapper {
+	
+	/**
+	 * 查找所有的数据
+	 * @return
+	 */
+	List<LabelDir> selectAll();
+	
+ 	
+	/**
+	 * 根据主键删除数据字典中数据
+	 * @param relLabelId 主键id
+	 * @return
+	 */
     int deleteByPrimaryKey(Integer relLabelId);
-
-    int insert(LabelDir record);
-
+    
+    /**
+     * 插入新数据
+     * @param record
+     * @return
+     */
     int insertSelective(LabelDir record);
-
+    
+    /**
+     * 根据相应主键id选择到具体数据
+     * @param relLabelId  主键id
+     * @return
+     */
     LabelDir selectByPrimaryKey(Integer relLabelId);
-
+    
+    /**
+     * 根据主键id修改具体数据信息
+     * @param record LabelDir更新信息
+     * @return
+     */
     int updateByPrimaryKeySelective(LabelDir record);
-
-    int updateByPrimaryKey(LabelDir record);
 }

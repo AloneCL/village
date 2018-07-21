@@ -16,16 +16,10 @@
     from admin_inf
     where admin_id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <!-- <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from admin_inf
     where admin_id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="zm.village.dao.Admin">
-    insert into admin_inf (admin_id, admin_user, admin_pass, 
-      admin_type)
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{type,jdbcType=INTEGER})
-  </insert>
+  </delete> -->
   <insert id="insertSelective" parameterType="zm.village.dao.Admin">
     insert into admin_inf
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -72,11 +66,9 @@
     </set>
     where admin_id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="zm.village.dao.Admin">
-    update admin_inf
-    set admin_user = #{username,jdbcType=VARCHAR},
-      admin_pass = #{password,jdbcType=VARCHAR},
-      admin_type = #{type,jdbcType=INTEGER}
-    where admin_id = #{id,jdbcType=INTEGER}
-  </update>
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+   select 
+   <include refid="Base_Column_List"/>
+   from admin_inf where admin_user = #{name,jdbcType=VARCHAR}
+  </select>
 </mapper>

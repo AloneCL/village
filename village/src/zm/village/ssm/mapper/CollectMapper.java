@@ -36,13 +36,13 @@ public interface CollectMapper {
     Collect selectByPrimaryKey(Integer collectId);
     
     /**
-     * 查找所有收藏
+     * 查看所有用户收藏信息
      * @return
      */
     List<Collect> selectAll();
     
     /**
-     * 根据用户id检索用户收藏
+     * 根据用户id查找用户收藏
      * @param userid
      * @return
      */

@@ -1,5 +1,7 @@
 package zm.village.ssm.mapper;
 
+import org.springframework.stereotype.Repository;
+
 import zm.village.dao.Admin;
 
 /**
@@ -9,8 +11,16 @@ import zm.village.dao.Admin;
 * @author: 陈光磊
 * @date: 2018年7月21日 上午10:47:00 
  */
+
+@Repository
 public interface AdminMapper {
 	
+	/**
+	 * 根据主键id选择相应的管理员
+	 * @param id  管理员id
+	 * @return
+	 */
+	Admin selectByPrimaryKey(Integer id);
 	/**
 	 * 新增管理员
 	 * @param record

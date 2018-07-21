@@ -17,6 +17,22 @@
   <sql id="Blob_Column_List">
     dir_introduce
   </sql>
+  <select id="selectByType" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List"/>
+    ,
+    <include refid="Blob_Column_List"/>
+    from dir_inf
+    where dir_type = #{type,jdbcType=INTEGER}
+  </select>  
+  
+  <select id="selectAll" resultMap="ResultMapWithBLOBs">
+   select 
+    <include refid="Base_Column_List"/>
+    ,
+    <include refid="Blob_Column_List"/>
+    from dir_inf
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
@@ -99,23 +115,6 @@
         dir_introduce = #{introduce,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where dir_id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="zm.village.dao.Dictionary">
-    update dir_inf
-    set dir_type = #{type,jdbcType=INTEGER},
-      dir_name = #{name,jdbcType=VARCHAR},
-      dir_growtime = #{gorwtime,jdbcType=INTEGER},
-      dir_img = #{imgURL,jdbcType=VARCHAR},
-      dir_introduce = #{introduce,jdbcType=LONGVARCHAR}
-    where dir_id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="zm.village.dao.Dictionary">
-    update dir_inf
-    set dir_type = #{type,jdbcType=INTEGER},
-      dir_name = #{name,jdbcType=VARCHAR},
-      dir_growtime = #{gorwtime,jdbcType=INTEGER},
-      dir_img = #{imgURL,jdbcType=VARCHAR}
     where dir_id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -15,16 +15,24 @@
     from rel_label_inf
     where rel_label_id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from rel_label_inf
+  </select>
+  
+  <select id="selectByEvaId">
+   select
+   <include refid="Base_Column_List"/>
+   from rel_label_inf 
+   where rel_label_eva = #{evaid,jdbcType=INTEGER}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from rel_label_inf
     where rel_label_id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="zm.village.dao.Label">
-    insert into rel_label_inf (rel_label_id, rel_label_eva, rel_label_type
-      )
-    values (#{id,jdbcType=INTEGER}, #{evaluateId,jdbcType=INTEGER}, #{labelDirId,jdbcType=INTEGER}
-      )
-  </insert>
   <insert id="insertSelective" parameterType="zm.village.dao.Label">
     insert into rel_label_inf
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -50,22 +58,4 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.Label">
-    update rel_label_inf
-    <set>
-      <if test="evaluateId != null">
-        rel_label_eva = #{evaluateId,jdbcType=INTEGER},
-      </if>
-      <if test="labelDirId != null">
-        rel_label_type = #{labelDirId,jdbcType=INTEGER},
-      </if>
-    </set>
-    where rel_label_id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="zm.village.dao.Label">
-    update rel_label_inf
-    set rel_label_eva = #{evaluateId,jdbcType=INTEGER},
-      rel_label_type = #{labelDirId,jdbcType=INTEGER}
-    where rel_label_id = #{id,jdbcType=INTEGER}
-  </update>
 </mapper>

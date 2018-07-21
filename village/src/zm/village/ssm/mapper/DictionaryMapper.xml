@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="zm.village.ssm.mapper.DirInfMapper">
+<mapper namespace="zm.village.ssm.mapper.DictionaryMapper">
   <resultMap id="BaseResultMap" type="zm.village.dao.Dictionary">
     <id column="dir_id" jdbcType="INTEGER" property="id" />
     <result column="dir_type" jdbcType="INTEGER" property="type" />
     <result column="dir_name" jdbcType="VARCHAR" property="name" />
-    <!--是不是少了introduce ??  -->
-    <result column="dir_img" jdbcType="VARCHAR" property="dirImg" />
+    <result column="dir_growtime" jdbcType="INTEGER" property="gorwtime" />
+    <result column="dir_img" jdbcType="VARCHAR" property="imgURL" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="zm.village.dao.Dictionary">
-    <result column="dir_introduce" jdbcType="LONGVARCHAR" property="dirIntroduce" />
+    <result column="dir_introduce" jdbcType="LONGVARCHAR" property="introduce" />
   </resultMap>
   <sql id="Base_Column_List">
-    dir_id, dir_type, dir_name, dir_img
+    dir_id, dir_type, dir_name, dir_growtime, dir_img
   </sql>
   <sql id="Blob_Column_List">
     dir_introduce
@@ -31,9 +31,11 @@
   </delete>
   <insert id="insert" parameterType="zm.village.dao.Dictionary">
     insert into dir_inf (dir_id, dir_type, dir_name, 
-      dir_img, dir_introduce)
+      dir_growtime, dir_img, dir_introduce
+      )
     values (#{id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{dirImg,jdbcType=VARCHAR}, #{dirIntroduce,jdbcType=LONGVARCHAR})
+      #{gorwtime,jdbcType=INTEGER}, #{imgURL,jdbcType=VARCHAR}, #{introduce,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="zm.village.dao.Dictionary">
     insert into dir_inf
@@ -47,10 +49,13 @@
       <if test="name != null">
         dir_name,
       </if>
-      <if test="dirImg != null">
+      <if test="gorwtime != null">
+        dir_growtime,
+      </if>
+      <if test="imgURL != null">
         dir_img,
       </if>
-      <if test="dirIntroduce != null">
+      <if test="introduce != null">
         dir_introduce,
       </if>
     </trim>
@@ -64,11 +69,14 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="dirImg != null">
-        #{dirImg,jdbcType=VARCHAR},
+      <if test="gorwtime != null">
+        #{gorwtime,jdbcType=INTEGER},
       </if>
-      <if test="dirIntroduce != null">
-        #{dirIntroduce,jdbcType=LONGVARCHAR},
+      <if test="imgURL != null">
+        #{imgURL,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null">
+        #{introduce,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -81,11 +89,14 @@
       <if test="name != null">
         dir_name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="dirImg != null">
-        dir_img = #{dirImg,jdbcType=VARCHAR},
+      <if test="gorwtime != null">
+        dir_growtime = #{gorwtime,jdbcType=INTEGER},
       </if>
-      <if test="dirIntroduce != null">
-        dir_introduce = #{dirIntroduce,jdbcType=LONGVARCHAR},
+      <if test="imgURL != null">
+        dir_img = #{imgURL,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null">
+        dir_introduce = #{introduce,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where dir_id = #{id,jdbcType=INTEGER}
@@ -94,14 +105,16 @@
     update dir_inf
     set dir_type = #{type,jdbcType=INTEGER},
       dir_name = #{name,jdbcType=VARCHAR},
-      dir_img = #{dirImg,jdbcType=VARCHAR},
-      dir_introduce = #{dirIntroduce,jdbcType=LONGVARCHAR}
+      dir_growtime = #{gorwtime,jdbcType=INTEGER},
+      dir_img = #{imgURL,jdbcType=VARCHAR},
+      dir_introduce = #{introduce,jdbcType=LONGVARCHAR}
     where dir_id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="zm.village.dao.Dictionary">
     update dir_inf
     set dir_type = #{type,jdbcType=INTEGER},
       dir_name = #{name,jdbcType=VARCHAR},
+      dir_growtime = #{gorwtime,jdbcType=INTEGER},
       dir_img = #{imgURL,jdbcType=VARCHAR}
     where dir_id = #{id,jdbcType=INTEGER}
   </update>

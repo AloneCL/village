@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="zm.village.ssm.mapper.RelLabelInfMapper">
+<mapper namespace="zm.village.ssm.mapper.LabelMapper">
   <resultMap id="BaseResultMap" type="zm.village.dao.Label">
     <id column="rel_label_id" jdbcType="INTEGER" property="id" />
     <result column="rel_label_eva" jdbcType="INTEGER" property="evaluateId" />

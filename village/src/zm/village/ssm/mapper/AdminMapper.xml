@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="zm.village.ssm.mapper.AdminInfMapper">
+<mapper namespace="zm.village.ssm.mapper.AdminMapper">
   <resultMap id="BaseResultMap" type="zm.village.dao.Admin">
     <id column="admin_id" jdbcType="INTEGER" property="id" />
     <result column="admin_user" jdbcType="VARCHAR" property="username" />

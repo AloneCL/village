@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zm.village.ssm.mapper.RelLabelInfMapper">
+  <resultMap id="BaseResultMap" type="zm.village.dao.RelLabelInf">
+    <id column="rel_label_id" jdbcType="INTEGER" property="relLabelId" />
+    <result column="rel_label_eva" jdbcType="INTEGER" property="relLabelEva" />
+    <result column="rel_label_type" jdbcType="INTEGER" property="relLabelType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    rel_label_id, rel_label_eva, rel_label_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rel_label_inf
+    where rel_label_id = #{relLabelId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from rel_label_inf
+    where rel_label_id = #{relLabelId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="zm.village.dao.RelLabelInf">
+    insert into rel_label_inf (rel_label_id, rel_label_eva, rel_label_type
+      )
+    values (#{relLabelId,jdbcType=INTEGER}, #{relLabelEva,jdbcType=INTEGER}, #{relLabelType,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="zm.village.dao.RelLabelInf">
+    insert into rel_label_inf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="relLabelId != null">
+        rel_label_id,
+      </if>
+      <if test="relLabelEva != null">
+        rel_label_eva,
+      </if>
+      <if test="relLabelType != null">
+        rel_label_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="relLabelId != null">
+        #{relLabelId,jdbcType=INTEGER},
+      </if>
+      <if test="relLabelEva != null">
+        #{relLabelEva,jdbcType=INTEGER},
+      </if>
+      <if test="relLabelType != null">
+        #{relLabelType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.RelLabelInf">
+    update rel_label_inf
+    <set>
+      <if test="relLabelEva != null">
+        rel_label_eva = #{relLabelEva,jdbcType=INTEGER},
+      </if>
+      <if test="relLabelType != null">
+        rel_label_type = #{relLabelType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where rel_label_id = #{relLabelId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="zm.village.dao.RelLabelInf">
+    update rel_label_inf
+    set rel_label_eva = #{relLabelEva,jdbcType=INTEGER},
+      rel_label_type = #{relLabelType,jdbcType=INTEGER}
+    where rel_label_id = #{relLabelId,jdbcType=INTEGER}
+  </update>
+</mapper>

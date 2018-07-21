@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zm.village.ssm.mapper.LandInfMapper">
+  <resultMap id="BaseResultMap" type="zm.village.dao.LandInf">
+    <id column="land_id" jdbcType="INTEGER" property="landId" />
+    <result column="land_user" jdbcType="INTEGER" property="landUser" />
+    <result column="land_name" jdbcType="VARCHAR" property="landName" />
+    <result column="land_type" jdbcType="INTEGER" property="landType" />
+    <result column="land_size" jdbcType="DOUBLE" property="landSize" />
+    <result column="land_basic_price" jdbcType="DOUBLE" property="landBasicPrice" />
+    <result column="land_address" jdbcType="VARCHAR" property="landAddress" />
+    <result column="land_unused_size" jdbcType="DOUBLE" property="landUnusedSize" />
+    <result column="land_split" jdbcType="INTEGER" property="landSplit" />
+    <result column="land_min_lease" jdbcType="DOUBLE" property="landMinLease" />
+    <result column="land_picture" jdbcType="VARCHAR" property="landPicture" />
+    <result column="land_certificate" jdbcType="VARCHAR" property="landCertificate" />
+    <result column="land_status" jdbcType="INTEGER" property="landStatus" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="zm.village.dao.LandInf">
+    <result column="land_introduce" jdbcType="LONGVARCHAR" property="landIntroduce" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    land_id, land_user, land_name, land_type, land_size, land_basic_price, land_address, 
+    land_unused_size, land_split, land_min_lease, land_picture, land_certificate, land_status
+  </sql>
+  <sql id="Blob_Column_List">
+    land_introduce
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from land_inf
+    where land_id = #{landId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from land_inf
+    where land_id = #{landId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="zm.village.dao.LandInf">
+    insert into land_inf (land_id, land_user, land_name, 
+      land_type, land_size, land_basic_price, 
+      land_address, land_unused_size, land_split, 
+      land_min_lease, land_picture, land_certificate, 
+      land_status, land_introduce)
+    values (#{landId,jdbcType=INTEGER}, #{landUser,jdbcType=INTEGER}, #{landName,jdbcType=VARCHAR}, 
+      #{landType,jdbcType=INTEGER}, #{landSize,jdbcType=DOUBLE}, #{landBasicPrice,jdbcType=DOUBLE}, 
+      #{landAddress,jdbcType=VARCHAR}, #{landUnusedSize,jdbcType=DOUBLE}, #{landSplit,jdbcType=INTEGER}, 
+      #{landMinLease,jdbcType=DOUBLE}, #{landPicture,jdbcType=VARCHAR}, #{landCertificate,jdbcType=VARCHAR}, 
+      #{landStatus,jdbcType=INTEGER}, #{landIntroduce,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="zm.village.dao.LandInf">
+    insert into land_inf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="landId != null">
+        land_id,
+      </if>
+      <if test="landUser != null">
+        land_user,
+      </if>
+      <if test="landName != null">
+        land_name,
+      </if>
+      <if test="landType != null">
+        land_type,
+      </if>
+      <if test="landSize != null">
+        land_size,
+      </if>
+      <if test="landBasicPrice != null">
+        land_basic_price,
+      </if>
+      <if test="landAddress != null">
+        land_address,
+      </if>
+      <if test="landUnusedSize != null">
+        land_unused_size,
+      </if>
+      <if test="landSplit != null">
+        land_split,
+      </if>
+      <if test="landMinLease != null">
+        land_min_lease,
+      </if>
+      <if test="landPicture != null">
+        land_picture,
+      </if>
+      <if test="landCertificate != null">
+        land_certificate,
+      </if>
+      <if test="landStatus != null">
+        land_status,
+      </if>
+      <if test="landIntroduce != null">
+        land_introduce,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="landId != null">
+        #{landId,jdbcType=INTEGER},
+      </if>
+      <if test="landUser != null">
+        #{landUser,jdbcType=INTEGER},
+      </if>
+      <if test="landName != null">
+        #{landName,jdbcType=VARCHAR},
+      </if>
+      <if test="landType != null">
+        #{landType,jdbcType=INTEGER},
+      </if>
+      <if test="landSize != null">
+        #{landSize,jdbcType=DOUBLE},
+      </if>
+      <if test="landBasicPrice != null">
+        #{landBasicPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="landAddress != null">
+        #{landAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="landUnusedSize != null">
+        #{landUnusedSize,jdbcType=DOUBLE},
+      </if>
+      <if test="landSplit != null">
+        #{landSplit,jdbcType=INTEGER},
+      </if>
+      <if test="landMinLease != null">
+        #{landMinLease,jdbcType=DOUBLE},
+      </if>
+      <if test="landPicture != null">
+        #{landPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="landCertificate != null">
+        #{landCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="landStatus != null">
+        #{landStatus,jdbcType=INTEGER},
+      </if>
+      <if test="landIntroduce != null">
+        #{landIntroduce,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.LandInf">
+    update land_inf
+    <set>
+      <if test="landUser != null">
+        land_user = #{landUser,jdbcType=INTEGER},
+      </if>
+      <if test="landName != null">
+        land_name = #{landName,jdbcType=VARCHAR},
+      </if>
+      <if test="landType != null">
+        land_type = #{landType,jdbcType=INTEGER},
+      </if>
+      <if test="landSize != null">
+        land_size = #{landSize,jdbcType=DOUBLE},
+      </if>
+      <if test="landBasicPrice != null">
+        land_basic_price = #{landBasicPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="landAddress != null">
+        land_address = #{landAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="landUnusedSize != null">
+        land_unused_size = #{landUnusedSize,jdbcType=DOUBLE},
+      </if>
+      <if test="landSplit != null">
+        land_split = #{landSplit,jdbcType=INTEGER},
+      </if>
+      <if test="landMinLease != null">
+        land_min_lease = #{landMinLease,jdbcType=DOUBLE},
+      </if>
+      <if test="landPicture != null">
+        land_picture = #{landPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="landCertificate != null">
+        land_certificate = #{landCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="landStatus != null">
+        land_status = #{landStatus,jdbcType=INTEGER},
+      </if>
+      <if test="landIntroduce != null">
+        land_introduce = #{landIntroduce,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where land_id = #{landId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="zm.village.dao.LandInf">
+    update land_inf
+    set land_user = #{landUser,jdbcType=INTEGER},
+      land_name = #{landName,jdbcType=VARCHAR},
+      land_type = #{landType,jdbcType=INTEGER},
+      land_size = #{landSize,jdbcType=DOUBLE},
+      land_basic_price = #{landBasicPrice,jdbcType=DOUBLE},
+      land_address = #{landAddress,jdbcType=VARCHAR},
+      land_unused_size = #{landUnusedSize,jdbcType=DOUBLE},
+      land_split = #{landSplit,jdbcType=INTEGER},
+      land_min_lease = #{landMinLease,jdbcType=DOUBLE},
+      land_picture = #{landPicture,jdbcType=VARCHAR},
+      land_certificate = #{landCertificate,jdbcType=VARCHAR},
+      land_status = #{landStatus,jdbcType=INTEGER},
+      land_introduce = #{landIntroduce,jdbcType=LONGVARCHAR}
+    where land_id = #{landId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="zm.village.dao.LandInf">
+    update land_inf
+    set land_user = #{landUser,jdbcType=INTEGER},
+      land_name = #{landName,jdbcType=VARCHAR},
+      land_type = #{landType,jdbcType=INTEGER},
+      land_size = #{landSize,jdbcType=DOUBLE},
+      land_basic_price = #{landBasicPrice,jdbcType=DOUBLE},
+      land_address = #{landAddress,jdbcType=VARCHAR},
+      land_unused_size = #{landUnusedSize,jdbcType=DOUBLE},
+      land_split = #{landSplit,jdbcType=INTEGER},
+      land_min_lease = #{landMinLease,jdbcType=DOUBLE},
+      land_picture = #{landPicture,jdbcType=VARCHAR},
+      land_certificate = #{landCertificate,jdbcType=VARCHAR},
+      land_status = #{landStatus,jdbcType=INTEGER}
+    where land_id = #{landId,jdbcType=INTEGER}
+  </update>
+</mapper>

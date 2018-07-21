@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zm.village.ssm.mapper.UserInfMapper">
+  <resultMap id="BaseResultMap" type="zm.village.dao.UserInf">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_tel" jdbcType="VARCHAR" property="userTel" />
+    <result column="user_pass" jdbcType="VARCHAR" property="userPass" />
+    <result column="user_img" jdbcType="VARCHAR" property="userImg" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_address" jdbcType="VARCHAR" property="userAddress" />
+    <result column="user_post_address" jdbcType="VARCHAR" property="userPostAddress" />
+    <result column="user_regtime" jdbcType="TIMESTAMP" property="userRegtime" />
+    <result column="user_type" jdbcType="INTEGER" property="userType" />
+    <result column="user_real_name" jdbcType="VARCHAR" property="userRealName" />
+    <result column="user_id_card_number" jdbcType="VARCHAR" property="userIdCardNumber" />
+    <result column="user_starlevel" jdbcType="DOUBLE" property="userStarlevel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_tel, user_pass, user_img, user_name, user_address, user_post_address, 
+    user_regtime, user_type, user_real_name, user_id_card_number, user_starlevel
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_inf
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_inf
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="zm.village.dao.UserInf">
+    insert into user_inf (user_id, user_tel, user_pass, 
+      user_img, user_name, user_address, 
+      user_post_address, user_regtime, user_type, 
+      user_real_name, user_id_card_number, user_starlevel
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userTel,jdbcType=VARCHAR}, #{userPass,jdbcType=VARCHAR}, 
+      #{userImg,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userAddress,jdbcType=VARCHAR}, 
+      #{userPostAddress,jdbcType=VARCHAR}, #{userRegtime,jdbcType=TIMESTAMP}, #{userType,jdbcType=INTEGER}, 
+      #{userRealName,jdbcType=VARCHAR}, #{userIdCardNumber,jdbcType=VARCHAR}, #{userStarlevel,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="zm.village.dao.UserInf">
+    insert into user_inf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userTel != null">
+        user_tel,
+      </if>
+      <if test="userPass != null">
+        user_pass,
+      </if>
+      <if test="userImg != null">
+        user_img,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userAddress != null">
+        user_address,
+      </if>
+      <if test="userPostAddress != null">
+        user_post_address,
+      </if>
+      <if test="userRegtime != null">
+        user_regtime,
+      </if>
+      <if test="userType != null">
+        user_type,
+      </if>
+      <if test="userRealName != null">
+        user_real_name,
+      </if>
+      <if test="userIdCardNumber != null">
+        user_id_card_number,
+      </if>
+      <if test="userStarlevel != null">
+        user_starlevel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userTel != null">
+        #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="userPass != null">
+        #{userPass,jdbcType=VARCHAR},
+      </if>
+      <if test="userImg != null">
+        #{userImg,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null">
+        #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userPostAddress != null">
+        #{userPostAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userRegtime != null">
+        #{userRegtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="userRealName != null">
+        #{userRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdCardNumber != null">
+        #{userIdCardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userStarlevel != null">
+        #{userStarlevel,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.UserInf">
+    update user_inf
+    <set>
+      <if test="userTel != null">
+        user_tel = #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="userPass != null">
+        user_pass = #{userPass,jdbcType=VARCHAR},
+      </if>
+      <if test="userImg != null">
+        user_img = #{userImg,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null">
+        user_address = #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userPostAddress != null">
+        user_post_address = #{userPostAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userRegtime != null">
+        user_regtime = #{userRegtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userType != null">
+        user_type = #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="userRealName != null">
+        user_real_name = #{userRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdCardNumber != null">
+        user_id_card_number = #{userIdCardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userStarlevel != null">
+        user_starlevel = #{userStarlevel,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="zm.village.dao.UserInf">
+    update user_inf
+    set user_tel = #{userTel,jdbcType=VARCHAR},
+      user_pass = #{userPass,jdbcType=VARCHAR},
+      user_img = #{userImg,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_address = #{userAddress,jdbcType=VARCHAR},
+      user_post_address = #{userPostAddress,jdbcType=VARCHAR},
+      user_regtime = #{userRegtime,jdbcType=TIMESTAMP},
+      user_type = #{userType,jdbcType=INTEGER},
+      user_real_name = #{userRealName,jdbcType=VARCHAR},
+      user_id_card_number = #{userIdCardNumber,jdbcType=VARCHAR},
+      user_starlevel = #{userStarlevel,jdbcType=DOUBLE}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

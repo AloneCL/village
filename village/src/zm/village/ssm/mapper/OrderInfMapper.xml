@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="zm.village.ssm.mapper.OrderInfMapper">
   <resultMap id="BaseResultMap" type="zm.village.dao.OrderInf">
-    <id column="order_id" jdbcType="INTEGER" property="orderId" />
-    <result column="order_uuid" jdbcType="VARCHAR" property="orderUuid" />
+    <id column="order_id" jdbcType="INTEGER" property="id" />
+    <result column="order_uuid" jdbcType="VARCHAR" property="uuid" />
     <result column="order_type" jdbcType="INTEGER" property="orderType" />
     <result column="order_time" jdbcType="TIMESTAMP" property="orderTime" />
     <result column="order_land_size" jdbcType="DOUBLE" property="orderLandSize" />
-    <result column="order_finish_time" jdbcType="TIMESTAMP" property="orderFinishTime" />
+    <result column="order_finish_time" jdbcType="TIMESTAMP" property="finishTime" />
     <result column="order_num" jdbcType="INTEGER" property="orderNum" />
     <result column="order_finish_num" jdbcType="INTEGER" property="orderFinishNum" />
     <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
@@ -29,11 +29,11 @@
     select 
     <include refid="Base_Column_List" />
     from order_inf
-    where order_id = #{orderId,jdbcType=INTEGER}
+    where order_id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from order_inf
-    where order_id = #{orderId,jdbcType=INTEGER}
+    where order_id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="zm.village.dao.OrderInf">
     insert into order_inf (order_id, order_uuid, order_type, 
@@ -42,8 +42,8 @@
       order_address, order_price, order_remark, 
       order_buyuser, order_selluser, order_land_id, 
       order_selluser_name, order_selluser_tel)
-    values (#{orderId,jdbcType=INTEGER}, #{orderUuid,jdbcType=VARCHAR}, #{orderType,jdbcType=INTEGER}, 
-      #{orderTime,jdbcType=TIMESTAMP}, #{orderLandSize,jdbcType=DOUBLE}, #{orderFinishTime,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, #{orderType,jdbcType=INTEGER}, 
+      #{orderTime,jdbcType=TIMESTAMP}, #{orderLandSize,jdbcType=DOUBLE}, #{finishTime,jdbcType=TIMESTAMP}, 
       #{orderNum,jdbcType=INTEGER}, #{orderFinishNum,jdbcType=INTEGER}, #{orderStatus,jdbcType=INTEGER}, 
       #{orderAddress,jdbcType=VARCHAR}, #{orderPrice,jdbcType=DOUBLE}, #{orderRemark,jdbcType=VARCHAR}, 
       #{orderBuyuser,jdbcType=INTEGER}, #{orderSelluser,jdbcType=INTEGER}, #{orderLandId,jdbcType=INTEGER}, 
@@ -52,10 +52,10 @@
   <insert id="insertSelective" parameterType="zm.village.dao.OrderInf">
     insert into order_inf
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="orderId != null">
+      <if test="id != null">
         order_id,
       </if>
-      <if test="orderUuid != null">
+      <if test="uuid != null">
         order_uuid,
       </if>
       <if test="orderType != null">
@@ -67,7 +67,7 @@
       <if test="orderLandSize != null">
         order_land_size,
       </if>
-      <if test="orderFinishTime != null">
+      <if test="finishTime != null">
         order_finish_time,
       </if>
       <if test="orderNum != null">
@@ -105,11 +105,11 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="orderId != null">
-        #{orderId,jdbcType=INTEGER},
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
       </if>
-      <if test="orderUuid != null">
-        #{orderUuid,jdbcType=VARCHAR},
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
       </if>
       <if test="orderType != null">
         #{orderType,jdbcType=INTEGER},
@@ -120,8 +120,8 @@
       <if test="orderLandSize != null">
         #{orderLandSize,jdbcType=DOUBLE},
       </if>
-      <if test="orderFinishTime != null">
-        #{orderFinishTime,jdbcType=TIMESTAMP},
+      <if test="finishTime != null">
+        #{finishTime,jdbcType=TIMESTAMP},
       </if>
       <if test="orderNum != null">
         #{orderNum,jdbcType=INTEGER},
@@ -161,8 +161,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.OrderInf">
     update order_inf
     <set>
-      <if test="orderUuid != null">
-        order_uuid = #{orderUuid,jdbcType=VARCHAR},
+      <if test="uuid != null">
+        order_uuid = #{uuid,jdbcType=VARCHAR},
       </if>
       <if test="orderType != null">
         order_type = #{orderType,jdbcType=INTEGER},
@@ -173,8 +173,8 @@
       <if test="orderLandSize != null">
         order_land_size = #{orderLandSize,jdbcType=DOUBLE},
       </if>
-      <if test="orderFinishTime != null">
-        order_finish_time = #{orderFinishTime,jdbcType=TIMESTAMP},
+      <if test="finishTime != null">
+        order_finish_time = #{finishTime,jdbcType=TIMESTAMP},
       </if>
       <if test="orderNum != null">
         order_num = #{orderNum,jdbcType=INTEGER},
@@ -210,15 +210,15 @@
         order_selluser_tel = #{orderSelluserTel,jdbcType=VARCHAR},
       </if>
     </set>
-    where order_id = #{orderId,jdbcType=INTEGER}
+    where order_id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="zm.village.dao.OrderInf">
     update order_inf
-    set order_uuid = #{orderUuid,jdbcType=VARCHAR},
+    set order_uuid = #{uuid,jdbcType=VARCHAR},
       order_type = #{orderType,jdbcType=INTEGER},
       order_time = #{orderTime,jdbcType=TIMESTAMP},
       order_land_size = #{orderLandSize,jdbcType=DOUBLE},
-      order_finish_time = #{orderFinishTime,jdbcType=TIMESTAMP},
+      order_finish_time = #{finishTime,jdbcType=TIMESTAMP},
       order_num = #{orderNum,jdbcType=INTEGER},
       order_finish_num = #{orderFinishNum,jdbcType=INTEGER},
       order_status = #{orderStatus,jdbcType=INTEGER},
@@ -230,6 +230,6 @@
       order_land_id = #{orderLandId,jdbcType=INTEGER},
       order_selluser_name = #{orderSelluserName,jdbcType=VARCHAR},
       order_selluser_tel = #{orderSelluserTel,jdbcType=VARCHAR}
-    where order_id = #{orderId,jdbcType=INTEGER}
+    where order_id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

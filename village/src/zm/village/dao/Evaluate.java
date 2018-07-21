@@ -19,9 +19,9 @@ public final class Evaluate implements java.io.Serializable {
 	//eva_id
 	private Integer id;
 	//卖家(农民)信息，对应eva_seller_id
-	private User seller;
+	private Integer sellerId;
 	//买家信息，对应eva_buyer_id
-	private User buyer;
+	private Integer buyerId;
 	//买家昵称，对应eva_buyer_name
 	private String buyerName;
 	//评论内容，对应eva_content
@@ -38,12 +38,9 @@ public final class Evaluate implements java.io.Serializable {
 	public Evaluate() {
 	}
 	
-	public Evaluate(User seller, User buyer, String content, Integer star) {
+	public Evaluate(Integer sellerId, Integer buyerId, String content, Integer star) {
 		this();
-		this.seller = seller;
-		this.buyer = buyer;
 		this.createTime = SystemTimeUtil.getTime();
-		this.buyerName = buyer.getName();
 		this.content = content;
 		this.star = star;
 	} 
@@ -65,8 +62,8 @@ public final class Evaluate implements java.io.Serializable {
 	 * @sql eva_seller_id
 	 * @return User对象
 	 */
-	public User getSeller() {
-		return seller;
+	public Integer getSellerId() {
+		return sellerId;
 	}
 	
 	/**
@@ -74,8 +71,8 @@ public final class Evaluate implements java.io.Serializable {
 	 * @sql eva_seller_id
 	 * @param seller User对象
 	 */
-	public void setSeller(User seller) {
-		this.seller = seller;
+	public void setSellerId(Integer sellerId) {
+		this.sellerId = sellerId;
 	}
 	
 	/**
@@ -83,8 +80,8 @@ public final class Evaluate implements java.io.Serializable {
 	 * @sql eva_buyer_id
 	 * @return 买家User对象
 	 */
-	public User getBuyer() {
-		return buyer;
+	public Integer getBuyerId() {
+		return buyerId;
 	}
 	
 	/**
@@ -92,26 +89,23 @@ public final class Evaluate implements java.io.Serializable {
 	 * @sql eva_buyer_id
 	 * @param buyer User对象
 	 */
-	public void setBuyer(User buyer) {
-		this.buyerName = buyer.getName();
-		this.buyer = buyer;
+	public void setBuyerId(Integer buyerId) {
+		this.buyerId = buyerId;
 	}
 	
 	/**
 	 * 获取买家的昵称
 	 * @sql eva_buyer_name
-	 * @param buyer User对象
+	 * @param buyerId User对象
 	 */
 	public String getBuyerName() {
 		return buyerName;
 	}
 	
 	/**
-	 * 不要调用，买家名称会自动在setBuyer方法中设置完成
 	 * @sql eva_buyer_name
 	 * @param buyerName
 	 */
-	@Deprecated
 	public void setBuyerName(String buyerName) {
 		this.buyerName = buyerName;
 	}

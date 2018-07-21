@@ -1,19 +1,19 @@
 package zm.village.ssm.mapper;
 
-import zm.village.dao.GoodsInf;
+import zm.village.dao.Goods;
 
 public interface GoodsInfMapper {
     int deleteByPrimaryKey(Integer goodsId);
 
-    int insert(GoodsInf record);
+    int insert(Goods record);
 
-    int insertSelective(GoodsInf record);
+    int insertSelective(Goods record);
 
-    GoodsInf selectByPrimaryKey(Integer goodsId);
+    Goods selectByPrimaryKey(Integer goodsId);
 
-    int updateByPrimaryKeySelective(GoodsInf record);
+    int updateByPrimaryKeySelective(Goods record);
 
-    int updateByPrimaryKeyWithBLOBs(GoodsInf record);
+    int updateByPrimaryKeyWithBLOBs(Goods record);
 
-    int updateByPrimaryKey(GoodsInf record);
+    int updateByPrimaryKey(Goods record);
 }

@@ -1,17 +1,18 @@
 package zm.village.ssm.mapper;
 
-import zm.village.dao.AdminInf;
+import zm.village.dao.Admin;
 
 public interface AdminInfMapper {
+	
     int deleteByPrimaryKey(Integer adminId);
 
-    int insert(AdminInf record);
+    int insert(Admin record);
 
-    int insertSelective(AdminInf record);
+    int insertSelective(Admin record);
 
-    AdminInf selectByPrimaryKey(Integer adminId);
+    Admin selectByPrimaryKey(Integer adminId);
 
-    int updateByPrimaryKeySelective(AdminInf record);
+    int updateByPrimaryKeySelective(Admin record);
 
-    int updateByPrimaryKey(AdminInf record);
+    int updateByPrimaryKey(Admin record);
 }

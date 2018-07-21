@@ -1,17 +1,17 @@
 package zm.village.ssm.mapper;
 
-import zm.village.dao.LabelInf;
+import zm.village.dao.LabelDir;
 
 public interface LabelInfMapper {
     int deleteByPrimaryKey(Integer labelId);
 
-    int insert(LabelInf record);
+    int insert(LabelDir record);
 
-    int insertSelective(LabelInf record);
+    int insertSelective(LabelDir record);
 
-    LabelInf selectByPrimaryKey(Integer labelId);
+    LabelDir selectByPrimaryKey(Integer labelId);
 
-    int updateByPrimaryKeySelective(LabelInf record);
+    int updateByPrimaryKeySelective(LabelDir record);
 
-    int updateByPrimaryKey(LabelInf record);
+    int updateByPrimaryKey(LabelDir record);
 }

@@ -1,19 +1,19 @@
 package zm.village.ssm.mapper;
 
-import zm.village.dao.DirInf;
+import zm.village.dao.Dictionary;
 
 public interface DirInfMapper {
     int deleteByPrimaryKey(Integer dirId);
 
-    int insert(DirInf record);
+    int insert(Dictionary record);
 
-    int insertSelective(DirInf record);
+    int insertSelective(Dictionary record);
 
-    DirInf selectByPrimaryKey(Integer dirId);
+    Dictionary selectByPrimaryKey(Integer dirId);
 
-    int updateByPrimaryKeySelective(DirInf record);
+    int updateByPrimaryKeySelective(Dictionary record);
 
-    int updateByPrimaryKeyWithBLOBs(DirInf record);
+    int updateByPrimaryKeyWithBLOBs(Dictionary record);
 
-    int updateByPrimaryKey(DirInf record);
+    int updateByPrimaryKey(Dictionary record);
 }

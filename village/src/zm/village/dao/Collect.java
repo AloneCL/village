@@ -18,7 +18,7 @@ public final class Collect implements java.io.Serializable {
 	private Integer id;
 	
 	//该收藏信息所属的用户对象，collect_user
-	private User user;
+	private Integer userId;
 	
 	//收藏时间，collect_time
 	private Timestamp time;
@@ -27,10 +27,10 @@ public final class Collect implements java.io.Serializable {
 	private Integer type;
 	
 	//收藏的土地，collect_land
-	private Land land;
+	private Integer landId;
 	
 	//收藏的商品，collect_goods
-	private Goods goods;
+	private Integer goodsId;
 
 	public Integer getId() {
 		return id;
@@ -44,15 +44,15 @@ public final class Collect implements java.io.Serializable {
 	/**
 	 * @return 该收藏信息所属的用户对象
 	 */
-	public User getUser() {
-		return user;
+	public Integer getUserId() {
+		return userId;
 	}
 
 	/**
 	 * @param user 该收藏信息所属的用户对象
 	 */
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(Integer user) {
+		this.userId = user;
 	}
 
 	/**
@@ -86,28 +86,28 @@ public final class Collect implements java.io.Serializable {
 	/**
 	 * @return 收藏的土地，若收藏的是商品则返回Null
 	 */
-	public Land getLand() {
-		return land;
+	public Integer getLandId() {
+		return landId;
 	}
 
 	/**
 	 * @param land 收藏的土地
 	 */
-	public void setLand(Land land) {
-		this.land = land;
+	public void setLandId(Integer landId) {
+		this.landId = landId;
 	}
 
 	/**
 	 * @return 收藏的商品
 	 */
-	public Goods getGoods() {
-		return goods;
+	public Integer getGoodsId() {
+		return goodsId;
 	}
 
 	/**
 	 * @param goods 收藏的商品
 	 */
-	public void setGoods(Goods goods) {
-		this.goods = goods;
+	public void setGoodsId(Integer goodsId) {
+		this.goodsId = goodsId;
 	}
 }

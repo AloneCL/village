@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="zm.village.ssm.mapper.DirInfMapper">
-  <resultMap id="BaseResultMap" type="zm.village.dao.DirInf">
-    <id column="dir_id" jdbcType="INTEGER" property="dirId" />
-    <result column="dir_type" jdbcType="INTEGER" property="dirType" />
-    <result column="dir_name" jdbcType="VARCHAR" property="dirName" />
+  <resultMap id="BaseResultMap" type="zm.village.dao.Dictionary">
+    <id column="dir_id" jdbcType="INTEGER" property="id" />
+    <result column="dir_type" jdbcType="INTEGER" property="type" />
+    <result column="dir_name" jdbcType="VARCHAR" property="name" />
+    <!--是不是少了introduce ??  -->
     <result column="dir_img" jdbcType="VARCHAR" property="dirImg" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="zm.village.dao.DirInf">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="zm.village.dao.Dictionary">
     <result column="dir_introduce" jdbcType="LONGVARCHAR" property="dirIntroduce" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -22,28 +23,28 @@
     ,
     <include refid="Blob_Column_List" />
     from dir_inf
-    where dir_id = #{dirId,jdbcType=INTEGER}
+    where dir_id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from dir_inf
-    where dir_id = #{dirId,jdbcType=INTEGER}
+    where dir_id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="zm.village.dao.DirInf">
+  <insert id="insert" parameterType="zm.village.dao.Dictionary">
     insert into dir_inf (dir_id, dir_type, dir_name, 
       dir_img, dir_introduce)
-    values (#{dirId,jdbcType=INTEGER}, #{dirType,jdbcType=INTEGER}, #{dirName,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
       #{dirImg,jdbcType=VARCHAR}, #{dirIntroduce,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="zm.village.dao.DirInf">
+  <insert id="insertSelective" parameterType="zm.village.dao.Dictionary">
     insert into dir_inf
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="dirId != null">
+      <if test="id != null">
         dir_id,
       </if>
-      <if test="dirType != null">
+      <if test="type != null">
         dir_type,
       </if>
-      <if test="dirName != null">
+      <if test="name != null">
         dir_name,
       </if>
       <if test="dirImg != null">
@@ -54,14 +55,14 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="dirId != null">
-        #{dirId,jdbcType=INTEGER},
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
       </if>
-      <if test="dirType != null">
-        #{dirType,jdbcType=INTEGER},
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
       </if>
-      <if test="dirName != null">
-        #{dirName,jdbcType=VARCHAR},
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
       </if>
       <if test="dirImg != null">
         #{dirImg,jdbcType=VARCHAR},
@@ -71,14 +72,14 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.DirInf">
+  <update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.Dictionary">
     update dir_inf
     <set>
-      <if test="dirType != null">
-        dir_type = #{dirType,jdbcType=INTEGER},
+      <if test="type != null">
+        dir_type = #{type,jdbcType=INTEGER},
       </if>
-      <if test="dirName != null">
-        dir_name = #{dirName,jdbcType=VARCHAR},
+      <if test="name != null">
+        dir_name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="dirImg != null">
         dir_img = #{dirImg,jdbcType=VARCHAR},
@@ -87,21 +88,21 @@
         dir_introduce = #{dirIntroduce,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where dir_id = #{dirId,jdbcType=INTEGER}
+    where dir_id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="zm.village.dao.DirInf">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="zm.village.dao.Dictionary">
     update dir_inf
-    set dir_type = #{dirType,jdbcType=INTEGER},
-      dir_name = #{dirName,jdbcType=VARCHAR},
+    set dir_type = #{type,jdbcType=INTEGER},
+      dir_name = #{name,jdbcType=VARCHAR},
       dir_img = #{dirImg,jdbcType=VARCHAR},
       dir_introduce = #{dirIntroduce,jdbcType=LONGVARCHAR}
-    where dir_id = #{dirId,jdbcType=INTEGER}
+    where dir_id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="zm.village.dao.DirInf">
+  <update id="updateByPrimaryKey" parameterType="zm.village.dao.Dictionary">
     update dir_inf
-    set dir_type = #{dirType,jdbcType=INTEGER},
-      dir_name = #{dirName,jdbcType=VARCHAR},
-      dir_img = #{dirImg,jdbcType=VARCHAR}
-    where dir_id = #{dirId,jdbcType=INTEGER}
+    set dir_type = #{type,jdbcType=INTEGER},
+      dir_name = #{name,jdbcType=VARCHAR},
+      dir_img = #{imgURL,jdbcType=VARCHAR}
+    where dir_id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

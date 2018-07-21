@@ -10,10 +10,10 @@ public class Label {
 	private Integer id;
 	
 	//对应的评价,rel_label_eva
-	private Evaluate evaluate;
+	private Integer evaluateId;
 	
 	//对应的标签字典,rel_label_type
-	private LabelDir labelDir;
+	private Integer labelDirId;
 	
 	public Integer getId() {
 		return id;
@@ -28,36 +28,28 @@ public class Label {
 	 * 调用getLabelName
 	 * @return LabelDir字典
 	 */
-	@Deprecated
-	public LabelDir getLabelDir() {
-		return labelDir;
-	}
-	
-	/**
-	 * @return 获取字典对应的名称
-	 */
-	public String getLabelName() {
-		return labelDir.getName();
+	public Integer getLabelDirId() {
+		return labelDirId;
 	}
 
 	/**
 	 * @param labelDir 设置对应的字典
 	 */
-	public void setLabelDir(LabelDir labelDir) {
-		this.labelDir = labelDir;
+	public void setLabelDirId(Integer labelDirId) {
+		this.labelDirId = labelDirId;
 	}
 
 	/**
 	 * @return 与之关联的评价对象
 	 */
-	public Evaluate getEvaluate() {
-		return evaluate;
+	public Integer getEvaluateId() {
+		return evaluateId;
 	}
 
 	/**
 	 * @param evaluate 与之关联的评价对象
 	 */
-	public void setEvaluate(Evaluate evaluate) {
-		this.evaluate = evaluate;
+	public void setEvaluate(Integer evaluateId) {
+		this.evaluateId = evaluateId;
 	}
 }

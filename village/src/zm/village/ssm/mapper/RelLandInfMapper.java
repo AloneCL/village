@@ -1,17 +1,17 @@
 package zm.village.ssm.mapper;
 
-import zm.village.dao.RelLandInf;
+import zm.village.dao.Crop;
 
 public interface RelLandInfMapper {
     int deleteByPrimaryKey(Integer relLandId);
 
-    int insert(RelLandInf record);
+    int insert(Crop record);
 
-    int insertSelective(RelLandInf record);
+    int insertSelective(Crop record);
 
-    RelLandInf selectByPrimaryKey(Integer relLandId);
+    Crop selectByPrimaryKey(Integer relLandId);
 
-    int updateByPrimaryKeySelective(RelLandInf record);
+    int updateByPrimaryKeySelective(Crop record);
 
-    int updateByPrimaryKey(RelLandInf record);
+    int updateByPrimaryKey(Crop record);
 }

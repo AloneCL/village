@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="zm.village.ssm.mapper.CollectInfMapper">
-  <resultMap id="BaseResultMap" type="zm.village.dao.CollectInf">
-    <id column="collect_id" jdbcType="INTEGER" property="collectId" />
-    <result column="collect_user" jdbcType="INTEGER" property="collectUser" />
-    <result column="collect_time" jdbcType="TIMESTAMP" property="collectTime" />
-    <result column="collect_type" jdbcType="INTEGER" property="collectType" />
-    <result column="collect_land" jdbcType="INTEGER" property="collectLand" />
-    <result column="collect_goods" jdbcType="INTEGER" property="collectGoods" />
+  <resultMap id="BaseResultMap" type="zm.village.dao.Collect">
+    <id column="collect_id" jdbcType="INTEGER" property="id" />
+    <result column="collect_user" jdbcType="INTEGER" property="userId" />
+    <result column="collect_time" jdbcType="TIMESTAMP" property="time" />
+    <result column="collect_type" jdbcType="INTEGER" property="type" />
+    <result column="collect_land" jdbcType="INTEGER" property="landId" />
+    <result column="collect_goods" jdbcType="INTEGER" property="goodsId" />
   </resultMap>
   <sql id="Base_Column_List">
     collect_id, collect_user, collect_time, collect_type, collect_land, collect_goods
@@ -16,91 +16,91 @@
     select 
     <include refid="Base_Column_List" />
     from collect_inf
-    where collect_id = #{collectId,jdbcType=INTEGER}
+    where collect_id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from collect_inf
-    where collect_id = #{collectId,jdbcType=INTEGER}
+    where collect_id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="zm.village.dao.CollectInf">
+  <insert id="insert" parameterType="zm.village.dao.Collect">
     insert into collect_inf (collect_id, collect_user, collect_time, 
       collect_type, collect_land, collect_goods
       )
-    values (#{collectId,jdbcType=INTEGER}, #{collectUser,jdbcType=INTEGER}, #{collectTime,jdbcType=TIMESTAMP}, 
-      #{collectType,jdbcType=INTEGER}, #{collectLand,jdbcType=INTEGER}, #{collectGoods,jdbcType=INTEGER}
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, 
+      #{type,jdbcType=INTEGER}, #{landId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="zm.village.dao.CollectInf">
+  <insert id="insertSelective" parameterType="zm.village.dao.Collect">
     insert into collect_inf
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="collectId != null">
+      <if test="id != null">
         collect_id,
       </if>
-      <if test="collectUser != null">
+      <if test="userId != null">
         collect_user,
       </if>
-      <if test="collectTime != null">
+      <if test="time != null">
         collect_time,
       </if>
-      <if test="collectType != null">
+      <if test="type != null">
         collect_type,
       </if>
-      <if test="collectLand != null">
+      <if test="landId != null">
         collect_land,
       </if>
-      <if test="collectGoods != null">
+      <if test="goodsId != null">
         collect_goods,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="collectId != null">
-        #{collectId,jdbcType=INTEGER},
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
       </if>
-      <if test="collectUser != null">
-        #{collectUser,jdbcType=INTEGER},
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
       </if>
-      <if test="collectTime != null">
-        #{collectTime,jdbcType=TIMESTAMP},
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
       </if>
-      <if test="collectType != null">
-        #{collectType,jdbcType=INTEGER},
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
       </if>
-      <if test="collectLand != null">
-        #{collectLand,jdbcType=INTEGER},
+      <if test="landId != null">
+        #{landId,jdbcType=INTEGER},
       </if>
-      <if test="collectGoods != null">
-        #{collectGoods,jdbcType=INTEGER},
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.CollectInf">
+  <update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.Collect">
     update collect_inf
     <set>
-      <if test="collectUser != null">
-        collect_user = #{collectUser,jdbcType=INTEGER},
+      <if test="userId != null">
+        collect_user = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="collectTime != null">
-        collect_time = #{collectTime,jdbcType=TIMESTAMP},
+      <if test="time != null">
+        collect_time = #{time,jdbcType=TIMESTAMP},
       </if>
-      <if test="collectType != null">
-        collect_type = #{collectType,jdbcType=INTEGER},
+      <if test="type != null">
+        collect_type = #{type,jdbcType=INTEGER},
       </if>
-      <if test="collectLand != null">
-        collect_land = #{collectLand,jdbcType=INTEGER},
+      <if test="landId != null">
+        collect_land = #{landId,jdbcType=INTEGER},
       </if>
-      <if test="collectGoods != null">
-        collect_goods = #{collectGoods,jdbcType=INTEGER},
+      <if test="goodsId != null">
+        collect_goods = #{goodsId,jdbcType=INTEGER},
       </if>
     </set>
-    where collect_id = #{collectId,jdbcType=INTEGER}
+    where collect_id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="zm.village.dao.CollectInf">
+  <update id="updateByPrimaryKey" parameterType="zm.village.dao.Collect">
     update collect_inf
-    set collect_user = #{collectUser,jdbcType=INTEGER},
-      collect_time = #{collectTime,jdbcType=TIMESTAMP},
-      collect_type = #{collectType,jdbcType=INTEGER},
-      collect_land = #{collectLand,jdbcType=INTEGER},
-      collect_goods = #{collectGoods,jdbcType=INTEGER}
-    where collect_id = #{collectId,jdbcType=INTEGER}
+    set collect_user = #{userId,jdbcType=INTEGER},
+      collect_time = #{time,jdbcType=TIMESTAMP},
+      collect_type = #{type,jdbcType=INTEGER},
+      collect_land = #{landId,jdbcType=INTEGER},
+      collect_goods = #{goodsId,jdbcType=INTEGER}
+    where collect_id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

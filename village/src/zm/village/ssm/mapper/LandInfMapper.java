@@ -1,19 +1,20 @@
 package zm.village.ssm.mapper;
 
-import zm.village.dao.LandInf;
+import zm.village.dao.Land;
 
 public interface LandInfMapper {
+	
     int deleteByPrimaryKey(Integer landId);
 
-    int insert(LandInf record);
+    int insert(Land record);
 
-    int insertSelective(LandInf record);
+    int insertSelective(Land record);
 
-    LandInf selectByPrimaryKey(Integer landId);
+    Land selectByPrimaryKey(Integer landId);
 
-    int updateByPrimaryKeySelective(LandInf record);
+    int updateByPrimaryKeySelective(Land record);
 
-    int updateByPrimaryKeyWithBLOBs(LandInf record);
+    int updateByPrimaryKeyWithBLOBs(Land record);
 
-    int updateByPrimaryKey(LandInf record);
+    int updateByPrimaryKey(Land record);
 }

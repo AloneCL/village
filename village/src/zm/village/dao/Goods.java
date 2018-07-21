@@ -26,11 +26,14 @@ public final class Goods implements java.io.Serializable {
 	//农产品简要介绍，goods_introduce
 	private String introduce;
 	
+	//农产品产地，goods_address
+	private String address;
+	
 	//农产品图片URL，goods_img
 	private String imgURL;
 	
 	//农产品所属的农民(卖家), goods_user
-	private User user;
+	private Integer userId;
 
 	public Integer getId() {
 		return id;
@@ -152,16 +155,24 @@ public final class Goods implements java.io.Serializable {
 	/**
 	 * @return 商品所属的农民
 	 */
-	public User getUser() {
-		return user;
+	public Integer getUserId() {
+		return userId;
 	}
 
 	/**
 	 * 
 	 * @param user 商品所属的农民
 	 */
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(Integer user) {
+		this.userId = user;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	
 	

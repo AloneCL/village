@@ -1,17 +1,17 @@
 package zm.village.ssm.mapper;
 
-import zm.village.dao.UserInf;
+import zm.village.dao.User;
 
 public interface UserInfMapper {
     int deleteByPrimaryKey(Integer userId);
 
-    int insert(UserInf record);
+    int insert(User record);
 
-    int insertSelective(UserInf record);
+    int insertSelective(User record);
 
-    UserInf selectByPrimaryKey(Integer userId);
+    User selectByPrimaryKey(Integer userId);
 
-    int updateByPrimaryKeySelective(UserInf record);
+    int updateByPrimaryKeySelective(User record);
 
-    int updateByPrimaryKey(UserInf record);
+    int updateByPrimaryKey(User record);
 }

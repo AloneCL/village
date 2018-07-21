@@ -1,20 +1,19 @@
 package zm.village.ssm.mapper;
 
-import zm.village.dao.EvaInf;
-import zm.village.dao.EvaInfWithBLOBs;
+import zm.village.dao.Evaluate;
 
 public interface EvaInfMapper {
     int deleteByPrimaryKey(Integer evaId);
 
-    int insert(EvaInfWithBLOBs record);
+    int insert(Evaluate record);
 
-    int insertSelective(EvaInfWithBLOBs record);
+    int insertSelective(Evaluate record);
 
-    EvaInfWithBLOBs selectByPrimaryKey(Integer evaId);
+    Evaluate selectByPrimaryKey(Integer evaId);
 
-    int updateByPrimaryKeySelective(EvaInfWithBLOBs record);
+    int updateByPrimaryKeySelective(Evaluate record);
 
-    int updateByPrimaryKeyWithBLOBs(EvaInfWithBLOBs record);
+    int updateByPrimaryKeyWithBLOBs(Evaluate record);
 
-    int updateByPrimaryKey(EvaInf record);
+    int updateByPrimaryKey(Evaluate record);
 }

@@ -1,17 +1,17 @@
 package zm.village.ssm.mapper;
 
-import zm.village.dao.OrderInf;
+import zm.village.dao.Order;
 
 public interface OrderInfMapper {
     int deleteByPrimaryKey(Integer orderId);
 
-    int insert(OrderInf record);
+    int insert(Order record);
 
-    int insertSelective(OrderInf record);
+    int insertSelective(Order record);
 
-    OrderInf selectByPrimaryKey(Integer orderId);
+    Order selectByPrimaryKey(Integer orderId);
 
-    int updateByPrimaryKeySelective(OrderInf record);
+    int updateByPrimaryKeySelective(Order record);
 
-    int updateByPrimaryKey(OrderInf record);
+    int updateByPrimaryKey(Order record);
 }

@@ -1,17 +1,17 @@
 package zm.village.ssm.mapper;
 
-import zm.village.dao.CollectInf;
+import zm.village.dao.Collect;
 
 public interface CollectInfMapper {
     int deleteByPrimaryKey(Integer collectId);
 
-    int insert(CollectInf record);
+    int insert(Collect record);
 
-    int insertSelective(CollectInf record);
+    int insertSelective(Collect record);
 
-    CollectInf selectByPrimaryKey(Integer collectId);
+    Collect selectByPrimaryKey(Integer collectId);
 
-    int updateByPrimaryKeySelective(CollectInf record);
+    int updateByPrimaryKeySelective(Collect record);
 
-    int updateByPrimaryKey(CollectInf record);
+    int updateByPrimaryKey(Collect record);
 }

@@ -1,17 +1,17 @@
 package zm.village.ssm.mapper;
 
-import zm.village.dao.RelBreedInf;
+import zm.village.dao.Breed;
 
 public interface RelBreedInfMapper {
     int deleteByPrimaryKey(Integer relBreedId);
 
-    int insert(RelBreedInf record);
+    int insert(Breed record);
 
-    int insertSelective(RelBreedInf record);
+    int insertSelective(Breed record);
 
-    RelBreedInf selectByPrimaryKey(Integer relBreedId);
+    Breed selectByPrimaryKey(Integer relBreedId);
 
-    int updateByPrimaryKeySelective(RelBreedInf record);
+    int updateByPrimaryKeySelective(Breed record);
 
-    int updateByPrimaryKey(RelBreedInf record);
+    int updateByPrimaryKey(Breed record);
 }

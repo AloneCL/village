@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zm.village.ssm.mapper.DictionaryMapper">
+  <resultMap id="BaseResultMap" type="zm.village.dao.Dictionary">
+    <id column="dir_id" jdbcType="INTEGER" property="id" />
+    <result column="dir_type" jdbcType="INTEGER" property="type" />
+    <result column="dir_name" jdbcType="VARCHAR" property="name" />
+    <result column="dir_growtime" jdbcType="INTEGER" property="gorwtime" />
+    <result column="dir_img" jdbcType="VARCHAR" property="imgURL" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="zm.village.dao.Dictionary">
+    <result column="dir_introduce" jdbcType="LONGVARCHAR" property="introduce" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    dir_id, dir_type, dir_name, dir_growtime, dir_img
+  </sql>
+  <sql id="Blob_Column_List">
+    dir_introduce
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from dir_inf
+    where dir_id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dir_inf
+    where dir_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="zm.village.dao.Dictionary">
+    insert into dir_inf (dir_id, dir_type, dir_name, 
+      dir_growtime, dir_img, dir_introduce
+      )
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{gorwtime,jdbcType=INTEGER}, #{imgURL,jdbcType=VARCHAR}, #{introduce,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="zm.village.dao.Dictionary">
+    insert into dir_inf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        dir_id,
+      </if>
+      <if test="type != null">
+        dir_type,
+      </if>
+      <if test="name != null">
+        dir_name,
+      </if>
+      <if test="gorwtime != null">
+        dir_growtime,
+      </if>
+      <if test="imgURL != null">
+        dir_img,
+      </if>
+      <if test="introduce != null">
+        dir_introduce,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gorwtime != null">
+        #{gorwtime,jdbcType=INTEGER},
+      </if>
+      <if test="imgURL != null">
+        #{imgURL,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null">
+        #{introduce,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.Dictionary">
+    update dir_inf
+    <set>
+      <if test="type != null">
+        dir_type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        dir_name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gorwtime != null">
+        dir_growtime = #{gorwtime,jdbcType=INTEGER},
+      </if>
+      <if test="imgURL != null">
+        dir_img = #{imgURL,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null">
+        dir_introduce = #{introduce,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where dir_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="zm.village.dao.Dictionary">
+    update dir_inf
+    set dir_type = #{type,jdbcType=INTEGER},
+      dir_name = #{name,jdbcType=VARCHAR},
+      dir_growtime = #{gorwtime,jdbcType=INTEGER},
+      dir_img = #{imgURL,jdbcType=VARCHAR},
+      dir_introduce = #{introduce,jdbcType=LONGVARCHAR}
+    where dir_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="zm.village.dao.Dictionary">
+    update dir_inf
+    set dir_type = #{type,jdbcType=INTEGER},
+      dir_name = #{name,jdbcType=VARCHAR},
+      dir_growtime = #{gorwtime,jdbcType=INTEGER},
+      dir_img = #{imgURL,jdbcType=VARCHAR}
+    where dir_id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

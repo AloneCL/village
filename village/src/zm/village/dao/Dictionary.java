@@ -17,6 +17,8 @@ public final class Dictionary implements java.io.Serializable {
 	private String name;
 	//名词简介，参考百度百科
 	private String introduce;
+	//预计成熟时间
+	private Integer growtime;
 	//默认图片URL，对应dir_img
 	private String imgURL;
 	
@@ -111,6 +113,22 @@ public final class Dictionary implements java.io.Serializable {
 	 */
 	public void setImgURL(String imgURL) {
 		this.imgURL = imgURL;
+	}
+
+	/**
+	 * 获取预计成熟时间
+	 * @return the growtime
+	 */
+	public Integer getGrowtime() {
+		return growtime;
+	}
+
+	/**
+	 * 设置预计成熟时间
+	 * @param growtime  成熟时间
+	 */
+	public void setGrowtime(Integer growtime) {
+		this.growtime = growtime;
 	}
 	
 	

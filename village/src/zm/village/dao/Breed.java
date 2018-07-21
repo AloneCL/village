@@ -13,10 +13,10 @@ public final class Breed implements java.io.Serializable {
 	private Integer id;
 	
 	//养殖类名称在字典表的映射,对应rel_breed_type
-	private Dictionary type;
+	private Integer dirId;
 	
 	//养殖类所属的土地对象，对应rel_breed_id
-	private Land land;
+	private Integer landId;
 	
 	//单位价格，对应rel_breed_price
 	private Double price;
@@ -39,29 +39,29 @@ public final class Breed implements java.io.Serializable {
 	/**
 	 * @return 该养殖品种在字典表的映射
 	 */
-	public Dictionary getType() {
-		return type;
+	public Integer getType() {
+		return dirId;
 	}
 
 	/**
 	 * @param type 该养殖品种在字典表的映射
 	 */
-	public void setType(Dictionary type) {
-		this.type = type;
+	public void setDirId(Integer dirId) {
+		this.dirId = dirId;
 	}
 
 	/**
 	 * @return 该养殖品种对应的土地对象
 	 */
-	public Land getLand() {
-		return land;
+	public Integer getLand() {
+		return landId;
 	}
 	
 	/**
 	 * @param land 该养殖品种对应的土地对象
 	 */
-	public void setLand(Land land) {
-		this.land = land;
+	public void setLand(Integer landId) {
+		this.landId = landId;
 	}
 
 	/**

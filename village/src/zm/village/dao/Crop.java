@@ -15,9 +15,9 @@ public final class Crop implements java.io.Serializable {
 	//rel_land_id
 	private Integer id;
 	//作物所属土地，对应rel_land_type
-	private Land land;
+	private Integer landId;
 	//作物名称，对应rel_land_crop_type
-	private Dictionary crop;
+	private Integer dirId;
 	//作物附加价格，对应rel_land_crop_price
 	private Double price;
 	//可种植的最早时间，对应rel_land_crop_starttime
@@ -28,13 +28,13 @@ public final class Crop implements java.io.Serializable {
 	public Crop() {
 	}
 	
-	public Crop(Land land, Dictionary crop, Double price, Timestamp startTime, Timestamp endTime) {
+	public Crop(Integer landId, Integer dirId, Double price, Timestamp startTime, Timestamp endTime) {
 		this();
-		this.land = land;
+		this.landId = landId;
 		this.price = price;
 		this.endTime = endTime;
 		this.startTime = startTime;
-		this.setCrop(crop);
+		this.dirId = dirId;
 	}
 	
 	
@@ -54,16 +54,16 @@ public final class Crop implements java.io.Serializable {
 	 * 获取对应的土地对象
 	 * @return Land土地对象
 	 */
-	public Land getLand() {
-		return land;
+	public Integer getLandId() {
+		return landId;
 	}
 	
 	/**
 	 * 设置对应的土地对象
 	 * @param land Land对象
 	 */
-	public void setLand(Land land) {
-		this.land = land;
+	public void setLand(Integer landId) {
+		this.landId = landId;
 	}
 	
 	/**
@@ -118,36 +118,15 @@ public final class Crop implements java.io.Serializable {
 	 * 获取作物类型
 	 * @return Dictionary 数据字典对象
 	 */
-	public Dictionary getCrop() {
-		return crop;
+	public Integer getDirId() {
+		return dirId;
 	}
 	
-	/**
-	 * @return 字典对应的农作物名称
-	 */
-	public String getCropName() {
-		return crop.getName();
-	}
-	
-	/**
-	 * @return 字典对应的默认图片
-	 */
-	public String getCropImgURL() {
-		return crop.getImgURL();
-	}
-	
-	/**
-	 * @return 字典对应的介绍
-	 */
-	public String getCropIntroduce() {
-		return crop.getIntroduce();
-	}
-
 	/**
 	 * 设置作物类型
 	 * @param Dictionary 数据字典对象
 	 */
-	public void setCrop(Dictionary crop) {
-		this.crop = crop;
+	public void setDirId(Integer cropId) {
+		this.dirId = cropId;
 	}
 }

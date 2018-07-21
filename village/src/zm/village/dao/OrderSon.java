@@ -25,13 +25,15 @@ public final class OrderSon implements java.io.Serializable {
 	//orderson_id
 	private Integer id;
 	//父订单，对应orderson_order_id
-	private Order sourceOrder;
+	private Integer sourceOrderId;
 	//所属土地，对应orderson_land_id
-	private Land land;
-	//该子订单作物或养殖品种在数据字典中对应的ID，对应orderson_dir_id
-	private Dictionary dict;
+	private Integer landId;
+	//该子订单作物或养殖品种在数据字典中对应的ID，对应orderson_dir
+	private Integer dirId;
 	//种植面积，对应orderson_size
 	private Double plantSize;
+	//种植附加价，orderson_price
+	private Double price;
 	//子订单状态，对应orderson_status
 	private Integer status;
 	//子订单完成状况图片URL(由农民负责上传)，对应orderson_img
@@ -46,11 +48,11 @@ public final class OrderSon implements java.io.Serializable {
 	public OrderSon() {
 	}
 	
-	public OrderSon(Order source, Land land, Dictionary dict, Double plantSize, Timestamp expectTime) {
+	public OrderSon(Integer sourceId, Integer landId, Integer dirId, Double plantSize, Timestamp expectTime) {
 		this();
-		this.sourceOrder = source;
-		this.land = land;
-		this.dict = dict;
+		this.sourceOrderId = sourceId;
+		this.landId = landId;
+		this.dirId = dirId;
 		this.plantSize = plantSize;
 		this.expectTime = expectTime;
 		this.startTime = SystemTimeUtil.getTime();
@@ -73,8 +75,8 @@ public final class OrderSon implements java.io.Serializable {
 	 * @sql orderson_order_id
 	 * @return Order对象
 	 */
-	public Order getSourceOrder() {
-		return sourceOrder;
+	public Integer getSourceOrderId() {
+		return sourceOrderId;
 	}
 
 	/**
@@ -82,8 +84,8 @@ public final class OrderSon implements java.io.Serializable {
 	 * @sql orderson_order_id
 	 * @param sourceOrder Order对象
 	 */
-	public void setSourceOrder(Order sourceOrder) {
-		this.sourceOrder = sourceOrder;
+	public void setSourceOrderId(Integer sourceOrderId) {
+		this.sourceOrderId = sourceOrderId;
 	}
 
 	/**
@@ -91,8 +93,8 @@ public final class OrderSon implements java.io.Serializable {
 	 * @sql orderson_land_id
 	 * @return Land对象
 	 */
-	public Land getLand() {
-		return land;
+	public Integer getLandId() {
+		return landId;
 	}
 
 	/**
@@ -100,8 +102,8 @@ public final class OrderSon implements java.io.Serializable {
 	 * @sql orderson_land_id
 	 * @param land Land对象
 	 */
-	public void setLand(Land land) {
-		this.land = land;
+	public void setLandId(Integer landId) {
+		this.landId = landId;
 	}
 
 	/**
@@ -109,8 +111,8 @@ public final class OrderSon implements java.io.Serializable {
 	 * @sql orderson_dir_id
 	 * @return Dictionary对象
 	 */
-	public Dictionary getDict() {
-		return dict;
+	public Integer getDirId() {
+		return dirId;
 	}
 
 	/**
@@ -118,8 +120,8 @@ public final class OrderSon implements java.io.Serializable {
 	 * @sql orderson_dir_id
 	 * @param dict Dictionary对象
 	 */
-	public void setDict(Dictionary dict) {
-		this.dict = dict;
+	public void setDirId(Integer dirId) {
+		this.dirId = dirId;
 	}
 
 	/**
@@ -251,5 +253,13 @@ public final class OrderSon implements java.io.Serializable {
 	 */
 	public void setFinishTime(Timestamp finishTime) {
 		this.finishTime = finishTime;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 }

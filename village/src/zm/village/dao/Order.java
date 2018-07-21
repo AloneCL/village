@@ -57,13 +57,13 @@ public final class Order implements java.io.Serializable {
 	private String remark;
 	
 	//买家，对应order_buyuser_id
-	private User buyer;
+	private Integer buyerId;
 	
 	//卖家(农民)，对应order_selluser_id
-	private User seller;
+	private Integer sellerId;
 	
 	//所属土地，对应order_land_id
-	private Land land;
+	private Integer landId;
 	
 	//卖家(农民)昵称，对应order_selluser_name
 	private String sellerName;
@@ -77,20 +77,18 @@ public final class Order implements java.io.Serializable {
 		// TODO 订单号码生成
 	}
 
-	public Order(User buyer, User seller, Land land, Double plantSize,Integer cropNum, String address, 
+	public Order(Integer buyerId, Integer sellerId, Integer landId, Double plantSize,Integer cropNum, String address, 
 			Double price, String remark) {
 		this();
 		this.status = STATUS_NEW;
-		this.buyer = buyer;
-		this.seller = seller;
-		this.land = land;
+		this.buyerId = buyerId;
+		this.sellerId = sellerId;
+		this.landId = landId;
 		this.plantSize = plantSize;
 		this.num = cropNum;
 		this.address = address;
 		this.price = price;
 		this.remark = remark;
-		this.sellerName = seller.getName();
-		this.sellerTel = seller.getTelephone();
 	}
 
 	public Integer getId() {
@@ -256,45 +254,43 @@ public final class Order implements java.io.Serializable {
 	/**
 	 * @return 买家User对象
 	 */
-	public User getBuyer() {
-		return buyer;
+	public Integer getBuyerId() {
+		return buyerId;
 	}
 
 	/**
 	 * @param buyer 买家User对象
 	 */
-	public void setBuyer(User buyer) {
-		this.buyer = buyer;
+	public void setBuyer(Integer buyerId) {
+		this.buyerId = buyerId;
 	}
 
 	/**
 	 * @return 卖家User对象
 	 */
-	public User getSeller() {
-		return seller;
+	public Integer getSellerId() {
+		return sellerId;
 	}
 
 	/**
 	 * @param seller 卖家User对象
 	 */
-	public void setSeller(User seller) {
-		this.sellerName = seller.getName();
-		this.sellerTel = seller.getTelephone();
-		this.seller = seller;
+	public void setSeller(Integer sellerId) {
+		this.sellerId = sellerId;
 	}
 
 	/**
 	 * @return 订单所属的土地对象
 	 */
-	public Land getLand() {
-		return land;
+	public Integer getLandId() {
+		return landId;
 	}
 
 	/**
 	 * @param land 订单所属的土地对象
 	 */
-	public void setLand(Land land) {
-		this.land = land;
+	public void setLandId(Integer landId) {
+		this.landId = landId;
 	}
 
 	/**

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zm.village.ssm.mapper.UserInfMapper">
+  <resultMap id="BaseResultMap" type="zm.village.dao.User">
+    <id column="user_id" jdbcType="INTEGER" property="id" />
+    <result column="user_tel" jdbcType="VARCHAR" property="telephone" />
+    <result column="user_pass" jdbcType="VARCHAR" property="password" />
+    <result column="user_img" jdbcType="VARCHAR" property="imagePath" />
+    <result column="user_name" jdbcType="VARCHAR" property="name" />
+    <result column="user_address" jdbcType="VARCHAR" property="address" />
+    <result column="user_post_address" jdbcType="VARCHAR" property="postAddress" />
+    <result column="user_regtime" jdbcType="TIMESTAMP" property="regTime" />
+    <result column="user_type" jdbcType="INTEGER" property="userType" />
+    <result column="user_real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="user_id_card_number" jdbcType="VARCHAR" property="idCardNumber" />
+    <result column="user_starlevel" jdbcType="DOUBLE" property="starLevel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_tel, user_pass, user_img, user_name, user_address, user_post_address, 
+    user_regtime, user_type, user_real_name, user_id_card_number, user_starlevel
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_inf
+    where user_id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_inf
+    where user_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="zm.village.dao.User">
+    insert into user_inf (user_id, user_tel, user_pass, 
+      user_img, user_name, user_address, 
+      user_post_address, user_regtime, user_type, 
+      user_real_name, user_id_card_number, user_starlevel
+      )
+    values (#{id,jdbcType=INTEGER}, #{telephone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{imagePath,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{postAddress,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP}, #{userType,jdbcType=INTEGER}, 
+      #{realName,jdbcType=VARCHAR}, #{idCardNumber,jdbcType=VARCHAR}, #{starLevel,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="zm.village.dao.User">
+    insert into user_inf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        user_id,
+      </if>
+      <if test="telephone != null">
+        user_tel,
+      </if>
+      <if test="password != null">
+        user_pass,
+      </if>
+      <if test="imagePath != null">
+        user_img,
+      </if>
+      <if test="name != null">
+        user_name,
+      </if>
+      <if test="address != null">
+        user_address,
+      </if>
+      <if test="postAddress != null">
+        user_post_address,
+      </if>
+      <if test="regTime != null">
+        user_regtime,
+      </if>
+      <if test="userType != null">
+        user_type,
+      </if>
+      <if test="realName != null">
+        user_real_name,
+      </if>
+      <if test="idCardNumber != null">
+        user_id_card_number,
+      </if>
+      <if test="starLevel != null">
+        user_starlevel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="imagePath != null">
+        #{imagePath,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postAddress != null">
+        #{postAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardNumber != null">
+        #{idCardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="starLevel != null">
+        #{starLevel,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.User">
+    update user_inf
+    <set>
+      <if test="telephone != null">
+        user_tel = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        user_pass = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="imagePath != null">
+        user_img = #{imagePath,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        user_name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        user_address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postAddress != null">
+        user_post_address = #{postAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        user_regtime = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userType != null">
+        user_type = #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="realName != null">
+        user_real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardNumber != null">
+        user_id_card_number = #{idCardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="starLevel != null">
+        user_starlevel = #{starLevel,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where user_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="zm.village.dao.User">
+    update user_inf
+    set user_tel = #{telephone,jdbcType=VARCHAR},
+      user_pass = #{password,jdbcType=VARCHAR},
+      user_img = #{imagePath,jdbcType=VARCHAR},
+      user_name = #{name,jdbcType=VARCHAR},
+      user_address = #{address,jdbcType=VARCHAR},
+      user_post_address = #{postAddress,jdbcType=VARCHAR},
+      user_regtime = #{regTime,jdbcType=TIMESTAMP},
+      user_type = #{userType,jdbcType=INTEGER},
+      user_real_name = #{realName,jdbcType=VARCHAR},
+      user_id_card_number = #{idCardNumber,jdbcType=VARCHAR},
+      user_starlevel = #{starLevel,jdbcType=DOUBLE}
+    where user_id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

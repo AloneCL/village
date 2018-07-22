@@ -1,50 +1,54 @@
 package zm.village.ssm.service.impl;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import zm.village.dao.Land;
 import zm.village.service.LandService;
-import zm.village.ssm.mapper.LandMapper;
+import zm.village.ssm.mapper.LandInfMapper;
 
 /**
-* @ClassName: LandServiceImpl.java
-* @Description: 土地服务层实现类
-* @version: v1.0.0
-* @author: 陈光磊
-* @date: 2018年7月13日 下午5:45:19 
+ * @author 伍伴
+ * @Date 2018年7月21日
+ * @Description 土地服务层实现类
+ * @version 1.0
  */
 
 @Service
 public class LandServiceImpl implements LandService {
     
 	@Autowired
-	private LandMapper mapper; 
+	private LandInfMapper mapper;
+
+	@Override
+	public int delete(Land record) {
+		
+		return mapper.deleteByPrimaryKey(record.getId());
+	}
+
+	@Override
+	public int insert(Land record) {
+		
+		return mapper.insertSelective(record);
+	}
+
+	@Override
+	public List<Land> selectAll() {
+		
+		return mapper.selectAll();
+	}
+
+	@Override
+	public Land select(Land record) {
+		
+		return mapper.selectByPrimaryKey(record.getId());
+	}
+
+	@Override
+	public int update(Land record) {
+		
+		return mapper.updateByPrimaryKeySelective(record);
+	}
 	
-	@Override
-	public List<Land> getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Land getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Land update(Land land) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Land insert(Land land) {
-		// TODO Auto-generated method stub
-		return null;
-	}
        
 }

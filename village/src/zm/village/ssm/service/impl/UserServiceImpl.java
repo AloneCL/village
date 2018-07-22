@@ -1,55 +1,73 @@
 package zm.village.ssm.service.impl;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import zm.village.dao.User;
 import zm.village.service.UserService;
-import zm.village.ssm.mapper.UserMapper;
+import zm.village.ssm.mapper.UserInfMapper;
+
 
 /**
-* @ClassName: UserServiceImpl.java
-* @Description: 用户功能服务实现层
-* @version: v1.0.0
-* @author: 陈光磊
-* @date: 2018年7月19日 上午9:37:56 
+ * @author 伍伴
+ * @Date 2018年7月21日
+ * @Description 用户功能服务实现层
+ * @version 1.0
  */
+
 @Service
 public class UserServiceImpl implements UserService {
     
 	@Autowired
-	private UserMapper mapper;
+	private UserInfMapper mapper;
 	
 	@Override
-	public List<User> getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public User getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<User> selectAll() {
+		
+		return mapper.selectAll();
 	}
 
 	@Override
 	public boolean login(User vo) {
-		// TODO Auto-generated method stub
+		if(mapper.login(vo)!=null)
+		return true;
 		return false;
 	}
 
 	@Override
-	public int updateSelect(User vo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int update(User vo) {
+		
+		return mapper.updateByPrimaryKeySelective(vo);
 	}
 
 	@Override
-	public int deleteById(int[] id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public User getByUserTel(User record) {
+		
+		return mapper.getByUserTel(record.getTelephone());
+	}
+
+	@Override
+	public int updateByUserTel(User record) {
+		
+		return mapper.updateByUserTel(record);
+	}
+
+	@Override
+	public int delete(User record) {
+		
+		return mapper.deleteByPrimaryKey(record.getId());
+	}
+
+	@Override
+	public int insert(User record) {
+		
+		return mapper.insertSelective(record);
+	}
+
+	@Override
+	public User select(User record) {
+		
+		return mapper.selectByPrimaryKey(record.getId());
 	}
 
 }

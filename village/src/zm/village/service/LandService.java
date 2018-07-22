@@ -4,21 +4,44 @@ import java.util.List;
 
 import zm.village.dao.Land;
 
+
 /**
-* @ClassName: LandService.java
-* @Description: 土地类服务层
-* @version: v1.0.0
-* @author: 陈光磊
-* @date: 2018年7月13日 下午4:52:49 
+ * @author 伍伴
+ * @Date 2018年7月21日
+ * @Description 土地类服务层
+ * @version 1.0
  */
+
 public interface  LandService {
     
-	//获取所有土地信息
-    List<Land> getAll();
-    //根据Id获取土地详细信息
-    Land getById(int id);
-    //更新土地信息
-    Land update(Land land);
-    //插入一个土地信息
-    Land insert(Land land);
+	
+	/**
+     * @param 土地ID
+     * @return 删除行数
+     */
+    int delete(Land record);
+
+    /**
+     * @param 土地信息ID
+     * @return 插入行的主键
+     */
+    int insert(Land record);
+    
+    
+    /**
+     * @return 土地信息列表
+     */
+    List<Land> selectAll();
+
+    /**
+     * @param 土地ID
+     * @return 土地信息
+     */
+    Land select(Land record);
+
+    /**
+     * @param 土地信息ID
+     * @return 更新行数
+     */
+    int update(Land record);
 }

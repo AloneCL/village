@@ -1,10 +1,12 @@
 package zm.village.dao;
+
 /**
-* @author 李子帆
-* @version 1.0
-* @date 2018年7月20日 下午7:23:01
-* @Description 养殖类属性，对应rel_breed_inf表
-*/
+ * @author 伍伴
+ * @Date 2018年7月21日
+ * @Description 养殖类属性
+ * @version 1.0
+ */
+
 public final class Breed implements java.io.Serializable {
 
 	private static final long serialVersionUID = 8671483193728648211L;

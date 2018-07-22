@@ -3,11 +3,12 @@ package zm.village.dao;
 import java.sql.Timestamp;
 
 /**
-* @author 李子帆
-* @version 1.0
-* @date 2018年7月13日 下午2:55:33
-* @Description 用户实体类 
-*/
+ * @author 伍伴
+ * @Date 2018年7月21日
+ * @Description 用户实体类
+ * @version 1.0
+ */
+
 public final class User implements java.io.Serializable {
 	
 	private static final long serialVersionUID = -395141608464880627L;

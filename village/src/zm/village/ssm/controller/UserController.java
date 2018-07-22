@@ -1,13 +1,20 @@
 package zm.village.ssm.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import zm.village.service.UserService;
 
 /**
-* @ClassName: UserController.java
-* @Description: 安卓端用户接口类 
-* @version: v1.0.0
-* @author: 陈光磊
-* @date: 2018年7月13日 下午5:44:00 
+ * @author 伍伴
+ * @Date 2018年7月21日
+ * @Description 安卓前端用户控制层
+ * @version 1.0
  */
+
+@Controller
 public class UserController {
 
+	@Autowired
+	private UserService service;
 }

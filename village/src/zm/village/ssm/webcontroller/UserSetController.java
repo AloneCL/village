@@ -6,13 +6,11 @@ import org.springframework.stereotype.Controller;
 import zm.village.service.UserService;
 
 /**
-* @ClassName: UserSetController.java
-* @Description: 用户类前端页面控制层
-* @version: v1.0.0
-* @author: 陈光磊
-* @date: 2018年7月19日 上午9:41:48 
+ * @author 伍伴
+ * @Date 2018年7月22日
+ * @Description 用户类后端页面控制层
+ * @version 1.0
  */
-
 @Controller
 public class UserSetController {
    

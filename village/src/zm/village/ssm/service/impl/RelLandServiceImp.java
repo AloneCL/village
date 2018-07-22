@@ -14,7 +14,6 @@ import zm.village.ssm.mapper.RelLandInfMapper;
  * @version 1.0
  */
 
-
 @Service
 public class RelLandServiceImp implements RelLandService{
 	

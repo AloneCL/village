@@ -36,9 +36,6 @@
   <insert id="insertSelective" parameterType="zm.village.dao.Label">
     insert into rel_label_inf
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        rel_label_id,
-      </if>
       <if test="evaluateId != null">
         rel_label_eva,
       </if>
@@ -47,9 +44,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
       <if test="evaluateId != null">
         #{evaluateId,jdbcType=INTEGER},
       </if>

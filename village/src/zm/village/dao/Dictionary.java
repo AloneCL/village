@@ -18,15 +18,20 @@ public final class Dictionary implements java.io.Serializable {
 	//名词简介，参考百度百科
 	private String introduce;
 	//预计成熟时间
-	private Integer growtime;
+	private Integer growTime;
 	//默认图片URL，对应dir_img
 	private String imgURL;
 	
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "[CropDir id = " + id + " , name = " + name + "]";
+		return "Dictionary [id=" + id + ", type=" + type + ", name=" + name + ", introduce=" + introduce + ", growTime="
+				+ growTime + ", imgURL=" + imgURL + "]";
 	}
-	
+
 	/**
 	 * 获取数据库ID
 	 * @return Integer类型
@@ -117,19 +122,19 @@ public final class Dictionary implements java.io.Serializable {
 
 	/**
 	 * 获取预计成熟时间
-	 * @return the growtime
+	 * @return the growTime
 	 */
-	public Integer getGrowtime() {
-		return growtime;
+	public Integer getGrowTime() {
+		return growTime;
 	}
 
 	/**
 	 * 设置预计成熟时间
-	 * @param growtime  成熟时间
+	 * @param growTime  成熟时间
 	 */
-	public void setGrowtime(Integer growtime) {
-		this.growtime = growtime;
-	}
 	
+	public void setGrowTime(Integer growTime) {
+		this.growTime = growTime;
+	}
 	
 } 

@@ -28,17 +28,11 @@
   <insert id="insertSelective" parameterType="zm.village.dao.LabelDir">
     insert into label_inf
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        label_id,
-      </if>
       <if test="name != null">
         label_name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>

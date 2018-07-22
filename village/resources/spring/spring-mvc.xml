@@ -16,7 +16,7 @@
 	<!--使用mvc:annotation-driven标签替代上两个标签配置
 		另外该标签会加载很多参数绑定的方法：例如json解析转换器
 		实际开发使用该标签-->
-    <mvc:annotation-driven conversion-service="conversionService" validator="validator"/> 
+    <mvc:annotation-driven/> 
 
 	<!-- 视图解析器 -->
 	<!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->

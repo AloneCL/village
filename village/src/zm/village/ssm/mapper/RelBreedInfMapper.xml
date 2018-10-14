@@ -3,8 +3,8 @@
 <mapper namespace="zm.village.ssm.mapper.RelBreedInfMapper">
 	<resultMap id="BaseResultMap" type="zm.village.dao.Breed">
 		<id column="rel_breed_id" jdbcType="INTEGER" property="id" />
-		<result column="rel_breed_type" jdbcType="INTEGER" property="type" />
-		<result column="rel_breed_land" jdbcType="INTEGER" property="landId" />
+		<result column="rel_breed_type" jdbcType="INTEGER" property="dirId" />
+		<result column="rel_breed_land_id" jdbcType="INTEGER" property="landId" />
 		<result column="rel_breed_price" jdbcType="DOUBLE" property="price" />
 		<result column="rel_breed_min_weight" jdbcType="DOUBLE"
 			property="minWeight" />
@@ -12,7 +12,8 @@
 			property="maxWeight" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		rel_breed_id, rel_breed_type, rel_breed_land, rel_breed_price,
+		rel_breed_id, rel_breed_type, rel_breed_land_id,
+		rel_breed_price,
 		rel_breed_min_weight,
 		rel_breed_max_weight
 	</sql>
@@ -23,13 +24,21 @@
 		from rel_breed_inf
 		where rel_breed_id = #{id,jdbcType=INTEGER}
 	</select>
+	<select id="selectByLand" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from rel_breed_inf
+		where rel_breed_land_id = #{id,jdbcType=INTEGER}
+	</select>
 	<select id="selectAll" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from rel_breed_inf
-    </select>
+		select
+		<include refid="Base_Column_List" />
+		from rel_breed_inf
+	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from rel_breed_inf
+		delete from
+		rel_breed_inf
 		where rel_breed_id = #{id,jdbcType=INTEGER}
 	</delete>
 	<insert id="insertSelective" parameterType="zm.village.dao.Breed">
@@ -38,11 +47,11 @@
 			<if test="id != null">
 				rel_breed_id,
 			</if>
-			<if test="type != null">
+			<if test="dirId != null">
 				rel_breed_type,
 			</if>
 			<if test="landId != null">
-				rel_breed_land,
+				rel_breed_land_id,
 			</if>
 			<if test="price != null">
 				rel_breed_price,
@@ -58,8 +67,8 @@
 			<if test="id != null">
 				#{id,jdbcType=INTEGER},
 			</if>
-			<if test="type != null">
-				#{type,jdbcType=INTEGER},
+			<if test="dirId != null">
+				#{dirId,jdbcType=INTEGER},
 			</if>
 			<if test="landId != null">
 				#{landId,jdbcType=INTEGER},
@@ -78,11 +87,11 @@
 	<update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.Breed">
 		update rel_breed_inf
 		<set>
-			<if test="type != null">
-				rel_breed_type = #{type,jdbcType=INTEGER},
+			<if test="dirId != null">
+				rel_breed_type = #{dirId,jdbcType=INTEGER},
 			</if>
 			<if test="landId != null">
-				rel_breed_land = #{landId,jdbcType=INTEGER},
+				rel_breed_land_id = #{landId,jdbcType=INTEGER},
 			</if>
 			<if test="price != null">
 				rel_breed_price = #{price,jdbcType=DOUBLE},

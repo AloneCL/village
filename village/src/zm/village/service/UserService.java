@@ -18,6 +18,18 @@ public interface UserService {
      * @return 删除的行数
      */
     int delete(User record);
+    
+    /**
+     * @param 用户ID
+     * @return 删除的行数
+     */
+    int delete(Integer record);
+    
+    /**
+     * @param 用户Id类别
+     * @return 删除的行数
+     */
+    int deleteMany(Integer[] record);
 
     /**
      * @param 用户信息ID
@@ -30,6 +42,12 @@ public interface UserService {
      * @return 用户信息
      */
     User select(User record);
+    
+    /**
+     * @param 用户ID
+     * @return 用户信息
+     */
+    User getById(Integer record);
     
     
     /**

@@ -49,6 +49,32 @@ public class RelLandServiceImp implements RelLandService{
 		
 		return mapper.selectAll();
 	}
+
+	@Override
+	public int deleteMany(Integer[] record) {
+		for(int i : record){
+			mapper.deleteByPrimaryKey(i);
+		}
+		return record.length;
+	}
+
+	@Override
+	public Crop getById(Integer record) {
+		
+		return mapper.selectByPrimaryKey(record);
+	}
+
+	@Override
+	public int delete(Integer record) {
+		
+		return mapper.deleteByPrimaryKey(record);
+	}
+
+	@Override
+	public Crop[] getByLand(Integer landId) {
+		
+		return mapper.selectByLand(landId);
+	}
 	
 
 	

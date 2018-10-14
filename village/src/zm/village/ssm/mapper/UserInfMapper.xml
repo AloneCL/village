@@ -17,17 +17,19 @@
 		<result column="user_starlevel" jdbcType="DOUBLE" property="starLevel" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		user_id, user_tel, user_pass, user_img, user_name, user_address,
+		user_id, user_tel, user_pass, user_img, user_name,
+		user_address,
 		user_post_address,
-		user_regtime, user_type, user_real_name, user_id_card_number, user_starlevel
+		user_regtime, user_type,
+		user_real_name, user_id_card_number, user_starlevel
 	</sql>
-	
+
 	<select id="selectAll" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from user_inf
-    </select>
-	
+		select
+		<include refid="Base_Column_List" />
+		from user_inf
+	</select>
+
 	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
 		resultMap="BaseResultMap">
 		select
@@ -35,27 +37,30 @@
 		from user_inf
 		where user_id = #{id,jdbcType=INTEGER}
 	</select>
-	
+
 	<select id="login" resultMap="BaseResultMap" parameterType="zm.village.dao.User">
-        select
-        <include refid="Base_Column_List"/>
-        from user_inf
-        where user_tel = #{telephone,jdbcType=VARCHAR}
-              and user_pass = #{password,jdbcType=VARCHAR}
-    </select>
-    
-     <select id="getByUserTel" resultMap="BaseResultMap" parameterType="java.lang.String">
-        select
-        <include refid="Base_Column_List"/>
-        from users
-        where user_tel = #{telephone,jdbcType=VARCHAR}
-    </select>
-	
+		select
+		<include refid="Base_Column_List" />
+		from user_inf
+		where user_tel = #{telephone,jdbcType=VARCHAR}
+		and
+		user_pass = #{password,jdbcType=VARCHAR}
+	</select>
+
+	<select id="getByUserTel" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from user_inf
+		where user_tel = #{telephone,jdbcType=VARCHAR}
+	</select>
+
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from user_inf
+		delete from
+		user_inf
 		where user_id = #{id,jdbcType=INTEGER}
 	</delete>
-	
+
 	<insert id="insertSelective" parameterType="zm.village.dao.User">
 		insert into user_inf
 		<trim prefix="(" suffix=")" suffixOverrides=",">

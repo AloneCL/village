@@ -13,19 +13,20 @@
 		<result column="rel_land_crop_endTime" jdbcType="DATE"
 			property="endTime" />
 	</resultMap>
-	
+
 	<sql id="Base_Column_List">
-		rel_land_id, rel_land_type, rel_land_crop_type, rel_land_crop_price,
+		rel_land_id, rel_land_type, rel_land_crop_type,
+		rel_land_crop_price,
 		rel_land_crop_startTime,
 		rel_land_crop_endTime
 	</sql>
-	
+
 	<select id="selectAll" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from rel_land_inf
-    </select>
-	
+		select
+		<include refid="Base_Column_List" />
+		from rel_land_inf
+	</select>
+
 	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
 		resultMap="BaseResultMap">
 		select
@@ -34,11 +35,20 @@
 		where rel_land_id = #{id,jdbcType=INTEGER}
 	</select>
 	
+	<select id="selectByLand" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from rel_land_inf
+		where rel_land_type = #{id,jdbcType=INTEGER}
+	</select>
+
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from rel_land_inf
+		delete from
+		rel_land_inf
 		where rel_land_id = #{id,jdbcType=INTEGER}
 	</delete>
-	
+
 	<insert id="insertSelective" parameterType="zm.village.dao.Crop">
 		insert into rel_land_inf
 		<trim prefix="(" suffix=")" suffixOverrides=",">

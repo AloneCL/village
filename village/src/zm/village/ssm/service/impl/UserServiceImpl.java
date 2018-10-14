@@ -69,4 +69,23 @@ public class UserServiceImpl implements UserService {
 		return mapper.selectByPrimaryKey(record.getId());
 	}
 
+	@Override
+	public int deleteMany(Integer[] record) {
+		for(int i : record){
+			mapper.deleteByPrimaryKey(i);
+		}
+		return record.length;
+	}
+
+	@Override
+	public User getById(Integer record) {
+		
+		return mapper.selectByPrimaryKey(record);
+	}
+
+	@Override
+	public int delete(Integer record) {
+		return mapper.deleteByPrimaryKey(record);
+	}
+
 }

@@ -17,6 +17,12 @@ public interface RelBreedService {
      * @return 删除的行数
      */
     int delete(Breed record);
+    
+    /**
+     * @param 养殖ID
+     * @return 删除的行数
+     */
+    int delete(Integer record);
 
     /**
      * @param 养殖信息
@@ -29,6 +35,19 @@ public interface RelBreedService {
      * @return 养殖信息
      */
     Breed select(Breed record);
+    
+    
+    /**
+     * @param 养殖ID
+     * @return 养殖信息
+     */
+    Breed getById(Integer record);
+    
+    /**
+     * @param 土地ID
+     * @return 养殖数组信息
+     */
+    Breed[] getByLandId(Integer landId);
 
     /**
      * @param 养殖信息
@@ -40,4 +59,10 @@ public interface RelBreedService {
      * @return 养殖信息列表
      */
     List<Breed> selectAll();
+    
+    /**
+     * @param 养殖ID列表
+     * @return 删除行数
+     */
+    int deleteMany(Integer[] record);
 }

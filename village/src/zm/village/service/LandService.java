@@ -20,6 +20,12 @@ public interface  LandService {
      * @return 删除行数
      */
     int delete(Land record);
+    
+    /**
+     * @param 土地ID
+     * @return 删除行数
+     */
+    int delete(Integer record);
 
     /**
      * @param 土地信息ID
@@ -38,10 +44,22 @@ public interface  LandService {
      * @return 土地信息
      */
     Land select(Land record);
+    
+    /**
+     * @param 土地Id
+     * @return 土地信息
+     */
+    Land getById(Integer record);
 
     /**
      * @param 土地信息ID
      * @return 更新行数
      */
     int update(Land record);
+    
+    /**
+     * @param  土地id数组
+     * @return 删除的行数
+     */
+    int deleteMany(Integer[] record);
 }

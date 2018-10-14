@@ -3,7 +3,7 @@
 <mapper namespace="zm.village.ssm.mapper.LandInfMapper">
 	<resultMap id="BaseResultMap" type="zm.village.dao.Land">
 		<id column="land_id" jdbcType="INTEGER" property="id" />
-		<result column="land_user" jdbcType="INTEGER" property="landUser" />
+		<result column="land_user_id" jdbcType="INTEGER" property="userId" />
 		<result column="land_name" jdbcType="VARCHAR" property="name" />
 		<result column="land_type" jdbcType="INTEGER" property="type" />
 		<result column="land_size" jdbcType="DOUBLE" property="size" />
@@ -19,25 +19,27 @@
 	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
 		type="zm.village.dao.Land">
 		<result column="land_introduce" jdbcType="LONGVARCHAR"
-			property="landIntroduce" />
+			property="introduce" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		land_id, land_user, land_name, land_type, land_size, land_basic_price,
+		land_id, land_user_id, land_name, land_type, land_size,
+		land_basic_price,
 		land_address,
-		land_unused_size, land_split, land_min_lease, land_picture, land_certificate,
+		land_unused_size, land_split,
+		land_min_lease, land_picture, land_certificate,
 		land_status
 	</sql>
 	<sql id="Blob_Column_List">
 		land_introduce
 	</sql>
-	
+
 	<select id="selectAll" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
+		select
+		<include refid="Base_Column_List" />
 		,
 		<include refid="Blob_Column_List" />
 		from land_inf
-    </select>
+	</select>
 	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
 		resultMap="ResultMapWithBLOBs">
 		select
@@ -48,7 +50,8 @@
 		where land_id = #{id,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from land_inf
+		delete from
+		land_inf
 		where land_id = #{id,jdbcType=INTEGER}
 	</delete>
 	<insert id="insertSelective" parameterType="zm.village.dao.Land">
@@ -57,8 +60,8 @@
 			<if test="id != null">
 				land_id,
 			</if>
-			<if test="landUser != null">
-				land_user,
+			<if test="userId != null">
+				land_user_id,
 			</if>
 			<if test="name != null">
 				land_name,
@@ -93,7 +96,7 @@
 			<if test="status != null">
 				land_status,
 			</if>
-			<if test="landIntroduce != null">
+			<if test="introduce != null">
 				land_introduce,
 			</if>
 		</trim>
@@ -101,8 +104,8 @@
 			<if test="id != null">
 				#{id,jdbcType=INTEGER},
 			</if>
-			<if test="landUser != null">
-				#{landUser,jdbcType=INTEGER},
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
 			</if>
 			<if test="name != null">
 				#{name,jdbcType=VARCHAR},
@@ -137,16 +140,16 @@
 			<if test="status != null">
 				#{status,jdbcType=INTEGER},
 			</if>
-			<if test="landIntroduce != null">
-				#{landIntroduce,jdbcType=LONGVARCHAR},
+			<if test="introduce != null">
+				#{introduce,jdbcType=LONGVARCHAR},
 			</if>
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.Land">
 		update land_inf
 		<set>
-			<if test="landUser != null">
-				land_user = #{landUser,jdbcType=INTEGER},
+			<if test="userId != null">
+				land_user_id = #{userId,jdbcType=INTEGER},
 			</if>
 			<if test="name != null">
 				land_name = #{name,jdbcType=VARCHAR},
@@ -181,8 +184,8 @@
 			<if test="status != null">
 				land_status = #{status,jdbcType=INTEGER},
 			</if>
-			<if test="landIntroduce != null">
-				land_introduce = #{landIntroduce,jdbcType=LONGVARCHAR},
+			<if test="introduce != null">
+				land_introduce = #{introduce,jdbcType=LONGVARCHAR},
 			</if>
 		</set>
 		where land_id = #{id,jdbcType=INTEGER}

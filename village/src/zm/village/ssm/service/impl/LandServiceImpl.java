@@ -50,6 +50,26 @@ public class LandServiceImpl implements LandService {
 		
 		return mapper.updateByPrimaryKeySelective(record);
 	}
+
+	@Override
+	public Land getById(Integer record) {
+		
+		return mapper.selectByPrimaryKey(record);
+	}
+
+	@Override
+	public int deleteMany(Integer[] record) {
+		for (int i : record) {
+			mapper.deleteByPrimaryKey(i);
+		}
+		return record.length;
+	}
+
+	@Override
+	public int delete(Integer record) {
+		
+		return mapper.deleteByPrimaryKey(record);
+	}
 	
        
 }

@@ -31,6 +31,12 @@ public interface RelBreedInfMapper {
      * @return 养殖信息
      */
     Breed selectByPrimaryKey(Integer relBreedId);
+    
+    /**
+     * @param 土地ID
+     * @return 该土地所对应的养殖信息
+     */
+    Breed[] selectByLand(Integer landId);
 
     /**
      * @param 养殖信息

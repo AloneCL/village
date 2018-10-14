@@ -18,6 +18,18 @@ public interface RelLandService {
      * @return 删除的行数
      */
     int delete(Crop record);
+    
+    /**
+     * @param 土地可种植作物ID
+     * @return 删除的行数
+     */
+    int delete(Integer record);
+    
+    /**
+     * @param 土地可种植作物ID列表
+     * @return 删除的行数
+     */
+    int deleteMany(Integer[] record);
 
     /**
      * @param 土地可种植作物信息
@@ -30,6 +42,18 @@ public interface RelLandService {
      * @return 作物信息
      */
     Crop select(Crop record);
+    
+    /**
+     * @param 土地可种植作物ID
+     * @return 作物信息
+     */
+    Crop getById(Integer record);
+    
+    /**
+     * @param 土地ID
+     * @return 作物信息数组
+     */
+    Crop[] getByLand(Integer landId);
 
     /**
      * @param 土地可种植作物信息ID

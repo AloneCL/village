@@ -1,0 +1,22 @@
+package zm.village.ssm.controller.backstage;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import zm.village.service.LandService;
+
+/**
+* @ClassName: LandSetController.java
+* @Description: 土地后端页面控制层
+* @version: v1.0.0
+* @author: 陈光磊
+* @date: 2018年7月19日 上午9:15:36 
+ */
+
+@Controller
+public class LandSetController {
+    
+	@Autowired
+	private LandService landeService;
+	
+}

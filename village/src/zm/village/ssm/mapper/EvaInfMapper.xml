@@ -10,6 +10,7 @@
     <result column="eva_starlevel" jdbcType="INTEGER" property="star" />
     <result column="eva_img" jdbcType="VARCHAR" property="imgURL" />
     <!--少了response ???  -->
+    <!-- ssssss -->
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="zm.village.dao.Evaluate">
     <result column="eva_content" jdbcType="LONGVARCHAR" property="content" />

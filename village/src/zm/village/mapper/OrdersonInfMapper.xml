@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zm.village.mapper.OrdersonInfMapper">
+  <resultMap id="BaseResultMap" type="zm.village.dao.OrderSon">
+    <id column="orderson_id" jdbcType="INTEGER" property="id" />
+    <result column="orderson_order" jdbcType="INTEGER" property="sourceOrderId" />
+    <result column="orderson_land" jdbcType="INTEGER" property="landId" />
+    <result column="orderson_dir" jdbcType="INTEGER" property="dirId" />
+    <result column="orderson_size" jdbcType="DOUBLE" property="plantSize" />
+    <result column="orderson_price" jdbcType="DOUBLE" property="price" />
+    <result column="orderson_status" jdbcType="INTEGER" property="status" />
+    <result column="orderson_img" jdbcType="VARCHAR" property="imgURL" />
+    <result column="orderson_starttime" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="orderson_expecttime" jdbcType="TIMESTAMP" property="expectTime" />
+    <result column="orderson_finishtime" jdbcType="TIMESTAMP" property="finishTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    orderson_id, orderson_order, orderson_land, orderson_dir, orderson_size, orderson_price, 
+    orderson_status, orderson_img, orderson_starttime, orderson_expecttime, orderson_finishtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from orderson_inf
+    where orderson_id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from orderson_inf
+    where orderson_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="zm.village.dao.OrderSon">
+    insert into orderson_inf (orderson_id, orderson_order, orderson_land, 
+      orderson_dir, orderson_size, orderson_price, 
+      orderson_status, orderson_img, orderson_starttime, 
+      orderson_expecttime, orderson_finishtime
+      )
+    values (#{id,jdbcType=INTEGER}, #{sourceOrderId,jdbcType=INTEGER}, #{landId,jdbcType=INTEGER}, 
+      #{dirId,jdbcType=INTEGER}, #{plantSize,jdbcType=DOUBLE}, #{price,jdbcType=DOUBLE}, 
+      #{status,jdbcType=INTEGER}, #{imgURL,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{expectTime,jdbcType=TIMESTAMP}, #{finishTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="zm.village.dao.OrderSon">
+    insert into orderson_inf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        orderson_id,
+      </if>
+      <if test="sourceOrderId != null">
+        orderson_order,
+      </if>
+      <if test="landId != null">
+        orderson_land,
+      </if>
+      <if test="dirId != null">
+        orderson_dir,
+      </if>
+      <if test="plantSize != null">
+        orderson_size,
+      </if>
+      <if test="price != null">
+        orderson_price,
+      </if>
+      <if test="status != null">
+        orderson_status,
+      </if>
+      <if test="imgURL != null">
+        orderson_img,
+      </if>
+      <if test="startTime != null">
+        orderson_starttime,
+      </if>
+      <if test="expectTime != null">
+        orderson_expecttime,
+      </if>
+      <if test="finishTime != null">
+        orderson_finishtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sourceOrderId != null">
+        #{sourceOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="landId != null">
+        #{landId,jdbcType=INTEGER},
+      </if>
+      <if test="dirId != null">
+        #{dirId,jdbcType=INTEGER},
+      </if>
+      <if test="plantSize != null">
+        #{plantSize,jdbcType=DOUBLE},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="imgURL != null">
+        #{imgURL,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expectTime != null">
+        #{expectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null">
+        #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.OrderSon">
+    update orderson_inf
+    <set>
+      <if test="sourceOrderId != null">
+        orderson_order = #{sourceOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="landId != null">
+        orderson_land = #{landId,jdbcType=INTEGER},
+      </if>
+      <if test="dirId != null">
+        orderson_dir = #{dirId,jdbcType=INTEGER},
+      </if>
+      <if test="plantSize != null">
+        orderson_size = #{plantSize,jdbcType=DOUBLE},
+      </if>
+      <if test="price != null">
+        orderson_price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null">
+        orderson_status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="imgURL != null">
+        orderson_img = #{imgURL,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        orderson_starttime = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expectTime != null">
+        orderson_expecttime = #{expectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null">
+        orderson_finishtime = #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where orderson_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="zm.village.dao.OrderSon">
+    update orderson_inf
+    set orderson_order = #{sourceOrderId,jdbcType=INTEGER},
+      orderson_land = #{landId,jdbcType=INTEGER},
+      orderson_dir = #{dirId,jdbcType=INTEGER},
+      orderson_size = #{plantSize,jdbcType=DOUBLE},
+      orderson_price = #{price,jdbcType=DOUBLE},
+      orderson_status = #{status,jdbcType=INTEGER},
+      orderson_img = #{imgURL,jdbcType=VARCHAR},
+      orderson_starttime = #{startTime,jdbcType=TIMESTAMP},
+      orderson_expecttime = #{expectTime,jdbcType=TIMESTAMP},
+      orderson_finishtime = #{finishTime,jdbcType=TIMESTAMP}
+    where orderson_id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

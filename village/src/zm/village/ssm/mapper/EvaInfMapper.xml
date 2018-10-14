@@ -11,9 +11,9 @@
     <result column="eva_img" jdbcType="VARCHAR" property="imgURL" />
     <!--少了response ???  -->
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="zm.village.dao.EvaluateWithBLOBs">
-    <result column="eva_content" jdbcType="LONGVARCHAR" property="evaContent" />
-    <result column="eva_response" jdbcType="LONGVARCHAR" property="evaResponse" />
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="zm.village.dao.Evaluate">
+    <result column="eva_content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="eva_response" jdbcType="LONGVARCHAR" property="response" />
   </resultMap>
   <sql id="Base_Column_List">
     eva_id, eva_seller, eva_buyer, eva_buyer_name, eva_time, eva_starlevel, eva_img
@@ -33,17 +33,17 @@
     delete from eva_inf
     where eva_id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="zm.village.dao.EvaluateWithBLOBs">
+  <insert id="insert" parameterType="zm.village.dao.Evaluate">
     insert into eva_inf (eva_id, eva_seller, eva_buyer, 
       eva_buyer_name, eva_time, eva_starlevel, 
       eva_img, eva_content, eva_response
       )
     values (#{id,jdbcType=INTEGER}, #{sellerId,jdbcType=INTEGER}, #{buyerId,jdbcType=INTEGER}, 
       #{buyerName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{star,jdbcType=INTEGER}, 
-      #{imgURL,jdbcType=VARCHAR}, #{evaContent,jdbcType=LONGVARCHAR}, #{evaResponse,jdbcType=LONGVARCHAR}
+      #{imgURL,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}, #{response,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="zm.village.dao.EvaluateWithBLOBs">
+  <insert id="insertSelective" parameterType="zm.village.dao.Evaluate">
     insert into eva_inf
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -67,10 +67,10 @@
       <if test="imgURL != null">
         eva_img,
       </if>
-      <if test="evaContent != null">
+      <if test="content != null">
         eva_content,
       </if>
-      <if test="evaResponse != null">
+      <if test="response != null">
         eva_response,
       </if>
     </trim>
@@ -96,15 +96,15 @@
       <if test="imgURL != null">
         #{imgURL,jdbcType=VARCHAR},
       </if>
-      <if test="evaContent != null">
-        #{evaContent,jdbcType=LONGVARCHAR},
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
       </if>
-      <if test="evaResponse != null">
-        #{evaResponse,jdbcType=LONGVARCHAR},
+      <if test="response != null">
+        #{response,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.EvaluateWithBLOBs">
+  <update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.Evaluate">
     update eva_inf
     <set>
       <if test="sellerId != null">
@@ -125,16 +125,16 @@
       <if test="imgURL != null">
         eva_img = #{imgURL,jdbcType=VARCHAR},
       </if>
-      <if test="evaContent != null">
-        eva_content = #{evaContent,jdbcType=LONGVARCHAR},
+      <if test="content != null">
+        eva_content = #{content,jdbcType=LONGVARCHAR},
       </if>
-      <if test="evaResponse != null">
-        eva_response = #{evaResponse,jdbcType=LONGVARCHAR},
+      <if test="response != null">
+        eva_response = #{response,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where eva_id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="zm.village.dao.EvaluateWithBLOBs">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="zm.village.dao.Evaluate">
     update eva_inf
     set eva_seller = #{sellerId,jdbcType=INTEGER},
       eva_buyer = #{buyerId,jdbcType=INTEGER},
@@ -142,8 +142,8 @@
       eva_time = #{createTime,jdbcType=TIMESTAMP},
       eva_starlevel = #{star,jdbcType=INTEGER},
       eva_img = #{imgURL,jdbcType=VARCHAR},
-      eva_content = #{evaContent,jdbcType=LONGVARCHAR},
-      eva_response = #{evaResponse,jdbcType=LONGVARCHAR}
+      eva_content = #{content,jdbcType=LONGVARCHAR},
+      eva_response = #{response,jdbcType=LONGVARCHAR}
     where eva_id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="zm.village.dao.Evaluate">

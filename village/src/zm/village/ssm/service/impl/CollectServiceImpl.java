@@ -3,6 +3,8 @@
  */
 package zm.village.ssm.service.impl;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,7 @@ public class CollectServiceImpl implements CollectService {
 	 */
 	@Override
 	public int addCollect(Collect record) {
+		record.setTime(new Timestamp(new Date().getTime()));
 		return mapper.insertSelective(record);
 	}
 

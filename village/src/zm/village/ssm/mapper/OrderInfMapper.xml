@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="zm.village.ssm.mapper.OrderInfMapper">
-  <resultMap id="BaseResultMap" type="zm.village.dao.OrderInf">
+  <resultMap id="BaseResultMap" type="zm.village.dao.Order">
     <id column="order_id" jdbcType="INTEGER" property="id" />
     <result column="order_uuid" jdbcType="VARCHAR" property="uuid" />
     <result column="order_type" jdbcType="INTEGER" property="orderType" />
-    <result column="order_time" jdbcType="TIMESTAMP" property="orderTime" />
-    <result column="order_land_size" jdbcType="DOUBLE" property="orderLandSize" />
+    <result column="order_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="order_land_size" jdbcType="DOUBLE" property="plantSize" />
     <result column="order_finish_time" jdbcType="TIMESTAMP" property="finishTime" />
-    <result column="order_num" jdbcType="INTEGER" property="orderNum" />
-    <result column="order_finish_num" jdbcType="INTEGER" property="orderFinishNum" />
-    <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
-    <result column="order_address" jdbcType="VARCHAR" property="orderAddress" />
-    <result column="order_price" jdbcType="DOUBLE" property="orderPrice" />
-    <result column="order_remark" jdbcType="VARCHAR" property="orderRemark" />
-    <result column="order_buyuser" jdbcType="INTEGER" property="orderBuyuser" />
-    <result column="order_selluser" jdbcType="INTEGER" property="orderSelluser" />
-    <result column="order_land_id" jdbcType="INTEGER" property="orderLandId" />
-    <result column="order_selluser_name" jdbcType="VARCHAR" property="orderSelluserName" />
-    <result column="order_selluser_tel" jdbcType="VARCHAR" property="orderSelluserTel" />
+    <result column="order_num" jdbcType="INTEGER" property="num" />
+    <result column="order_finish_num" jdbcType="INTEGER" property="finishNum" />
+    <result column="order_status" jdbcType="INTEGER" property="status" />
+    <result column="order_address" jdbcType="VARCHAR" property="address" />
+    <result column="order_price" jdbcType="DOUBLE" property="price" />
+    <result column="order_remark" jdbcType="VARCHAR" property="remark" />
+    <result column="order_buyuser" jdbcType="INTEGER" property="buyerId" />
+    <result column="order_selluser" jdbcType="INTEGER" property="sellerId" />
+    <result column="order_land_id" jdbcType="INTEGER" property="landId" />
+    <result column="order_selluser_name" jdbcType="VARCHAR" property="sellerName" />
+    <result column="order_selluser_tel" jdbcType="VARCHAR" property="sellerTel" />
   </resultMap>
   <sql id="Base_Column_List">
     order_id, order_uuid, order_type, order_time, order_land_size, order_finish_time, 
@@ -35,7 +35,7 @@
     delete from order_inf
     where order_id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="zm.village.dao.OrderInf">
+  <insert id="insert" parameterType="zm.village.dao.Order">
     insert into order_inf (order_id, order_uuid, order_type, 
       order_time, order_land_size, order_finish_time, 
       order_num, order_finish_num, order_status, 
@@ -43,13 +43,13 @@
       order_buyuser, order_selluser, order_land_id, 
       order_selluser_name, order_selluser_tel)
     values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, #{orderType,jdbcType=INTEGER}, 
-      #{orderTime,jdbcType=TIMESTAMP}, #{orderLandSize,jdbcType=DOUBLE}, #{finishTime,jdbcType=TIMESTAMP}, 
-      #{orderNum,jdbcType=INTEGER}, #{orderFinishNum,jdbcType=INTEGER}, #{orderStatus,jdbcType=INTEGER}, 
-      #{orderAddress,jdbcType=VARCHAR}, #{orderPrice,jdbcType=DOUBLE}, #{orderRemark,jdbcType=VARCHAR}, 
-      #{orderBuyuser,jdbcType=INTEGER}, #{orderSelluser,jdbcType=INTEGER}, #{orderLandId,jdbcType=INTEGER}, 
-      #{orderSelluserName,jdbcType=VARCHAR}, #{orderSelluserTel,jdbcType=VARCHAR})
+      #{createTime,jdbcType=TIMESTAMP}, #{plantSize,jdbcType=DOUBLE}, #{finishTime,jdbcType=TIMESTAMP}, 
+      #{num,jdbcType=INTEGER}, #{finishNum,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{address,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{remark,jdbcType=VARCHAR}, 
+      #{buyerId,jdbcType=INTEGER}, #{sellerId,jdbcType=INTEGER}, #{landId,jdbcType=INTEGER}, 
+      #{sellerName,jdbcType=VARCHAR}, #{sellerTel,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="zm.village.dao.OrderInf">
+  <insert id="insertSelective" parameterType="zm.village.dao.Order">
     insert into order_inf
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -61,46 +61,46 @@
       <if test="orderType != null">
         order_type,
       </if>
-      <if test="orderTime != null">
+      <if test="createTime != null">
         order_time,
       </if>
-      <if test="orderLandSize != null">
+      <if test="plantSize != null">
         order_land_size,
       </if>
       <if test="finishTime != null">
         order_finish_time,
       </if>
-      <if test="orderNum != null">
+      <if test="num != null">
         order_num,
       </if>
-      <if test="orderFinishNum != null">
+      <if test="finishNum != null">
         order_finish_num,
       </if>
-      <if test="orderStatus != null">
+      <if test="status != null">
         order_status,
       </if>
-      <if test="orderAddress != null">
+      <if test="address != null">
         order_address,
       </if>
-      <if test="orderPrice != null">
+      <if test="price != null">
         order_price,
       </if>
-      <if test="orderRemark != null">
+      <if test="remark != null">
         order_remark,
       </if>
-      <if test="orderBuyuser != null">
+      <if test="buyerId != null">
         order_buyuser,
       </if>
-      <if test="orderSelluser != null">
+      <if test="sellerId != null">
         order_selluser,
       </if>
-      <if test="orderLandId != null">
+      <if test="landId != null">
         order_land_id,
       </if>
-      <if test="orderSelluserName != null">
+      <if test="sellerName != null">
         order_selluser_name,
       </if>
-      <if test="orderSelluserTel != null">
+      <if test="sellerTel != null">
         order_selluser_tel,
       </if>
     </trim>
@@ -114,51 +114,51 @@
       <if test="orderType != null">
         #{orderType,jdbcType=INTEGER},
       </if>
-      <if test="orderTime != null">
-        #{orderTime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="orderLandSize != null">
-        #{orderLandSize,jdbcType=DOUBLE},
+      <if test="plantSize != null">
+        #{plantSize,jdbcType=DOUBLE},
       </if>
       <if test="finishTime != null">
         #{finishTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="orderNum != null">
-        #{orderNum,jdbcType=INTEGER},
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
       </if>
-      <if test="orderFinishNum != null">
-        #{orderFinishNum,jdbcType=INTEGER},
+      <if test="finishNum != null">
+        #{finishNum,jdbcType=INTEGER},
       </if>
-      <if test="orderStatus != null">
-        #{orderStatus,jdbcType=INTEGER},
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
       </if>
-      <if test="orderAddress != null">
-        #{orderAddress,jdbcType=VARCHAR},
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
       </if>
-      <if test="orderPrice != null">
-        #{orderPrice,jdbcType=DOUBLE},
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
       </if>
-      <if test="orderRemark != null">
-        #{orderRemark,jdbcType=VARCHAR},
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="orderBuyuser != null">
-        #{orderBuyuser,jdbcType=INTEGER},
+      <if test="buyerId != null">
+        #{buyerId,jdbcType=INTEGER},
       </if>
-      <if test="orderSelluser != null">
-        #{orderSelluser,jdbcType=INTEGER},
+      <if test="sellerId != null">
+        #{sellerId,jdbcType=INTEGER},
       </if>
-      <if test="orderLandId != null">
-        #{orderLandId,jdbcType=INTEGER},
+      <if test="landId != null">
+        #{landId,jdbcType=INTEGER},
       </if>
-      <if test="orderSelluserName != null">
-        #{orderSelluserName,jdbcType=VARCHAR},
+      <if test="sellerName != null">
+        #{sellerName,jdbcType=VARCHAR},
       </if>
-      <if test="orderSelluserTel != null">
-        #{orderSelluserTel,jdbcType=VARCHAR},
+      <if test="sellerTel != null">
+        #{sellerTel,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.OrderInf">
+  <update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.Order">
     update order_inf
     <set>
       <if test="uuid != null">
@@ -167,69 +167,69 @@
       <if test="orderType != null">
         order_type = #{orderType,jdbcType=INTEGER},
       </if>
-      <if test="orderTime != null">
-        order_time = #{orderTime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        order_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="orderLandSize != null">
-        order_land_size = #{orderLandSize,jdbcType=DOUBLE},
+      <if test="plantSize != null">
+        order_land_size = #{plantSize,jdbcType=DOUBLE},
       </if>
       <if test="finishTime != null">
         order_finish_time = #{finishTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="orderNum != null">
-        order_num = #{orderNum,jdbcType=INTEGER},
+      <if test="num != null">
+        order_num = #{num,jdbcType=INTEGER},
       </if>
-      <if test="orderFinishNum != null">
-        order_finish_num = #{orderFinishNum,jdbcType=INTEGER},
+      <if test="finishNum != null">
+        order_finish_num = #{finishNum,jdbcType=INTEGER},
       </if>
-      <if test="orderStatus != null">
-        order_status = #{orderStatus,jdbcType=INTEGER},
+      <if test="status != null">
+        order_status = #{status,jdbcType=INTEGER},
       </if>
-      <if test="orderAddress != null">
-        order_address = #{orderAddress,jdbcType=VARCHAR},
+      <if test="address != null">
+        order_address = #{address,jdbcType=VARCHAR},
       </if>
-      <if test="orderPrice != null">
-        order_price = #{orderPrice,jdbcType=DOUBLE},
+      <if test="price != null">
+        order_price = #{price,jdbcType=DOUBLE},
       </if>
-      <if test="orderRemark != null">
-        order_remark = #{orderRemark,jdbcType=VARCHAR},
+      <if test="remark != null">
+        order_remark = #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="orderBuyuser != null">
-        order_buyuser = #{orderBuyuser,jdbcType=INTEGER},
+      <if test="buyerId != null">
+        order_buyuser = #{buyerId,jdbcType=INTEGER},
       </if>
-      <if test="orderSelluser != null">
-        order_selluser = #{orderSelluser,jdbcType=INTEGER},
+      <if test="sellerId != null">
+        order_selluser = #{sellerId,jdbcType=INTEGER},
       </if>
-      <if test="orderLandId != null">
-        order_land_id = #{orderLandId,jdbcType=INTEGER},
+      <if test="landId != null">
+        order_land_id = #{landId,jdbcType=INTEGER},
       </if>
-      <if test="orderSelluserName != null">
-        order_selluser_name = #{orderSelluserName,jdbcType=VARCHAR},
+      <if test="sellerName != null">
+        order_selluser_name = #{sellerName,jdbcType=VARCHAR},
       </if>
-      <if test="orderSelluserTel != null">
-        order_selluser_tel = #{orderSelluserTel,jdbcType=VARCHAR},
+      <if test="sellerTel != null">
+        order_selluser_tel = #{sellerTel,jdbcType=VARCHAR},
       </if>
     </set>
     where order_id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="zm.village.dao.OrderInf">
+  <update id="updateByPrimaryKey" parameterType="zm.village.dao.Order">
     update order_inf
     set order_uuid = #{uuid,jdbcType=VARCHAR},
       order_type = #{orderType,jdbcType=INTEGER},
-      order_time = #{orderTime,jdbcType=TIMESTAMP},
-      order_land_size = #{orderLandSize,jdbcType=DOUBLE},
+      order_time = #{createTime,jdbcType=TIMESTAMP},
+      order_land_size = #{plantSize,jdbcType=DOUBLE},
       order_finish_time = #{finishTime,jdbcType=TIMESTAMP},
-      order_num = #{orderNum,jdbcType=INTEGER},
-      order_finish_num = #{orderFinishNum,jdbcType=INTEGER},
-      order_status = #{orderStatus,jdbcType=INTEGER},
-      order_address = #{orderAddress,jdbcType=VARCHAR},
-      order_price = #{orderPrice,jdbcType=DOUBLE},
-      order_remark = #{orderRemark,jdbcType=VARCHAR},
-      order_buyuser = #{orderBuyuser,jdbcType=INTEGER},
-      order_selluser = #{orderSelluser,jdbcType=INTEGER},
-      order_land_id = #{orderLandId,jdbcType=INTEGER},
-      order_selluser_name = #{orderSelluserName,jdbcType=VARCHAR},
-      order_selluser_tel = #{orderSelluserTel,jdbcType=VARCHAR}
+      order_num = #{num,jdbcType=INTEGER},
+      order_finish_num = #{finishNum,jdbcType=INTEGER},
+      order_status = #{status,jdbcType=INTEGER},
+      order_address = #{address,jdbcType=VARCHAR},
+      order_price = #{price,jdbcType=DOUBLE},
+      order_remark = #{remark,jdbcType=VARCHAR},
+      order_buyuser = #{buyerId,jdbcType=INTEGER},
+      order_selluser = #{sellerId,jdbcType=INTEGER},
+      order_land_id = #{landId,jdbcType=INTEGER},
+      order_selluser_name = #{sellerName,jdbcType=VARCHAR},
+      order_selluser_tel = #{sellerTel,jdbcType=VARCHAR}
     where order_id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

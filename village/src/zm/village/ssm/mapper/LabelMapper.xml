@@ -22,7 +22,7 @@
     from rel_label_inf
   </select>
   
-  <select id="selectByEvaId">
+  <select id="selectByEvaId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
    select
    <include refid="Base_Column_List"/>
    from rel_label_inf 

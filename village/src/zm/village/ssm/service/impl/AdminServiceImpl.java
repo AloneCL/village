@@ -27,7 +27,7 @@ public class AdminServiceImpl implements AdminService{
 		Admin admin;
 		if((admin = mapper.selectByUsername(vo.getUsername()))==null) {
 			return false;
-		}else if(admin.getPassword().equals(vo.getPassword())) {
+		}else if(admin.getPassword().equals(vo.getPassword())&&admin.getType().equals(vo.getType())) {
 			vo.setId(admin.getId());
 			return true;
 		}

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import zm.village.dao.Dictionary;
 import zm.village.service.DictionaryService;
+import zm.village.web.aop.backstage.Permission;
 
 /**
 * @ClassName: DictionarySetController.java
@@ -33,6 +34,7 @@ public class DictionarySetController implements BackstageConstant {
 	 * @param model 视图模型 不需显示传参
 	 * @return  跳转到数据字典列表
 	 */
+	@Permission
 	@RequestMapping(value = "dictionarylist")
 	public String showDictionary(Model model) {
     	List<Dictionary> dc2 = service.getAll();
@@ -48,6 +50,7 @@ public class DictionarySetController implements BackstageConstant {
 	 * @param type 数据字典数据所属的类型
 	 * @return   把相应的类型的信息列表放入model中并返回列表界面
 	 */
+	@Permission
 	@RequestMapping(value="getDictionaryByType")
 	public String getBytype(Model model, Integer type) {
 		System.out.println("执行成功�?");
@@ -65,6 +68,7 @@ public class DictionarySetController implements BackstageConstant {
 	 * @param id  jsp传过来的要删除的数据的主键id数组
 	 * @return    返回列表界面
 	 */
+	@Permission
 	@RequestMapping(value="deleteDictionary",method = RequestMethod.POST)
     public String delete(Model model, Integer[] id) {
 		service.deleteMany(id);
@@ -76,6 +80,7 @@ public class DictionarySetController implements BackstageConstant {
 	 * @param model
 	 * @param id 要删除的数据id
 	 */
+	@Permission
 	@RequestMapping(value="/delDictionary")
 	public void delLabelDir(Model model, Integer id) {
 		Integer[] id2 = {id};
@@ -88,6 +93,7 @@ public class DictionarySetController implements BackstageConstant {
 	 * @param id 要编辑的数据的id
  	 * @return  跳转到数据编辑页�?
 	 */
+	@Permission
 	@RequestMapping(value="editDictionary")
     public String edit(Model model, Integer id) {
         Dictionary vo = service.getInfo(id);
@@ -101,6 +107,7 @@ public class DictionarySetController implements BackstageConstant {
 	 * @param vo 在编辑页面修改之后的完整数据信息对象
 	 * @return   返回列表界面
 	 */
+	@Permission
 	@RequestMapping(value="submitEditDctionary")
 	public String submitEdit(Model model, Dictionary vo) {
 		service.update(vo);
@@ -112,9 +119,9 @@ public class DictionarySetController implements BackstageConstant {
 	 * @param model
 	 * @param vo  jsp传过来的要增加的数据信息 无返回值，因为是在弹窗中执行
 	 */
+	@Permission
 	@RequestMapping(value="addDictionary")
 	public void addDictionary(Model model, Dictionary vo) {
-		System.out.println("执行了增加方�?");
 		service.addDictionary(vo);
 	}
 }

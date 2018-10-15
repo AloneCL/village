@@ -1,9 +1,9 @@
 package zm.village.web.controller.backstage;
 /**
-* @author 李子�?
+* @author 李子帆
 * @version 1.0
-* @date 2018�?10�?14�? 下午9:16:19
-* @Description 后台管理控制器常�?
+* @date 2018年10月14日 下午9:16:19
+* @Description 后台管理控制器常量
 */
 public interface BackstageConstant {
 	
@@ -13,7 +13,7 @@ public interface BackstageConstant {
     String REQUEST_ERROR_INFO = "error";
     
 	/**
-	 *  客户端提交的验证码对应的Attribute属�?�名
+	 *  客户端提交的验证码对应的Attribute属性名
 	 */
 	String REQUEST_VALIDATECODE = "validateCode";
 	
@@ -22,16 +22,16 @@ public interface BackstageConstant {
 	 */
 	String SESSION_VALIDATECODE = "checkcode";	
 	/**
-	 *  管理员登录成功后存储管理员用户对象的Session属�?�名
+	 *  管理员登录成功后存储管理员用户对象的Session属性名
 	 */
 	String SESSION_ADMIN = "manager";	
 	
 	/**
-	 * 验证码错误导致的登录失败错误�?
+	 * 验证码错误导致的登录失败错误码
 	 */
 	String ERRCODE_WRONG_VALIDATECODE = "1";
 	/**
-	 * 管理员帐号密码错误导致的登录失败错误�?
+	 * 管理员帐号密码错误导致的登录失败错误码
 	 */
 	String ERRCODE_WRONG_PASS = "2";
 	

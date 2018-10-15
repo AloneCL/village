@@ -19,20 +19,19 @@ import zm.village.service.DictionaryService;
 * @ClassName: DictionarySetController.java
 * @Description: 数据字典类管理控制层
 * @version: v1.0.0
-* @author: 陈光�?
-* @date: 2018�?7�?25�? 上午9:39:43 
+* @author: 陈光磊
+* @date: 2018年7月25日 上午9:39:43 
  */
 @Controller
 public class DictionarySetController implements BackstageConstant {
     
 
-	
 	@Autowired
     private DictionaryService service;
 	/**
 	 * 
 	 * @param model 视图模型 不需显示传参
-	 * @return  跳转到数据字典列�?
+	 * @return  跳转到数据字典列表
 	 */
 	@RequestMapping(value = "dictionarylist")
 	public String showDictionary(Model model) {
@@ -46,7 +45,7 @@ public class DictionarySetController implements BackstageConstant {
 	/**
 	 * 
 	 * @param model
-	 * @param type 数据字典数据�?属的类型
+	 * @param type 数据字典数据所属的类型
 	 * @return   把相应的类型的信息列表放入model中并返回列表界面
 	 */
 	@RequestMapping(value="getDictionaryByType")
@@ -108,17 +107,10 @@ public class DictionarySetController implements BackstageConstant {
 		return showDictionary(model);
 	}
 	
-	/*@RequestMapping(value="addDictionary")
-	public String addDictionary(Model model,Dictionary vo) {
-		System.out.println("执行了增加方�?");
-		service.addDictionary(vo);
-		return "addDictionary.jsp";
-	}*/
-	
 	/**
 	 * 
 	 * @param model
-	 * @param vo  jsp传过来的要增加的数据信息 无返回�?�，因为是在弹窗中执�? 直接刷新父页�?
+	 * @param vo  jsp传过来的要增加的数据信息 无返回值，因为是在弹窗中执行
 	 */
 	@RequestMapping(value="addDictionary")
 	public void addDictionary(Model model, Dictionary vo) {

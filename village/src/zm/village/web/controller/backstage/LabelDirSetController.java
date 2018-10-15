@@ -19,8 +19,8 @@ import zm.village.service.LabelDirService;
 * @ClassName: CollectSetController.java
 * @Description: 标签字典类后台管理控制层
 * @version: v1.0.0
-* @author: 陈光�?
-* @date: 2018�?7�?24�? 下午3:01:03 
+* @author: 陈光磊
+* @date: 2018年7月24日 下午3:01:03 
  */
 @Controller
 public class LabelDirSetController implements BackstageConstant {

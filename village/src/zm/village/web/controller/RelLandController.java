@@ -15,11 +15,10 @@ import zm.village.util.tools.HttpReturn;
 
 /**
  * @author 伍伴
- * @Date 2018�?7�?21�?
+ * @Date 2018年7月21日
  * @Description 安卓前端土地可种植作物控制层
  * @version 1.0
  */
-
 
 @Controller
 @RequestMapping("/RelLand")

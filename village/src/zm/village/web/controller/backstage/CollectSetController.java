@@ -1,6 +1,3 @@
-/**
- * 
- */
 package zm.village.web.controller.backstage;
 
 import java.util.ArrayList;
@@ -18,8 +15,8 @@ import zm.village.service.CollectService;
 * @ClassName: CollectSetController.java
 * @Description: 用户收藏类后台管理控制层
 * @version: v1.0.0
-* @author: 陈光�?
-* @date: 2018�?7�?24�? 下午3:01:03 
+* @author: 陈光磊
+* @date: 2018年7月24日 下午3:01:03 
  */
 @Controller
 public class CollectSetController implements BackstageConstant {

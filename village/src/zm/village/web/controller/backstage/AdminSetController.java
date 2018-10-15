@@ -15,8 +15,8 @@ import zm.village.service.AdminService;
  * @ClassName: AdminSetController.java
  * @Description: 管理员控制层
  * @version: v1.0.0
- * @author: 陈光�?
- * @date: 2018�?7�?23�? 上午9:33:29
+ * @author: 陈光磊
+ * @date: 2018年7月23日 上午9:33:29
  */
 @Controller
 public class AdminSetController implements BackstageConstant {	
@@ -32,7 +32,7 @@ public class AdminSetController implements BackstageConstant {
 			if (error.equals(ERRCODE_WRONG_PASS))
 				model.addAttribute(REQUEST_ERROR_INFO, "账号密码错误");
 			else if(error.equals(ERRCODE_WRONG_VALIDATECODE)) 
-				model.addAttribute(REQUEST_ERROR_INFO, "验证码输入错�?");
+				model.addAttribute(REQUEST_ERROR_INFO, "验证码输入错误");
         }
         
 		return "/login.jsp";
@@ -49,7 +49,7 @@ public class AdminSetController implements BackstageConstant {
 		// 从服务器端的session中取出验证码
 		String serverCheckcode = (String) session.getAttribute(SESSION_VALIDATECODE);
 		
-		// 将客户端验证码和服务器端验证比较，如果相等，则表示验证�?�过
+		// 将客户端验证码和服务器端验证比较，如果相等，则表示验证通过
 		if (clientCheckcode.toLowerCase().equals(serverCheckcode.toLowerCase())) {
 			session.removeAttribute(REQUEST_VALIDATECODE);
 			if (service.login(vo)) {

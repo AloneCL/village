@@ -24,10 +24,10 @@ import zm.village.service.UserService;
 
 /**
 * @ClassName: LandSetController.java
-* @Description: 土地后端页面控制�?
+* @Description: 土地后端页面控制层
 * @version: v1.0.0
-* @author: 陈光�?
-* @date: 2018�?7�?19�? 上午9:15:36 
+* @author: 陈光磊
+* @date: 2018年7月19日 上午9:15:36 
  */
 
 @Controller

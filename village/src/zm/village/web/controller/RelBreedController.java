@@ -30,10 +30,8 @@ public class RelBreedController {
 	
 	@RequestMapping(value = "/getAll", method = RequestMethod.POST)
 	public void getAll(HttpServletResponse response) throws IOException {
-
 	
-		@SuppressWarnings("static-access")
-		JSONArray jsonArray= new JSONArray().fromObject(service.selectAll());
+		JSONArray jsonArray= JSONArray.fromObject(service.selectAll());
 		
 		HttpReturn.reponseBody(response, jsonArray);
 	}
@@ -41,16 +39,14 @@ public class RelBreedController {
 	@RequestMapping(value = "/get", method = RequestMethod.POST)
 	public void get(HttpServletResponse response, @RequestBody Breed vo) throws IOException {
 
-		@SuppressWarnings("static-access")
-		JSONObject jsonObject = new JSONObject().fromObject(service.select(vo));
+		JSONObject jsonObject = JSONObject.fromObject(service.select(vo));
 		HttpReturn.reponseBody(response, jsonObject);
 	}
 	
 	@RequestMapping(value = "/getBreeLand", method = RequestMethod.POST)
 	public void getBreeLand(HttpServletResponse response, Integer landId) throws IOException {
 
-		@SuppressWarnings("static-access")
-		JSONArray jsonArray = new JSONArray().fromObject(service.getByLandId(landId));
+		JSONArray jsonArray = JSONArray.fromObject(service.getByLandId(landId));
 		HttpReturn.reponseBody(response, jsonArray);
 	}
 	
@@ -70,7 +66,6 @@ public class RelBreedController {
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public void delete(HttpServletResponse response, @RequestBody Breed vo) throws IOException {
-
 		service.delete(vo);
 		HttpReturn.reponseBody(response, "删除成功");
 	}

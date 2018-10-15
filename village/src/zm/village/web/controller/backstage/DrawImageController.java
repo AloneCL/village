@@ -109,11 +109,8 @@ public class DrawImageController implements Serializable {
         g.setFont(new Font("宋体", Font.BOLD, 20));
         //数字和字母的组合
         String baseNumLetter = "0123456789ABCDEFGHJKLMNOPQRSTUVWXYZ";
-        //纯数�?
-        String baseNum = "0123456789";
-        //纯字�?
-        String baseLetter = "ABCDEFGHJKLMNOPQRSTUVWXYZ";
-        //createTypeFlag[0]==null表示没有传�?�参�?
+
+        //createTypeFlag[0]==null表示没有传入参数
         if (createTypeFlag.length > 0 && null != createTypeFlag[0]) {
             if (createTypeFlag[0].equals("nl")) {
                 // 截取汉字

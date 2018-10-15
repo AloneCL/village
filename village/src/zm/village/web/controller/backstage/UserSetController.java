@@ -18,8 +18,7 @@ public class UserSetController {
    
 	@Autowired 
 	private UserService service;
-	
-	
+
 	@RequestMapping(value = "/setUser")
 	public String diary(Model model){
 

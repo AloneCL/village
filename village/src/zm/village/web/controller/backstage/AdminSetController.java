@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import zm.village.dao.Admin;
 import zm.village.service.AdminService;
@@ -25,7 +26,7 @@ public class AdminSetController implements BackstageConstant {
 	private AdminService service;
 	
 	@RequestMapping(value = "/login")
-	public String login(HttpServletRequest request, Model model) {
+	public String login(Model model, HttpServletRequest request) {
 		String error = request.getParameter(REQUEST_ERROR_INFO);
 
         if(error != null) {
@@ -42,10 +43,9 @@ public class AdminSetController implements BackstageConstant {
 	 * 提交登录
 	 */
 	@RequestMapping(value = "/submitLogin")
-	public String submitLogin(HttpServletRequest request, Model model, Admin vo) {
+	public String submitLogin(Model model, HttpServletRequest request, HttpSession session, Admin vo) {
 		// 接收客户端浏览器提交上来的验证码
 		String clientCheckcode = request.getParameter(REQUEST_VALIDATECODE);	
-		HttpSession session = request.getSession();
 		// 从服务器端的session中取出验证码
 		String serverCheckcode = (String) session.getAttribute(SESSION_VALIDATECODE);
 		
@@ -54,7 +54,7 @@ public class AdminSetController implements BackstageConstant {
 			session.removeAttribute(REQUEST_VALIDATECODE);
 			if (service.login(vo)) {
 		        session.setAttribute(SESSION_ADMIN, vo);
-				return "/backer/_left.jsp";
+				return "redirect:backstage.action";
 			} else 
 				return "redirect:login.action?error=" + ERRCODE_WRONG_PASS;
 		}
@@ -63,16 +63,27 @@ public class AdminSetController implements BackstageConstant {
 	}
 	
 	/**
+	 * 后台管理主页面，需要Session中持有管理员对象
+	 * @return 如果之前已经登录成功，那么服务端跳转到_left.jsp
+	 */
+	@RequestMapping(value = "/backstage")
+	public String backstagePage(Model model, HttpSession session) {
+		if(session.getAttribute(SESSION_ADMIN) == null)
+			return "/login.jsp";
+		return "/backer/_left.jsp";
+	}
+	
+	/**
 	 * 管理员从后台管理界面注销
 	 */
 	@RequestMapping(value = "/logout")
-	public String logout(Model model, HttpServletRequest request) {	
-		Admin vo = (Admin) request.getSession().getAttribute(SESSION_ADMIN);
+	public String logout(Model model, HttpSession session) {	
+		Admin vo = (Admin) session.getAttribute(SESSION_ADMIN);
 		
 		if(vo != null) {
-			request.getSession().removeAttribute(SESSION_ADMIN);
+			session.removeAttribute(SESSION_ADMIN);
 		}
-		request.getSession().removeAttribute(SESSION_ADMIN);
+		session.removeAttribute(SESSION_ADMIN);
 		return "redirect:login.action";
 	}
 
@@ -91,17 +102,17 @@ public class AdminSetController implements BackstageConstant {
 	}
 
 	/**
-	 * 修改管理员密�?
+	 * 修改管理员密码
 	 */
 	@RequestMapping(value = "/managerSubmitPass")
-	public String ajaxPass(Model model, String pass, String pass1, HttpServletRequest request) {	
-		Admin manager = (Admin) request.getSession().getAttribute(SESSION_ADMIN);
+	public String ajaxPass(Model model, String pass, String pass1, HttpSession session) {	
+		Admin manager = (Admin) session.getAttribute(SESSION_ADMIN);
 		
 		if (pass.equals(manager.getPassword())) {
 			
 			manager.setPassword(pass1);
 			service.changeSelect(manager);
-			request.getSession().setAttribute(SESSION_ADMIN, manager);
+			session.setAttribute(SESSION_ADMIN, manager);
 			
 			return "redirect:login.action";
 		} else {

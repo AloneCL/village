@@ -23,13 +23,11 @@ public class CheckController implements BackstageConstant {
         String serverCheckcode = (String) request.getSession().getAttribute(SESSION_VALIDATECODE);
         System.out.println(serverCheckcode);
         
-        //将客户端验证码和服务器端验证比较，如果相等，则表示验证�?�过
+        //将客户端验证码和服务器端验证比较，如果相等，则表示验证通过
         if (clientCheckcode.toLowerCase().equals(serverCheckcode.toLowerCase())) {
-        	System.out.println("验证码验证�?�过�?");
         	result = "ok";
         	response.getWriter().print(result);
         } else {
-            System.out.println("验证码验证失败！");
             response.getWriter().print(result);
         }
     }

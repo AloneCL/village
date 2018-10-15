@@ -1,6 +1,7 @@
 package zm.village.dao;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 /**
  * @author 伍伴
@@ -87,8 +88,9 @@ public final class Crop implements java.io.Serializable {
 	 * 获取作物耕种最早时间
 	 * @return java.sql.Timestamp时间对象
 	 */
-	public Timestamp getStartTime() {
-		return startTime;
+	public String getStartTime() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return sdf.format(startTime);
 	}
 	
 	/**
@@ -103,8 +105,9 @@ public final class Crop implements java.io.Serializable {
 	 * 获取作物耕种最晚时间
 	 * @return java.sql.Timestamp时间对象
 	 */
-	public Timestamp getEndTime() {
-		return endTime;
+	public String getEndTime() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return sdf.format(endTime);
 	}
 	
 	/**
@@ -129,5 +132,12 @@ public final class Crop implements java.io.Serializable {
 	 */
 	public void setDirId(Integer cropId) {
 		this.dirId = cropId;
+	}
+	
+	
+	public String toString(){
+		return"Crop[id="+id+",landId="+landId+",dirId="+dirId
+				+",price="+price+",startTime="+startTime
+				+",endTime="+endTime+"]";
 	}
 }

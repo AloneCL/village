@@ -39,30 +39,30 @@ public final class Breed implements java.io.Serializable {
 	}
 
 	/**
-	 * @return 该养殖品种在字典表的映射
-	 */
-	public Integer getType() {
-		return dirId;
-	}
-
-	/**
 	 * @param type 该养殖品种在字典表的映射
 	 */
 	public void setDirId(Integer dirId) {
 		this.dirId = dirId;
 	}
+	
+	/**
+	 * @return 该养殖品种在字典表的映射
+	 */
+	public Integer getDirId() {
+		return dirId;
+	}
 
 	/**
 	 * @return 该养殖品种对应的土地对象
 	 */
-	public Integer getLand() {
+	public Integer getLandId() {
 		return landId;
 	}
 	
 	/**
 	 * @param land 该养殖品种对应的土地对象
 	 */
-	public void setLand(Integer landId) {
+	public void setLandId(Integer landId) {
 		this.landId = landId;
 	}
 
@@ -107,4 +107,12 @@ public final class Breed implements java.io.Serializable {
 	public void setMaxWeight(Double maxWeight) {
 		this.maxWeight = maxWeight;
 	}
+	
+	public String toString(){
+		return"Breed[id="+id+",dirId="+dirId+",landId="+landId
+				+",price="+price+",minWeight="+minWeight+",maxWeight="
+				+maxWeight+"]";
+	}
+
+	
 }

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zm.village.web.mapper.RelBreedInfMapper">
+	<resultMap id="BaseResultMap" type="zm.village.dao.Breed">
+		<id column="rel_breed_id" jdbcType="INTEGER" property="id" />
+		<result column="rel_breed_type" jdbcType="INTEGER" property="dirId" />
+		<result column="rel_breed_land_id" jdbcType="INTEGER" property="landId" />
+		<result column="rel_breed_price" jdbcType="DOUBLE" property="price" />
+		<result column="rel_breed_min_weight" jdbcType="DOUBLE"
+			property="minWeight" />
+		<result column="rel_breed_max_weight" jdbcType="DOUBLE"
+			property="maxWeight" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		rel_breed_id, rel_breed_type, rel_breed_land_id,
+		rel_breed_price,
+		rel_breed_min_weight,
+		rel_breed_max_weight
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from rel_breed_inf
+		where rel_breed_id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectByLand" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from rel_breed_inf
+		where rel_breed_land_id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from rel_breed_inf
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		rel_breed_inf
+		where rel_breed_id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insertSelective" parameterType="zm.village.dao.Breed">
+		insert into rel_breed_inf
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				rel_breed_id,
+			</if>
+			<if test="dirId != null">
+				rel_breed_type,
+			</if>
+			<if test="landId != null">
+				rel_breed_land_id,
+			</if>
+			<if test="price != null">
+				rel_breed_price,
+			</if>
+			<if test="minWeight != null">
+				rel_breed_min_weight,
+			</if>
+			<if test="maxWeight != null">
+				rel_breed_max_weight,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="dirId != null">
+				#{dirId,jdbcType=INTEGER},
+			</if>
+			<if test="landId != null">
+				#{landId,jdbcType=INTEGER},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DOUBLE},
+			</if>
+			<if test="minWeight != null">
+				#{minWeight,jdbcType=DOUBLE},
+			</if>
+			<if test="maxWeight != null">
+				#{maxWeight,jdbcType=DOUBLE},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.Breed">
+		update rel_breed_inf
+		<set>
+			<if test="dirId != null">
+				rel_breed_type = #{dirId,jdbcType=INTEGER},
+			</if>
+			<if test="landId != null">
+				rel_breed_land_id = #{landId,jdbcType=INTEGER},
+			</if>
+			<if test="price != null">
+				rel_breed_price = #{price,jdbcType=DOUBLE},
+			</if>
+			<if test="minWeight != null">
+				rel_breed_min_weight = #{minWeight,jdbcType=DOUBLE},
+			</if>
+			<if test="maxWeight != null">
+				rel_breed_max_weight = #{maxWeight,jdbcType=DOUBLE},
+			</if>
+		</set>
+		where rel_breed_id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

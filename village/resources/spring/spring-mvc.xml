@@ -21,8 +21,9 @@
 	<!-- 开启包扫描(扫描生成bean的注解) -->
     <context:component-scan base-package="zm.village"/>
     
+    <context:annotation-config />
+    
     <aop:aspectj-autoproxy proxy-target-class="true">
-    	
     </aop:aspectj-autoproxy>
     
 	<!--使用mvc:annotation-driven标签替代上两个标签配置

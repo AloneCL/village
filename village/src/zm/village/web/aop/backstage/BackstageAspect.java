@@ -8,9 +8,10 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.validation.support.BindingAwareModelMap;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
-import zm.village.dao.Admin;
 import zm.village.web.controller.backstage.BackstageConstant;
 
 /**
@@ -25,30 +26,18 @@ public class BackstageAspect implements BackstageConstant {
 	/**
 	 * 需要管理员登录后才能进行操作的逻辑
 	 * 需要在方法中标记Permission注解
-	 * @see zm.village.web.aop.Permission
+	 * @see zm.village.web.aop.AdminPermissionController
 	 */
-	@Pointcut("@target(zm.village.web.aop.backstage.Permission)")
+	@Pointcut("execution(* zm.village.web.controller..*.*(..)) && "
+			+ "(@target(zm.village.web.aop.backstage.AdminPermissionController) || "
+			+ "@within(zm.village.web.aop.backstage.AdminPermission))")
 	public void permissionCheckPointcut() {}
 	
 	@Around("permissionCheckPointcut()")
 	public Object permissionCheckAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
-		System.out.println("Aspect Run");
-		Object[] args = joinPoint.getArgs();
-		for(Object arg : args) {
-			
-			if(arg instanceof HttpServletRequest) {
-				HttpServletRequest request = (HttpServletRequest)arg;
-				if(request.getSession().getAttribute(SESSION_ADMIN) != null) {
-					joinPoint.proceed();
-				}
-				
-			} else if(arg instanceof HttpSession) {
-				HttpSession session = (HttpSession)arg;
-				if(session.getAttribute(SESSION_ADMIN) != null) {
-					joinPoint.proceed();
-				}
-			}
-		}
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		if(request.getSession().getAttribute(SESSION_ADMIN) != null)
+			return joinPoint.proceed();
 		return "/login.jsp";
 	}
 }

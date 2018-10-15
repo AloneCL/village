@@ -18,14 +18,12 @@
         http://www.springframework.org/schema/task 
         http://www.springframework.org/schema/task/spring-task-4.2.xsd">
         
+    <context:annotation-config />
 	<!-- 开启包扫描(扫描生成bean的注解) -->
     <context:component-scan base-package="zm.village"/>
     
-    <context:annotation-config />
     
-    <aop:aspectj-autoproxy proxy-target-class="true">
-    </aop:aspectj-autoproxy>
-    
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
 	<!--使用mvc:annotation-driven标签替代上两个标签配置
 		另外该标签会加载很多参数绑定的方法：例如json解析转换器
 		实际开发使用该标签-->

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import zm.village.dao.Collect;
 import zm.village.dao.LabelDir;
 import zm.village.service.LabelDirService;
+import zm.village.web.aop.backstage.AdminPermission;
 
 /**
 * @ClassName: CollectSetController.java
@@ -28,7 +29,7 @@ public class LabelDirSetController implements BackstageConstant {
 	@Autowired
 	private LabelDirService service;
 	
-	@RequestMapping(value="/showLabelDir")
+	@RequestMapping(value="/showLabelDir") @AdminPermission
     public String showLabelDir(Model model) {
     	List<LabelDir> ld = new ArrayList<>();
         ld = service.getAll();

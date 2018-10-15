@@ -42,34 +42,28 @@ public class RelBreedSetController {
 	@RequestMapping(value = "/addBreed")
 	public String add(Model model, Breed vo) {
 
-		System.out.println(vo);
-		//service.insert(vo);
+		service.insert(vo);
 		return diary(model);
 	}
 
 	@RequestMapping("/modifyBreed")
 	public String modify(Model model, Breed vo) {
 
-		System.out.println(vo);
-		//service.update(vo);
+		service.update(vo);
 		return edit(model, vo.getId());
 	}
 	
 	@RequestMapping("/deleteBreed")
 	public String deleteDiary(Model model, Integer id){
 		
-		System.out.println(id);
-		//service.delete(id);
+		service.delete(id);
 		return diary(model);
 	}
 
 	@RequestMapping("/deleteManyBreed")
 	public String deleteManyBreed(Model model, Integer[] id) {
 		if (id != null) {
-			for (Integer i : id) {
-				System.out.println(i);
-			}
-			//service.deleteMany(id);
+			service.deleteMany(id);
 		}
 		return diary(model);
 	}

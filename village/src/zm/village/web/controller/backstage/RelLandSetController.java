@@ -42,34 +42,28 @@ public class RelLandSetController {
 	@RequestMapping(value = "/addRelLand")
 	public String add(Model model, Crop vo) {
 
-		System.out.println(vo);
-		//service.insert(vo);
+		service.insert(vo);
 		return diary(model);
 	}
 
 	@RequestMapping("/modifyRelLand")
 	public String modify(Model model, Crop vo) {
 
-		System.out.println(vo);
-		//service.update(vo);
+		service.update(vo);
 		return edit(model, vo.getId());
 	}
 	
 	@RequestMapping("/deleteRelLand")
 	public String deleteDiary(Model model, Integer id){
 		
-		System.out.println(id);
-		//service.delete(id);
+		service.delete(id);
 		return diary(model);
 	}
 
 	@RequestMapping("/deleteManyRelLand")
 	public String deleteManyRelLand(Model model, Integer[] id) {
 		if (id != null) {
-			for (Integer i : id) {
-				System.out.println(i);
-			}
-			//service.deleteMany(id);
+			service.deleteMany(id);
 		}
 		return diary(model);
 	}

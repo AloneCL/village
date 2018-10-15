@@ -75,8 +75,7 @@ public class LandSetController {
 	public String add( Model model, Land vo )
 	{
 		vo.setStatus( 1 );
-		System.out.println( vo );
-		/* service.insert(vo); */
+		service.insert(vo);
 		return(diary( model ) );
 	}
 
@@ -84,8 +83,8 @@ public class LandSetController {
 	@RequestMapping( "/modifyLand" )
 	public String modify( Model model, Land vo )
 	{
-		System.out.println( vo );
-		/* service.update(vo); */
+		
+		service.update(vo);
 		return(edit( model, vo.getId() ) );
 	}
 
@@ -93,8 +92,8 @@ public class LandSetController {
 	@RequestMapping( "/deleteLand" )
 	public String deleteDiary( Model model, Integer id )
 	{
-		System.out.println( id );
-		/* service.delete(id); */
+		
+		service.delete(id);
 		return(diary( model ) );
 	}
 
@@ -102,11 +101,9 @@ public class LandSetController {
 	@RequestMapping( "/deleteManyLand" )
 	public String deleteManyLand( Model model, Integer[] id )
 	{
-		if ( id != null )
-		{
-			for ( Integer i : id )
-				System.out.println( i );
-			/* service.deleteMany(id); */
+		if ( id != null ){
+			
+			service.deleteMany(id);
 		}
 		return(diary( model ) );
 	}

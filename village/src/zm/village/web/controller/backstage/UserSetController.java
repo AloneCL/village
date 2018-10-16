@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import zm.village.dao.User;
 import zm.village.service.UserService;
+import zm.village.web.aop.backstage.AdminPermissionController;
 
 /**
  * @author 伍伴
@@ -14,41 +15,42 @@ import zm.village.service.UserService;
  * @version 1.0
  */
 @Controller
+@AdminPermissionController
 public class UserSetController {
-   
-	@Autowired 
+
+	@Autowired
 	private UserService service;
 
 	@RequestMapping(value = "/setUser")
-	public String diary(Model model){
+	public String diary(Model model) {
 
 		model.addAttribute("users", service.selectAll());
 		return "/backer/user.jsp";
 	}
 
 	@RequestMapping(value = "/editUser")
-	public String edit(Model model, Integer id){
+	public String edit(Model model, Integer id) {
 		model.addAttribute("user", service.getById(id));
 		return "/backer/userSet.jsp";
 	}
-	
+
 	@RequestMapping(value = "/showUser")
-	public String show(Model model, Integer id){
+	public String show(Model model, Integer id) {
 		model.addAttribute("user", service.getById(id));
 		return "/backer/userShow.jsp";
 	}
-	
+
 	@RequestMapping("/submitEditUser")
-	public String submitEdit(Model model, User vo){
-		
+	public String submitEdit(Model model, User vo) {
+
 		return "/backer/addUser.jsp";
 	}
-	
+
 	@RequestMapping(value = "/addUser")
-	public String add(Model model, User vo){
-		
-		if(service.getByUserTel(vo)==null){
-			if(vo.getImagePath()==null)
+	public String add(Model model, User vo) {
+
+		if (service.getByUserTel(vo) == null) {
+			if (vo.getImagePath() == null)
 				vo.setImagePath("../img/default/default.jpg");
 			service.insert(vo);
 		}
@@ -56,31 +58,30 @@ public class UserSetController {
 	}
 
 	@RequestMapping("/modifyUser")
-	public String modify(Model model, User vo){
-		
-       if(service.getByUserTel(vo)!=null){
-    	    vo.setTelephone(null);
+	public String modify(Model model, User vo) {
+
+		if (service.getByUserTel(vo) != null) {
+			vo.setTelephone(null);
+			service.update(vo);
+		} else {
 			service.update(vo);
 		}
-       else{
-    	   service.update(vo);
-       }
-		return edit(model,vo.getId());
+		return edit(model, vo.getId());
 	}
 
 	@RequestMapping("/deleteUser")
-	public String deleteDiary(Model model, Integer id){
-		
+	public String deleteDiary(Model model, Integer id) {
+
 		service.delete(id);
 		return diary(model);
 	}
-	
+
 	@RequestMapping("/deleteManyUser")
-	public String deleteManyUser(Model model, Integer[] id){
+	public String deleteManyUser(Model model, Integer[] id) {
 		if (id != null) {
 			service.deleteMany(id);
 		}
 		return diary(model);
 	}
-	
+
 }

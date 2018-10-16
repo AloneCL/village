@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import zm.village.dao.Collect;
 import zm.village.service.CollectService;
+import zm.village.web.aop.backstage.AdminPermissionController;
 
 /**
 * @ClassName: CollectSetController.java
@@ -19,6 +20,7 @@ import zm.village.service.CollectService;
 * @date: 2018年7月24日 下午3:01:03 
  */
 @Controller
+@AdminPermissionController
 public class CollectSetController implements BackstageConstant {
     
 	@Autowired

@@ -23,7 +23,8 @@ import zm.village.web.aop.backstage.AdminPermissionController;
 * @author: 陈光磊
 * @date: 2018年7月25日 上午9:39:43 
  */
-@Controller @AdminPermissionController
+@Controller
+@AdminPermissionController
 public class DictionarySetController implements BackstageConstant {
     
 

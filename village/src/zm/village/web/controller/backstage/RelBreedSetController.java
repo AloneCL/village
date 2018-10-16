@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import zm.village.dao.Breed;
 import zm.village.service.RelBreedService;
+import zm.village.web.aop.backstage.AdminPermissionController;
 
 /**
  * @author 伍伴
@@ -14,6 +15,7 @@ import zm.village.service.RelBreedService;
  * @version 1.0
  */
 @Controller
+@AdminPermissionController
 public class RelBreedSetController {
 
 	@Autowired

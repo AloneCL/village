@@ -28,8 +28,8 @@ import zm.village.util.tools.JsonDateValueProcessor;
 
 /**
  * @author 伍伴
- * @Date 2018�?7�?21�?
- * @Description 安卓前端用户控制�?
+ * @Date 2018年7月21日
+ * @Description 安卓前端用户控制层
  * @version 1.0
  */
 
@@ -45,7 +45,7 @@ public class UserController {
 
 		JsonConfig jsonConfig = new JsonConfig(); 
 		jsonConfig.registerJsonValueProcessor(Timestamp.class , new JsonDateValueProcessor());
-		JSONArray jsonArray= new JSONArray().fromObject(service.selectAll(),jsonConfig);
+		JSONArray jsonArray= JSONArray.fromObject(service.selectAll(),jsonConfig);
 		HttpReturn.reponseBody(response, jsonArray);
 	}
 	
@@ -55,7 +55,7 @@ public class UserController {
 	
 		JsonConfig jsonConfig = new JsonConfig(); 
 		jsonConfig.registerJsonValueProcessor(Timestamp.class , new JsonDateValueProcessor());
-		JSONObject jsonObject = new JSONObject().fromObject(service.select(vo),jsonConfig);
+		JSONObject jsonObject = JSONObject.fromObject(service.select(vo),jsonConfig);
 		HttpReturn.reponseBody(response, jsonObject);
 		
 	}
@@ -64,7 +64,7 @@ public class UserController {
 	public void add(HttpServletResponse response, @RequestBody User vo) throws IOException {
 
 		if(service.getByUserTel(vo)!=null){
-			HttpReturn.reponseBody(response, String.valueOf("已注�?"));
+			HttpReturn.reponseBody(response, String.valueOf("已注册"));
 		}
 		else {
 			vo.setName(vo.getTelephone());
@@ -95,18 +95,16 @@ public class UserController {
 		if(service.login(vo)){
 			User user = service.getByUserTel(vo);
 			if(user.getUserType() == vo.getUserType()){
-				JSONObject jsonObject = new JSONObject().fromObject(user);
+				JSONObject jsonObject = JSONObject.fromObject(user);
 				HttpReturn.reponseBody(response, jsonObject);
 			}
 			else {
-				vo.setId(0);
-				JSONObject jsonObject = new JSONObject().fromObject(vo);
+				JSONObject jsonObject = JSONObject.fromObject(vo);
 				HttpReturn.reponseBody(response, jsonObject);
 			}
 		}
 		else{
-			vo.setId(0);
-			JSONObject jsonObject = new JSONObject().fromObject(vo);
+			JSONObject jsonObject = JSONObject.fromObject(vo);
 			HttpReturn.reponseBody(response, jsonObject);
 		}
 		
@@ -137,7 +135,7 @@ public class UserController {
 	@RequestMapping(value = "/getByUserTel", method = RequestMethod.POST)
 	public void getByUserTel(HttpServletResponse response,@RequestBody User vo) throws IOException {
 
-		JSONObject jsonObject = new JSONObject().fromObject(service.getByUserTel(vo));
+		JSONObject jsonObject = JSONObject.fromObject(service.getByUserTel(vo));
 		HttpReturn.reponseBody(response, jsonObject);
 	}
 	

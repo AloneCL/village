@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import zm.village.dao.Crop;
 import zm.village.service.RelLandService;
+import zm.village.web.aop.backstage.AdminPermissionController;
 
 /**
  * @author 伍伴
@@ -14,6 +15,7 @@ import zm.village.service.RelLandService;
  * @version 1.0
  */
 @Controller
+@AdminPermissionController
 public class RelLandSetController {
 
 	@Autowired

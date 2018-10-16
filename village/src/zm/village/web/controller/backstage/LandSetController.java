@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import zm.village.dao.Land;
 import zm.village.service.LandService;
 import zm.village.service.UserService;
+import zm.village.web.aop.backstage.AdminPermissionController;
 
 /**
 * @ClassName: LandSetController.java
@@ -31,7 +32,8 @@ import zm.village.service.UserService;
  */
 
 @Controller
-public class LandSetController {
+@AdminPermissionController
+public class LandSetController	 {
     
 	@Autowired
 	private LandService service;

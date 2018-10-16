@@ -15,6 +15,7 @@ import zm.village.dao.Collect;
 import zm.village.dao.LabelDir;
 import zm.village.service.LabelDirService;
 import zm.village.web.aop.backstage.AdminPermission;
+import zm.village.web.aop.backstage.AdminPermissionController;
 
 /**
 * @ClassName: CollectSetController.java
@@ -24,12 +25,13 @@ import zm.village.web.aop.backstage.AdminPermission;
 * @date: 2018年7月24日 下午3:01:03 
  */
 @Controller
+@AdminPermissionController
 public class LabelDirSetController implements BackstageConstant {
     
 	@Autowired
 	private LabelDirService service;
 	
-	@RequestMapping(value="/showLabelDir") @AdminPermission
+	@RequestMapping(value="/showLabelDir")
     public String showLabelDir(Model model) {
     	List<LabelDir> ld = new ArrayList<>();
         ld = service.getAll();

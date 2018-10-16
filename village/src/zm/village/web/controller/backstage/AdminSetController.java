@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import zm.village.dao.Admin;
 import zm.village.service.AdminService;
+import zm.village.web.aop.backstage.AdminPermission;
 
 /**
  * @ClassName: AdminSetController.java
@@ -66,10 +67,9 @@ public class AdminSetController implements BackstageConstant {
 	 * 后台管理主页面，需要Session中持有管理员对象
 	 * @return 如果之前已经登录成功，那么服务端跳转到_left.jsp
 	 */
+	@AdminPermission
 	@RequestMapping(value = "/backstage")
 	public String backstagePage(Model model, HttpSession session) {
-		if(session.getAttribute(SESSION_ADMIN) == null)
-			return "/login.jsp";
 		return "/backer/_left.jsp";
 	}
 	

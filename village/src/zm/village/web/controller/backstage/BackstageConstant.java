@@ -74,5 +74,13 @@ public interface BackstageConstant {
 	 */
 	String ATTRIBUTE_LABEL_LIST_SIZE = "dataNum";
 	
+	/**
+	 * 评价信息List集合
+	 */
+	String ATTRIBUTE_EVALUATE_LIST = "evaluateList";
 	
+	/**
+	 * 评价信息List集合长度
+	 */
+	String ATTRIBUTE_EVALUATE_LIST_SIZE = "dataNum";
 }

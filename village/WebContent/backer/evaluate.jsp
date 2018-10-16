@@ -40,55 +40,29 @@
 <body>
 	<div><jsp:include page="_header.jsp" /></div>
 	<div><jsp:include page="_menu.jsp" /></div>
+	
 	<nav class="breadcrumb">
-		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
-		系统管理 <span class="c-gray en">&gt;</span> 数据字典 <a id="btn-refresh"
-			class="btn btn-success radius r"
-			style="line-height: 1.6em; margin-top: 3px"
-			href="javascript:location.reload();" title="刷新"><i
-			class="Hui-iconfont">&#xe68f;</i></a>
+		<i class="Hui-iconfont">&#xe67f;</i> 
+		首页 <span class="c-gray en">&gt;</span>
+		评论管理 <span class="c-gray en">&gt;</span> 评论列表
+		<a id="btn-refresh" class="btn btn-success radius r" style="line-height: 1.6em; margin-top: 3px"
+			href="javascript:location.reload();" title="刷新">
+			<i class="Hui-iconfont">&#xe68f;</i>
+		</a>
 	</nav>
-	<!-- 	<div class="page-container">
-		<div class="text-c">
-			字典名称: <input type="text" class="input-text" id="" name=""
-				style="width: 150px"> 表名: <span class="select-box inline">
-				<select class="select" id="" name="">
-					<option value="0">选择一个系统表名</option>
-					<option value="AccountInfo">AccountInfo</option>
-					<option value="AdminInfo">AdminInfo</option>
-			</select>
-			</span> 字段名: <span class="select-box inline"> <select class="select"
-				id="" name="">
-			</select>
-			</span> <input type="hidden" id="" name="">
-			<button type="button" class="btn btn-success radius" id="" name="">
-				<i class="Hui-iconfont">&#xe665;</i> 检索
-			</button>
-		</div> -->
+	
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
-		<span class="l"> <a href="javascript:;" onclick="datadel()"
-			class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>
-				批量删除</a> <a href="javascript:;"
-			onclick="member_add('添加数据',' ${pageContext.request.contextPath}/addDictionary.jsp','','510')"
-			class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i>
-				添加字典</a>
-		 <span style="margin:0 300px;"></span> 
-		</span> 按类型筛选: <span class="select-box inline"> 
-		<form action="${pageContext.request.contextPath}/getDictionaryByType.action" id="selectForm" method="post">
-		<select class="select"
-			id="selecttype" name="type" onblur="selectType(this.value)">
-				<option value="-1">选择类型</option>
-				<option value="0">粮食</option>
-				<option value="1">蔬菜</option>
-				<option value="2">水果</option>
-				<option value="3">牲畜</option>
-				<option value="4">所有类型</option>
-		</select>
-		<!-- <input type="submit" name="g" value="Submit提交" id="g" /> -->
-		</form>
-		</span> <span class="r">共有数据：<strong>${dataNum}</strong> 条
+		<span class="l"> 
+			<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
+				<i class="Hui-iconfont">&#xe6e2;</i>批量删除
+			</a> 
+			<span style="margin:0 300px;"></span> 
 		</span>
+		 按时间筛选: 
+		 
+		<span class="r">共有数据：<strong>${dataNum}</strong> 条 </span>
 	</div>
+	
 	<div class="mt-20">
 		<form action="deleteDictionary.action" id="deleteform" method="post">
 			<table

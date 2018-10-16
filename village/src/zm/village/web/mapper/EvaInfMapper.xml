@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="zm.village.web.mapper.EvaInfMapper">
+
   <resultMap id="BaseResultMap" type="zm.village.dao.Evaluate">
     <id column="eva_id" jdbcType="INTEGER" property="id" />
     <result column="eva_seller" jdbcType="INTEGER" property="sellerId" />
@@ -9,19 +10,22 @@
     <result column="eva_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="eva_starlevel" jdbcType="INTEGER" property="star" />
     <result column="eva_img" jdbcType="VARCHAR" property="imgURL" />
-    <!--少了response ???  -->
-    <!-- ssssss -->
   </resultMap>
+  
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="zm.village.dao.Evaluate">
     <result column="eva_content" jdbcType="LONGVARCHAR" property="content" />
     <result column="eva_response" jdbcType="LONGVARCHAR" property="response" />
   </resultMap>
+  
   <sql id="Base_Column_List">
     eva_id, eva_seller, eva_buyer, eva_buyer_name, eva_time, eva_starlevel, eva_img
   </sql>
+  
   <sql id="Blob_Column_List">
     eva_content, eva_response
   </sql>
+  
+  <!--根据主键ID查询单个评价，包含评价的内容  -->
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
@@ -30,10 +34,48 @@
     from eva_inf
     where eva_id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <!--查询所有的评价，不包含评价的内容  -->
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from eva_inf
+  </select>
+  
+  <!--查询所有的评价，包含评价的内容  -->
+  <select id="selectAllWithDetail" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from eva_inf
+  </select>
+  
+  <!--根据主键ID删除单个评价-->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from eva_inf
     where eva_id = #{id,jdbcType=INTEGER}
   </delete>
+  
+  <!--根据用户ID获取他给出的所有评价，不包括评价内容  -->
+  <select id="selectByUserId" parameterType="java.lang.Integer">
+  	SELECT
+  	<include refid="Base_Column_List" />
+  	FROM eva_inf
+  	WHRER eva_seller = #{id,jdbcType=INTEGER} OR eva_buyer = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!--根据用户ID获取他给出的所有评价 -->
+  <select id="selectByUserIdWithDetail" parameterType="java.lang.Integer">
+  	SELECT
+  	<include refid="Base_Column_List" />
+  	,
+  	<include refid="Blob_Column_List" />
+  	FROM eva_inf
+  	WHRER eva_seller = #{id,jdbcType=INTEGER} OR eva_buyer = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!--
   <insert id="insert" parameterType="zm.village.dao.Evaluate">
     insert into eva_inf (eva_id, eva_seller, eva_buyer, 
       eva_buyer_name, eva_time, eva_starlevel, 
@@ -43,7 +85,9 @@
       #{buyerName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{star,jdbcType=INTEGER}, 
       #{imgURL,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}, #{response,jdbcType=LONGVARCHAR}
       )
-  </insert>
+  </insert>  -->
+  
+  <!--插入一条评价信息  -->
   <insert id="insertSelective" parameterType="zm.village.dao.Evaluate">
     insert into eva_inf
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -105,6 +149,8 @@
       </if>
     </trim>
   </insert>
+  
+  <!--更新评价信息 -->
   <update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.Evaluate">
     update eva_inf
     <set>
@@ -135,7 +181,9 @@
     </set>
     where eva_id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="zm.village.dao.Evaluate">
+  
+  <!--  
+  <update id="updateByPrimaryKeyWithDetail" parameterType="zm.village.dao.Evaluate">
     update eva_inf
     set eva_seller = #{sellerId,jdbcType=INTEGER},
       eva_buyer = #{buyerId,jdbcType=INTEGER},
@@ -147,6 +195,7 @@
       eva_response = #{response,jdbcType=LONGVARCHAR}
     where eva_id = #{id,jdbcType=INTEGER}
   </update>
+  
   <update id="updateByPrimaryKey" parameterType="zm.village.dao.Evaluate">
     update eva_inf
     set eva_seller = #{sellerId,jdbcType=INTEGER},
@@ -156,5 +205,6 @@
       eva_starlevel = #{star,jdbcType=INTEGER},
       eva_img = #{imgURL,jdbcType=VARCHAR}
     where eva_id = #{id,jdbcType=INTEGER}
-  </update>
+  </update>-->
+  
 </mapper>

@@ -139,7 +139,6 @@
 			</table>
 		</form>
 	</div>
-	</div>
 	<div hidden>
 		<input type="file" name="upfile" id="file" accept="image/*"
 			onchange="upload()">
@@ -180,8 +179,7 @@
 		function upload() {
 			var fd = new FormData();
 			fd.append('upfile', $('#file')[0].files[0]);
-			$
-					.ajax({
+			$.ajax({
 						url : 'lib/ueditor/1.4.3/jsp/controller.jsp?action=uploadimage',
 						data : fd,
 						processData : false,
@@ -190,7 +188,12 @@
 						success : function(data) {
 							let temp = data;
 							updatePage(temp);
+						},
+						fail : function() {
+							//notify('.cont-right', '设置失败', 'warning');
+							alert("faile");
 						}
+					    
 					});
 		}
 
@@ -218,10 +221,12 @@
 					},
 					fail : function() {
 						notify('.cont-right', '设置失败', 'warning');
+						alert("faile");
 					},
 					success : function() {
 						notify('.cont-right', '设置成功', 'success');
-						window.location.url = '/backer/commonGoods.jsp';
+						alert("success");
+						//window.location.url = '/backer/commonGoods.jsp';
 					}
 				})
 			}

@@ -28,7 +28,7 @@ public class BackstageAspect implements BackstageConstant {
 	 */
 	@Pointcut("execution(* zm.village.web.controller..*.*(..)) && "
 			+ "(@target(zm.village.web.aop.backstage.AdminPermissionController) || "
-			+ "@within(zm.village.web.aop.backstage.AdminPermission))")
+			+ "@annotation(zm.village.web.aop.backstage.AdminPermission))")
 	public void permissionCheckPointcut() {}
 	
 	@Around("permissionCheckPointcut()")

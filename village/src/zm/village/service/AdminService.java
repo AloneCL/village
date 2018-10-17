@@ -3,6 +3,8 @@
  */
 package zm.village.service;
 
+import java.util.List;
+
 import zm.village.dao.Admin;
 
 /**
@@ -13,7 +15,14 @@ import zm.village.dao.Admin;
 * @date: 2018年7月21日 下午8:02:47 
  */
 public interface AdminService {
-   
+    
+	/**
+	 * 
+	 * @param 要选取的管理员的类型
+	 * @return 返回管理员列表
+	 */
+	List<Admin> getByType(Integer type);
+	
 	/**
 	 * 管理员登录
 	 * @param vo
@@ -27,4 +36,11 @@ public interface AdminService {
 	 * @return
 	 */
 	int changeSelect(Admin vo);
+	
+	/**
+	 *  删除信息  
+	 * @param id 
+	 * @return
+	 */
+	int deleteMany(Integer[] id);
 }

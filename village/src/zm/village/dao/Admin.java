@@ -15,6 +15,10 @@ public final class Admin implements java.io.Serializable {
 	
 	private String password;
 	
+	private String phone;
+	
+	private String rparea;
+	
 	private Integer type;
 
 	public Integer getId() {
@@ -67,4 +71,33 @@ public final class Admin implements java.io.Serializable {
 	public void setType(Integer type) {
 		this.type = type;
 	}
+	
+	/**
+	 * @return 审核员电话号码
+	 */
+	public String getPhone() {
+		return phone;
+	}
+
+	/**
+	 * @param  审核员电话号码
+	 */
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	/**
+	 * @return  负责的审核区域
+	 */
+	public String getRparea() {
+		return rparea;
+	}
+
+	/**
+	 * @param  设置负责的审核区域地质
+	 */
+	public void setRparea(String rparea) {
+		this.rparea = rparea;
+	}
+
 }

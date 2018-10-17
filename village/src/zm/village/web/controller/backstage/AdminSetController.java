@@ -1,12 +1,18 @@
 package zm.village.web.controller.backstage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Collections;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import zm.village.dao.Admin;
@@ -118,5 +124,46 @@ public class AdminSetController implements BackstageConstant {
 		} else {
 			return "redirect:managerSet.action?error=" + ERRCODE_WRONG_VALIDATECODE;
 		}
+	}
+	
+	/**
+	 * 展示所有的审核员
+	 * @param model
+	 * @return
+	 */
+	@AdminPermission
+	@RequestMapping(value="showAuditors")
+	public String showAuditors(Model model) {
+		List<Admin> auditorList = Collections.emptyList();
+					auditorList = service.getByType(2);
+		model.addAttribute("auditor", auditorList);
+		model.addAttribute("auditorNum", auditorList.size());
+		return "/backer/auditor.jsp";
+	}
+	
+	/**
+	 * 批量删除多行记录
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@AdminPermission
+	@RequestMapping(value="deleteAdmin")
+	public String deleteAdmin(Model model,Integer[] id) {
+		service.deleteMany(id);
+		return showAuditors(model);
+	}
+	
+	/**
+	 * 单行异步删除
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@AdminPermission
+	@RequestMapping(value="delAdmin")
+	public void delAdmin(Model model,Integer id) {
+		Integer[] id2 = {id};
+		service.deleteMany(id2);
 	}
 }

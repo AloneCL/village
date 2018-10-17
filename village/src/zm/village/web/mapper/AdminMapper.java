@@ -1,5 +1,9 @@
 package zm.village.web.mapper;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Repository;
 
 import zm.village.dao.Admin;
@@ -15,6 +19,12 @@ import zm.village.dao.Admin;
 @Repository
 public interface AdminMapper {
 	
+	/**
+	 * 
+	 * @param type 管理员类型（超管、审核员）
+	 * @return  返回选取类型的所有列表
+	 */
+	List<Admin> selectByType(Integer type);
 	/**
 	 * 根据主键id选择相应的管理员
 	 * @param id  管理员id
@@ -39,5 +49,12 @@ public interface AdminMapper {
      * @param name 
      * @return
      */
-    Admin selectByUsername(String name);
+    Admin selectByUsername(Map<String,String> map);
+    
+    /**
+     * 删除信息
+     * @param id
+     * @return 
+     */
+    int deleteByPrimaryKey(Integer id);
 }

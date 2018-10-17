@@ -1,5 +1,11 @@
 package zm.village.web.service.impl;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +31,10 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public boolean login(Admin vo) {
 		Admin admin;
-		if((admin = mapper.selectByUsername(vo.getUsername()))==null) {
+		Map<String,String> map = new HashMap<>();
+		map.put("type", vo.getType().toString());
+		map.put("name", vo.getUsername());
+		if((admin = mapper.selectByUsername(map))==null) {
 			return false;
 		}else if(admin.getPassword().equals(vo.getPassword())&&admin.getType().equals(vo.getType())) {
 			return true;
@@ -39,6 +48,25 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public int changeSelect(Admin vo) {
 		return mapper.updateByPrimaryKeySelective(vo);
+	}
+
+	/* 根据类型选取相应管理员
+	 * @see zm.village.service.AdminService#getByType(java.lang.Integer)
+	 */
+	@Override
+	public List<Admin> getByType(Integer type) {
+		return mapper.selectByType(type);
+	}
+
+	/* (non-Javadoc)
+	 * @see zm.village.service.AdminService#deleteMany(java.lang.Integer[])
+	 */
+	@Override
+	public int deleteMany(Integer[] id) {
+		for (Integer integer : id) {
+			mapper.deleteByPrimaryKey(integer);
+		}
+		return id.length;
 	}
 
 }

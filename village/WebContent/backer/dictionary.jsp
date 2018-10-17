@@ -25,10 +25,7 @@
 	href="static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css"
 	href="static/h-ui.admin/css/style.css" />
-<!--[if IE 6]>
-<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
-<script>DD_belatedPNG.fix('*');</script>
-<![endif]-->
+
 <style type="text/css">
 .tableImg {
 	display: none;
@@ -48,23 +45,7 @@
 			href="javascript:location.reload();" title="刷新"><i
 			class="Hui-iconfont">&#xe68f;</i></a>
 	</nav>
-	<!-- 	<div class="page-container">
-		<div class="text-c">
-			字典名称: <input type="text" class="input-text" id="" name=""
-				style="width: 150px"> 表名: <span class="select-box inline">
-				<select class="select" id="" name="">
-					<option value="0">选择一个系统表名</option>
-					<option value="AccountInfo">AccountInfo</option>
-					<option value="AdminInfo">AdminInfo</option>
-			</select>
-			</span> 字段名: <span class="select-box inline"> <select class="select"
-				id="" name="">
-			</select>
-			</span> <input type="hidden" id="" name="">
-			<button type="button" class="btn btn-success radius" id="" name="">
-				<i class="Hui-iconfont">&#xe665;</i> 检索
-			</button>
-		</div> -->
+
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l"> <a href="javascript:;" onclick="datadel()"
 			class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>

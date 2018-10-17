@@ -60,24 +60,28 @@
 				class="table table-border table-bordered table-bg table-hover table-sort">
 				<thead>
 					<tr class="text-c">
-					<th width="25"><input type="checkbox" name="" value=""></th>
-					<th width="80">ID</th>
-					<th>标签名称</th>
-					<th width="100">操作</th>
-				</tr>
+						<th width="25"><input type="checkbox" name="" value=""></th>
+						<th width="80">ID</th>
+						<th>标签名称</th>
+						<th width="100">操作</th>
+					</tr>
 				</thead>
 				<tbody>
-				<c:forEach items="${labelDir}" var="labeldir" varStatus="idxStatus">
-				<tr class="text-c">
-					<td><input type="checkbox" value="${labeldir.id}"
-								name="id"></td>
-					<td>${labeldir.id }</td>
-					<td class="text-l">${labeldir.name }</td>
-					<td class="f-14"><a title="编辑" href="javascript:;" onclick="confirmUpdateAward(this)" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
-						<a title="删除" href="javascript:;" onclick="system_category_del(this,$(this).parent().prev().prev().prev().children(':input').val())" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
-				</c:forEach>
-			</tbody>
+					<c:forEach items="${labelDir}" var="labeldir" varStatus="idxStatus">
+						<tr class="text-c">
+							<td><input type="checkbox" value="${labeldir.id}" name="id"></td>
+							<td>${labeldir.id }</td>
+							<td class="text-l">${labeldir.name }</td>
+							<td class="f-14"><a title="编辑" href="javascript:;"
+								onclick="confirmUpdateAward(this)" style="text-decoration: none"><i
+									class="Hui-iconfont">&#xe6df;</i></a> <a title="删除"
+								href="javascript:;"
+								onclick="system_category_del(this,$(this).parent().prev().prev().prev().children(':input').val())"
+								class="ml-5" style="text-decoration: none"><i
+									class="Hui-iconfont">&#xe6e2;</i></a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 		</form>
 	</div>
@@ -161,11 +165,23 @@
 
 		/*标签-删除*/
 		function datadel() {
+			var a = document.getElementsByName('id');
+			var n = a.length;
+			var k = 0 ;
+			for (var i=0; i<n; i++){
+		        if(a[i].checked){
+		            k = 1;
+		        }
+		    }
+		        if(k==0){
+		        alert("请选择要删除的记录!");
+		        return;
+		    }else{
 			layer.confirm('确认要删除这几条记录吗？', function(index) {
 				document.getElementById('deleteform').submit();
 			});
 			//${"#deletefrom"}.submit();
-
+		}
 		}
 		
 		function system_category_del(obj,code){

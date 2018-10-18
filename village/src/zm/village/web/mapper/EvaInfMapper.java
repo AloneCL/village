@@ -1,6 +1,9 @@
 package zm.village.web.mapper;
 
+import java.sql.Timestamp;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 
 import zm.village.dao.Evaluate;
 
@@ -33,6 +36,17 @@ public interface EvaInfMapper {
     List<Evaluate> selectByUserIdWithDetail(Integer id);
     
     /**
+     * 根据条件筛选评论信息
+     * @param startTime 起始时间
+     * @param endTime 结束时间
+     * @param userId 用户ID
+     * @param star 评论星级
+     * @return 查询结果集
+     */
+    List<Evaluate> selectByRole(@Param("startTime")Timestamp startTime, @Param("endTime")Timestamp endTime, 
+    		@Param("userId")Integer userId, @Param("star")Integer star);
+    
+    /**
 	 * 通过主键删除评价信息
 	 * @param evaId 主键ID
 	 * @return 实际删除条数
@@ -60,4 +74,5 @@ public interface EvaInfMapper {
      */
     int updateByPrimaryKeySelective(Evaluate record);
 
+    
 }

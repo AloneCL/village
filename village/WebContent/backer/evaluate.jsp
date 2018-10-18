@@ -51,6 +51,21 @@
 		</a>
 	</nav>
 	
+	<div class="text-c">
+			<form action="searchEvaluate.action">
+				日期范围： 
+				<input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}' })"
+					id="datemin" class="input-text Wdate" style="width: 120px;" name="startTime">
+				- <input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })"
+					id="datemax" class="input-text Wdate" style="width: 120px;" name="endTime"> &nbsp;&nbsp;
+				<input type="text" class="input-text" style="width: 150px" placeholder="用户ID" id="" name="userId"> &nbsp;
+				<input type="text" class="input-text" style="width: 50px" placeholder="星级" id="" name="star">
+				<button type="submit" class="btn btn-success radius" id="" name="">
+					<i class="Hui-iconfont">&#xe665;</i> 检索
+				</button>
+			</form>
+		</div>
+	
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l"> 
 			<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
@@ -58,51 +73,35 @@
 			</a> 
 			<span style="margin:0 300px;"></span> 
 		</span>
-		 按时间筛选: 
-		 
+		
 		<span class="r">共有数据：<strong>${dataNum}</strong> 条 </span>
 	</div>
 	
 	<div class="mt-20">
 		<form action="deleteDictionary.action" id="deleteform" method="post">
-			<table
-				class="table table-border table-bordered table-bg table-hover table-sort">
+			<table class="table table-border table-bordered table-bg table-hover table-sort">
 				<thead>
 					<tr class="text-c">
 						<th width="25"><input type="checkbox" name="" value=""></th>
 						<th width="80">ID</th>
-						<th width="90">名称</th>
-						<th width="90">类型</th>
-						<th width="95">图片</th>
-						<th width="80">成熟时间</th>
-						<th>介绍</th>
+						<th width="90">卖家ID</th>
+						<th width="90">买家ID</th>
+						<th width="200">评价时间</th>
+						<th width="80">评价星级</th>
+						<th>查看详情</th>
 						<th width="100">操作</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${dictionary}" var="dictionary">
+					<c:forEach items="${evaluateList}" var="eva">
 						<tr class="text-c">
-							<td><input type="checkbox" value="${dictionary.id}"
-								name="id"></td>
-							<td>${dictionary.id}</td>
-							<td>${dictionary.name}</td>
-							<td><c:choose>
-									<c:when test="${dictionary.type==0}">粮食</c:when>
-									<c:when test="${dictionary.type==1}">蔬菜</c:when>
-									<c:when test="${dictionary.type==2}">水果</c:when>
-									<c:when test="${dictionary.type==3}">牲畜</c:when>
-									<c:otherwise>其他</c:otherwise>
-								</c:choose></td>
-							<%-- <td>${dictionary.imgURL}</td> --%>
-							<td><input type="button"
-								class="btn btn-primary radius tableButton modifyImg"
-								value="设置封面" /> 
-								<img class="tableImg" src="${dictionary.imgURL}"
-								width="180" height="110" name="flag" /> 
-								<input type="text" name="imgURL" hidden></td>
-
-							<td>${dictionary.growTime}</td>
-							<td>${dictionary.introduce}</td>
+							<td><input type="checkbox" value="${eva.id}" name="id"></td>
+							<td>${eva.id }</td>
+							<td>${eva.sellerId }</td>
+							<td>${eva.buyerId }</td>
+							<td>${eva.createTime }</td>
+							<td>${eva.star }</td>
+							<td></td>
 							<td class="f-14"><a style="text-decoration: none"
 								onclick="window.location.href='editDictionary.action?id=${dictionary.id}'"
 								href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
@@ -115,8 +114,7 @@
 		</form>
 	</div>
 	<div hidden>
-		<input type="file" name="upfile" id="file" accept="image/*"
-			onchange="upload()">
+		<input type="file" name="upfile" id="file" accept="image/*" onchange="upload()">
 	</div>
 	<!--请在下方写此页面业务相关的脚本-->
 	<script type="text/javascript"
@@ -232,13 +230,9 @@
 			layer.confirm('确认要删除这几条记录吗？', function(index) {
 				document.getElementById('deleteform').submit();
 			});
-			//${"#deletefrom"}.submit();
-
 		}
 		
 		function system_category_del(obj,code){
-			//var code = document.getElementByName("id").value;
-			//alert(code);
 			layer.confirm('确认要删除吗？',function(index){
 				$.ajax({
 					type: 'POST',
@@ -266,25 +260,11 @@
 			} else if(value == 4){
 				window.location.href = '${pageContext.request.contextPath}/dictionarylist.action';
 			}
-			/* 	$.ajax({
-					type:'post',
-					url:'getDictionaryByType.action',
-					data:value,
-					async:false,
-				    success:function(){
-				    	alert("刷新成功！");
-				    	 window.location.href = '${pageContext.request.contextPath}/backer/dictionary.jsp';
-				    },
-				    error:function(){
-				    	alert("刷新失败!");
-				    }
-				}); */
 			
 		}
-		function myfun()
-		　　{
+		function myfun(){
 		 　　   document.getElementById('selecttype').options[${type}].selected = true;
-		　　}
+		}
 		window.onload = myfun;
 	</script>
 </body>

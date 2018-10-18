@@ -1,12 +1,17 @@
 package zm.village.web.service.impl;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sun.istack.internal.Nullable;
+
 import zm.village.dao.Evaluate;
 import zm.village.service.EvaluateService;
+import zm.village.util.tools.SystemTimeUtil;
 import zm.village.web.mapper.EvaInfMapper;
 
 
@@ -61,4 +66,23 @@ public class EvaluateServiceImpl implements EvaluateService {
 		return mapper.selectAllWithDetail();
 	}
 
+	@Override
+	public List<Evaluate> getWithRoles(@Nullable String startTime, @Nullable String endTime, 
+			@Nullable Integer userId, @Nullable Integer star) {
+		if(startTime == null && endTime == null && userId == null && star == null)
+			return getAll();
+		
+		try {
+			Timestamp start = null, end = null;
+			boolean s = startTime.equals(""), e = endTime.equals("");
+			if(!(s && e)) {
+				start = s ? SystemTimeUtil.getYMDTime(startTime) : SystemTimeUtil.getYMDTime("2000-01-01");
+				end = e ? SystemTimeUtil.getYMDTime(endTime) : SystemTimeUtil.getTime();
+			}
+			
+			return mapper.selectByRole(start, end, userId, star);
+		} catch (ParseException e) {
+			return null;
+		}
+	}
 }

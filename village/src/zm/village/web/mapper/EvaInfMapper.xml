@@ -43,7 +43,7 @@
   </select>
   
   <!--查询所有的评价，包含评价的内容  -->
-  <select id="selectAllWithDetail" resultMap="BaseResultMap">
+  <select id="selectAllWithDetail" resultMap="ResultMapWithBLOBs">
     select
     <include refid="Base_Column_List" />
     ,
@@ -58,23 +58,39 @@
   </delete>
   
   <!--根据用户ID获取他给出的所有评价，不包括评价内容  -->
-  <select id="selectByUserId" parameterType="java.lang.Integer">
+  <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
   	SELECT
   	<include refid="Base_Column_List" />
   	FROM eva_inf
-  	WHRER eva_seller = #{id,jdbcType=INTEGER} OR eva_buyer = #{id,jdbcType=INTEGER}
+  	WHERE eva_seller = #{id,jdbcType=INTEGER} OR eva_buyer = #{id,jdbcType=INTEGER}
   </select>
   
   <!--根据用户ID获取他给出的所有评价 -->
-  <select id="selectByUserIdWithDetail" parameterType="java.lang.Integer">
+  <select id="selectByUserIdWithDetail" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
   	SELECT
   	<include refid="Base_Column_List" />
   	,
   	<include refid="Blob_Column_List" />
   	FROM eva_inf
-  	WHRER eva_seller = #{id,jdbcType=INTEGER} OR eva_buyer = #{id,jdbcType=INTEGER}
+  	WHERE eva_seller = #{id,jdbcType=INTEGER} OR eva_buyer = #{id,jdbcType=INTEGER}
   </select>
   
+  <select id="selectByRole" resultMap="BaseResultMap">
+  	SELECT
+  	<include refid="Base_Column_List" />
+  	FROM eva_inf
+  	<where>
+	  	<if test="#{startTime} != null and #{endTime} != null">
+	  		eva_time BETWEEN #{startTime,jdbcType=TIMESTAMP} AND #{endTime,jdbcType=TIMESTAMP}
+	  	</if>
+	  	<if test="#{userId} != null">
+	  		AND (eva_buyer = #{userId,jdbcType=INTEGER} OR eva_seller = #{userId,jdbcType=INTEGER})
+	  	</if>
+	  	<if test="#{star} != null">
+	  		AND eva_starlevel = #{star,jdbcType=INTEGER}
+	  	</if>
+  	</where>
+  </select>
   <!--
   <insert id="insert" parameterType="zm.village.dao.Evaluate">
     insert into eva_inf (eva_id, eva_seller, eva_buyer, 
@@ -181,6 +197,7 @@
     </set>
     where eva_id = #{id,jdbcType=INTEGER}
   </update>
+  
   
   <!--  
   <update id="updateByPrimaryKeyWithDetail" parameterType="zm.village.dao.Evaluate">

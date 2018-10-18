@@ -2,6 +2,8 @@ package zm.village.service;
 
 import java.util.List;
 
+import com.sun.istack.internal.Nullable;
+
 import zm.village.dao.Evaluate;
 import zm.village.dao.User;
 
@@ -27,6 +29,8 @@ public interface EvaluateService {
 	default int addMany(Evaluate[] evaluates) {
 		int result = 0;
 		for(Evaluate evaluate : evaluates) {
+			if(evaluate == null)
+				continue;
 			result += addOne(evaluate);
 		}
 		return result;
@@ -40,6 +44,8 @@ public interface EvaluateService {
 	default int addMany(List<Evaluate> evaluates) {
 		int result = 0;
 		for(Evaluate evaluate : evaluates) {
+			if(evaluate == null)
+				continue;
 			result += addOne(evaluate);
 		}
 		return result;
@@ -134,6 +140,8 @@ public interface EvaluateService {
 	default int updateMany(Evaluate[] evaluates) {
 		int result = 0;
 		for(Evaluate evaluate : evaluates) {
+			if(evaluate == null)
+				continue;
 			result += updateOne(evaluate);
 		}
 		return result;
@@ -147,8 +155,21 @@ public interface EvaluateService {
 	default int updateMany(List<Evaluate> evaluates) {
 		int result = 0;
 		for(Evaluate evaluate : evaluates) {
+			if(evaluate == null)
+				continue;
 			result += updateOne(evaluate);
 		}
 		return result;
 	}
+	
+	/**
+	 * 根据一定的规则检索评价信息
+	 * @param startTime 起始时间
+	 * @param endTime 结束时间
+	 * @param userId 用户ID
+	 * @param star 评价星级
+	 * @return 检索结果
+	 */
+	List<Evaluate> getWithRoles(@Nullable String startTime, @Nullable String endTime, 
+			@Nullable Integer userId, @Nullable Integer star);
 }

@@ -83,4 +83,15 @@ public interface BackstageConstant {
 	 * 评价信息List集合长度
 	 */
 	String ATTRIBUTE_EVALUATE_LIST_SIZE = "dataNum";
+	
+	
+	String ATTRIBUTE_EVALUATE_START_TIME = "startTime";
+	
+	String ATTRIBUTE_EVALUATE_END_TIME = "endTime";
+	
+	String ATTRIBUTE_EVALUATE_USER_ID = "userId";
+	
+	String ATTRIBUTE_EVALUATE_STAR = "star";
+	
+	String ATTRIBUTE_EVALUATE_NOTICE = "notice";
 }

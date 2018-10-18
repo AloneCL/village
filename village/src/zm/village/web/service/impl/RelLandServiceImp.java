@@ -71,7 +71,7 @@ public class RelLandServiceImp implements RelLandService{
 	}
 
 	@Override
-	public Crop[] getByLand(Integer landId) {
+	public List<Crop> getByLand(Integer landId) {
 		
 		return mapper.selectByLand(landId);
 	}

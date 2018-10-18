@@ -1,6 +1,9 @@
 package zm.village.web.controller;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import zm.village.dao.Crop;
+import zm.village.dao.Land;
 import zm.village.service.RelLandService;
 import zm.village.util.tools.HttpReturn;
 
@@ -28,11 +32,24 @@ public class RelLandController {
 	private RelLandService service;
 	
 	@RequestMapping(value = "/getAll", method = RequestMethod.POST)
-	public void getAll(HttpServletResponse response) throws IOException {
+	public void getAll(HttpServletResponse response, int start, int end) throws IOException {
 
-	
+		List<Crop> crops = service.selectAll();
+		List<Crop> vo = new LinkedList<Crop>();
+		if (start < crops.size()) {
+			if (end > crops.size()) {
+				for (int i = start; i < crops.size(); i++) {
+					vo.add(crops.get(i));
+				}
+			}
+			else {
+				for (int i = start; i < end; i++) {
+					vo.add(crops.get(i));
+				}
+			}
+		}
 		@SuppressWarnings("static-access")
-		JSONArray jsonArray= new JSONArray().fromObject(service.selectAll());
+		JSONArray jsonArray= new JSONArray().fromObject(vo);
 		
 		HttpReturn.reponseBody(response, jsonArray);
 	}
@@ -46,8 +63,23 @@ public class RelLandController {
 	}
 	
 	@RequestMapping(value = "/getCropLand", method = RequestMethod.POST)
-	public void getCropLand(HttpServletResponse response, Integer landId) throws IOException {
+	public void getCropLand(HttpServletResponse response, Integer landId, int start
+			, int end) throws IOException {
 
+		List<Crop> crops = service.getByLand(landId);
+		List<Crop> vo = new LinkedList<Crop>();
+		if (start < crops.size()) {
+			if (end > crops.size()) {
+				for (int i = start; i < crops.size(); i++) {
+					vo.add(crops.get(i));
+				}
+			}
+			else {
+				for (int i = start; i < end; i++) {
+					vo.add(crops.get(i));
+				}
+			}
+		}
 		@SuppressWarnings("static-access")
 		JSONArray jsonArray = new JSONArray().fromObject(service.getByLand(landId));
 		HttpReturn.reponseBody(response, jsonArray);

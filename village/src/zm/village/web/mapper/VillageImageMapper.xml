@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zm.village.web.mapper.VillageImageMapper">
+    <resultMap id="BaseResultMap" type="zm.village.dao.VillageImage">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="image1url" property="image1URL" jdbcType="VARCHAR"/>
+        <result column="image1ur2" property="image2URL" jdbcType="VARCHAR"/>
+        <result column="image1ur3" property="image3URL" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, image1url, image2url, image3url
+    </sql>
+    
+    <select id="select" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List"/>
+        from villageimage
+    </select>
+    
+    <update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.VillageImage">
+        update villageimage
+        <set>
+            <if test="image1URL != null">
+                image1url = #{image1URL,jdbcType=VARCHAR},
+            </if>
+            <if test="image2URL != null">
+                image2url = #{image2URL,jdbcType=VARCHAR},
+            </if>
+            <if test="image3URL != null">
+                image3url = #{image3URL,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

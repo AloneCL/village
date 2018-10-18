@@ -35,7 +35,7 @@ public interface RelLandInfMapper {
      * @param 土地ID
      * @return 作物信息数组
      */
-    Crop[] selectByLand(Integer landId);
+    List<Crop> selectByLand(Integer landId);
 
     /**
      * @param 土地可种植作物信息ID

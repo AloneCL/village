@@ -21,7 +21,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import zm.village.dao.Land;
 import zm.village.service.LandService;
 import zm.village.service.UserService;
-import zm.village.web.aop.backstage.AdminPermissionController;
 
 /**
 * @ClassName: LandSetController.java
@@ -32,8 +31,7 @@ import zm.village.web.aop.backstage.AdminPermissionController;
  */
 
 @Controller
-@AdminPermissionController
-public class LandSetController	 {
+public class LandSetController {
     
 	@Autowired
 	private LandService service;
@@ -114,28 +112,28 @@ public class LandSetController	 {
 	@RequestMapping( value = "/UpdateLand", method = RequestMethod.POST )
 	public void userHead( HttpServletRequest request, HttpServletResponse response )
 	{
-		System.out.println( "收到图片!" );
+		//System.out.println( "收到图片!" );
 		MultipartHttpServletRequest	Murequest	= (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile>	files = Murequest.getFileMap();       /* 得到文件map对象 */
 		String	upaloadUrl	= System.getProperty( "evan.webappvillage" ) + "..\\img\\";
 		File  dir  = new File( upaloadUrl );
-		System.out.println( upaloadUrl );
 		String	img_url = upaloadUrl;                                                   /* 图片路径 */
 		Format	format	= new SimpleDateFormat( "yyyyMMdd" );
 		String	data	= "";
 		int	intFlag = 0;
 		String	image	= "";
 		String	time	= "";
+		String  img_url1 ="";
+		int i=0;
 		if ( !dir.exists() )                                                            /* 目录不存在则创建 */
 			dir.mkdirs();
-		for ( MultipartFile file : files.values() )
-		{
+		for ( MultipartFile file : files.values() ){
 			/* String fileName = file.getOriginalFilename(); */
 			data		= format.format( new Date() );
 			intFlag		= (int) (Math.random() * 1000000);
 			image		= String.valueOf( intFlag );
 			time		= String.valueOf( new Date().getTime() );       /* 时间�? */
-			upaloadUrl	= img_url;
+			upaloadUrl=img_url;
 			upaloadUrl	= upaloadUrl + data;
 			File tagetFile = new File( upaloadUrl );                        /* 创建文件对象 */
 			if ( !tagetFile.isDirectory() )
@@ -157,7 +155,12 @@ public class LandSetController	 {
 					e.printStackTrace();
 				}
 			}
+			img_url1+="../img"+ data +"/"+ time + image + ".jpg";
+			System.out.println(files.size());
+			if(files.size()>1 && i<files.size()-1)
+				img_url1 += "&";
+			i++;
 		}
-		System.out.println( upaloadUrl );
+		System.out.println(img_url1);
 	}
 }

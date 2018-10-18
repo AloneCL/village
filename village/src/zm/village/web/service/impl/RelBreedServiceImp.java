@@ -71,7 +71,7 @@ public class RelBreedServiceImp implements RelBreedService {
 	}
 
 	@Override
-	public Breed[] getByLandId(Integer landId) {
+	public List<Breed> getByLandId(Integer landId) {
 		
 		return mapper.selectByLand(landId);
 	}

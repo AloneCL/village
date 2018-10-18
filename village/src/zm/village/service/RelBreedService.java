@@ -47,7 +47,7 @@ public interface RelBreedService {
      * @param 土地ID
      * @return 养殖数组信息
      */
-    Breed[] getByLandId(Integer landId);
+    List<Breed> getByLandId(Integer landId);
 
     /**
      * @param 养殖信息

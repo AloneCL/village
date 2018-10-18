@@ -6,6 +6,8 @@ import java.sql.Timestamp;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
+import zm.village.dao.Land;
 import zm.village.dao.User;
 import zm.village.service.UserService;
 import zm.village.util.tools.HttpReturn;
@@ -29,7 +32,7 @@ import zm.village.util.tools.JsonDateValueProcessor;
 /**
  * @author 伍伴
  * @Date 2018年7月21日
- * @Description 安卓前端用户控制层
+ * @Description 安卓前端用户控制层?
  * @version 1.0
  */
 
@@ -41,11 +44,25 @@ public class UserController {
 	private UserService service;
 	
 	@RequestMapping(value = "/getAll", method = RequestMethod.POST)
-	public void getAll(HttpServletResponse response) throws IOException {
+	public void getAll(HttpServletResponse response, int start, int end) throws IOException {
 
+		List<User> users = service.selectAll();
+		List<User> vo = new LinkedList<User>();
+		if (start < users.size()) {
+			if (end > users.size()) {
+				for (int i = start; i < users.size(); i++) {
+					vo.add(users.get(i));
+				}
+			}
+			else {
+				for (int i = start; i < end; i++) {
+					vo.add(users.get(i));
+				}
+			}
+		}
 		JsonConfig jsonConfig = new JsonConfig(); 
 		jsonConfig.registerJsonValueProcessor(Timestamp.class , new JsonDateValueProcessor());
-		JSONArray jsonArray= JSONArray.fromObject(service.selectAll(),jsonConfig);
+		JSONArray jsonArray= new JSONArray().fromObject(vo,jsonConfig);
 		HttpReturn.reponseBody(response, jsonArray);
 	}
 	
@@ -55,7 +72,7 @@ public class UserController {
 	
 		JsonConfig jsonConfig = new JsonConfig(); 
 		jsonConfig.registerJsonValueProcessor(Timestamp.class , new JsonDateValueProcessor());
-		JSONObject jsonObject = JSONObject.fromObject(service.select(vo),jsonConfig);
+		JSONObject jsonObject = new JSONObject().fromObject(service.select(vo),jsonConfig);
 		HttpReturn.reponseBody(response, jsonObject);
 		
 	}
@@ -64,7 +81,7 @@ public class UserController {
 	public void add(HttpServletResponse response, @RequestBody User vo) throws IOException {
 
 		if(service.getByUserTel(vo)!=null){
-			HttpReturn.reponseBody(response, String.valueOf("已注册"));
+			HttpReturn.reponseBody(response, String.valueOf("已注测?"));
 		}
 		else {
 			vo.setName(vo.getTelephone());
@@ -95,16 +112,18 @@ public class UserController {
 		if(service.login(vo)){
 			User user = service.getByUserTel(vo);
 			if(user.getUserType() == vo.getUserType()){
-				JSONObject jsonObject = JSONObject.fromObject(user);
+				JSONObject jsonObject = new JSONObject().fromObject(user);
 				HttpReturn.reponseBody(response, jsonObject);
 			}
 			else {
-				JSONObject jsonObject = JSONObject.fromObject(vo);
+				vo.setId(0);
+				JSONObject jsonObject = new JSONObject().fromObject(vo);
 				HttpReturn.reponseBody(response, jsonObject);
 			}
 		}
 		else{
-			JSONObject jsonObject = JSONObject.fromObject(vo);
+			vo.setId(0);
+			JSONObject jsonObject = new JSONObject().fromObject(vo);
 			HttpReturn.reponseBody(response, jsonObject);
 		}
 		
@@ -135,7 +154,7 @@ public class UserController {
 	@RequestMapping(value = "/getByUserTel", method = RequestMethod.POST)
 	public void getByUserTel(HttpServletResponse response,@RequestBody User vo) throws IOException {
 
-		JSONObject jsonObject = JSONObject.fromObject(service.getByUserTel(vo));
+		JSONObject jsonObject = new JSONObject().fromObject(service.getByUserTel(vo));
 		HttpReturn.reponseBody(response, jsonObject);
 	}
 	

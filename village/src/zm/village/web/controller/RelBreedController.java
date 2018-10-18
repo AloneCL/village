@@ -1,6 +1,9 @@
 package zm.village.web.controller;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,24 +32,53 @@ public class RelBreedController {
 	private RelBreedService service;
 	
 	@RequestMapping(value = "/getAll", method = RequestMethod.POST)
-	public void getAll(HttpServletResponse response) throws IOException {
+	public void getAll(HttpServletResponse response, int start, int end) throws IOException {
 	
-		JSONArray jsonArray= JSONArray.fromObject(service.selectAll());
+		List<Breed> breeds = service.selectAll();
+		List<Breed> vo = new LinkedList<Breed>();
+		if (start < breeds.size()) {
+			if (end > breeds.size()) {
+				for (int i = start; i < breeds.size(); i++) {
+					vo.add(breeds.get(i));
+				}
+			}
+			else {
+				for (int i = start; i < end; i++) {
+					vo.add(breeds.get(i));
+				}
+			}
+		}
+		JSONArray jsonArray= JSONArray.fromObject(vo);
 		
 		HttpReturn.reponseBody(response, jsonArray);
 	}
 	
 	@RequestMapping(value = "/get", method = RequestMethod.POST)
 	public void get(HttpServletResponse response, @RequestBody Breed vo) throws IOException {
-
+         
 		JSONObject jsonObject = JSONObject.fromObject(service.select(vo));
 		HttpReturn.reponseBody(response, jsonObject);
 	}
 	
 	@RequestMapping(value = "/getBreeLand", method = RequestMethod.POST)
-	public void getBreeLand(HttpServletResponse response, Integer landId) throws IOException {
+	public void getBreeLand(HttpServletResponse response, Integer landId, int start
+			, int end) throws IOException {
 
-		JSONArray jsonArray = JSONArray.fromObject(service.getByLandId(landId));
+		List<Breed> breeds = service.getByLandId(landId);
+		List<Breed> vo = new LinkedList<Breed>();
+		if (start < breeds.size()) {
+			if (end > breeds.size()) {
+				for (int i = start; i < breeds.size(); i++) {
+					vo.add(breeds.get(i));
+				}
+			}
+			else {
+				for (int i = start; i < end; i++) {
+					vo.add(breeds.get(i));
+				}
+			}
+		}
+		JSONArray jsonArray = JSONArray.fromObject(vo);
 		HttpReturn.reponseBody(response, jsonArray);
 	}
 	

@@ -53,7 +53,7 @@ public interface RelLandService {
      * @param 土地ID
      * @return 作物信息数组
      */
-    Crop[] getByLand(Integer landId);
+    List<Crop> getByLand(Integer landId);
 
     /**
      * @param 土地可种植作物信息ID

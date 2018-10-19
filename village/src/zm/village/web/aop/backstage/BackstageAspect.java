@@ -2,7 +2,10 @@ package zm.village.web.aop.backstage;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.aopalliance.intercept.Joinpoint;
+import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
@@ -21,6 +24,8 @@ import zm.village.web.controller.backstage.BackstageConstant;
 @Aspect @Component
 public class BackstageAspect implements BackstageConstant {
 	
+	private static final Logger log = Logger.getRootLogger();
+	
 	/**
 	 * 需要管理员登录后才能进行操作的逻辑
 	 * 需要在方法中标记Permission注解
@@ -38,4 +43,24 @@ public class BackstageAspect implements BackstageConstant {
 			return joinPoint.proceed();
 		return "/login.jsp";
 	}
+	
+	/**
+	 * 用于处理控制器执行时发生的未捕获异常
+	 */
+	/*
+	@Pointcut("execution(public * zm.village.web.controller..*.*(..))")
+	public void controllerPublicMethodPointcut() {}
+	
+	@AfterThrowing(value = "controllerPublicMethodPointcut()", throwing = "t")
+	public void uncaughtExceptionAdvice(Joinpoint jp, Throwable t) {
+		String klass = jp.getThis().getClass().getName();
+		if(t instanceof RuntimeException) {
+			log.warn("后台控制器："+ klass + " 发生未捕获运行时异常", t);
+		} else if(t instanceof Error) {
+			log.fatal("后台控制器：" + klass + " 发生错误", t);
+		} else {
+			log.error("后台控制器：" + klass + " 发生异常", t);
+		}
+		
+	}*/
 }

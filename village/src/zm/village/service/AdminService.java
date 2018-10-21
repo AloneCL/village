@@ -24,6 +24,13 @@ public interface AdminService {
 	List<Admin> getByType(Integer type);
 	
 	/**
+	 *  根据id获取相应管理员或审核员的信息
+	 * @param id
+	 * @return 
+	 */
+	Admin getById(Integer id);
+	
+	/**
 	 * 管理员登录
 	 * @param vo
 	 * @return
@@ -43,4 +50,11 @@ public interface AdminService {
 	 * @return
 	 */
 	int deleteMany(Integer[] id);
+	
+	/**
+	 * 增加信息
+	 * @param vo
+	 * @return
+	 */
+	int addAdmin(Admin vo);
 }

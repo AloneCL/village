@@ -69,4 +69,24 @@ public class AdminServiceImpl implements AdminService{
 		return id.length;
 	}
 
+	/* (non-Javadoc)
+	 * @see zm.village.service.AdminService#addAdmin(zm.village.dao.Admin)
+	 */
+	@Override
+	public int addAdmin(Admin vo) {
+		if(vo==null)
+			throw new NullPointerException("传入的管理员信息为空");
+		if(vo.getType()==null)
+			vo.setType(2);
+		return mapper.insertSelective(vo);
+	}
+
+	/* (non-Javadoc)
+	 * @see zm.village.service.AdminService#getById(java.lang.Integer)
+	 */
+	@Override
+	public Admin getById(Integer id) {
+		return mapper.selectByPrimaryKey(id);
+	}
+
 }

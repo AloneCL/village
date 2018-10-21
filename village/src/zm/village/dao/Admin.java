@@ -100,4 +100,14 @@ public final class Admin implements java.io.Serializable {
 		this.rparea = rparea;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Admin [id=" + id + ", username=" + username + ", password=" + password + ", phone=" + phone
+				+ ", rparea=" + rparea + ", type=" + type + "]";
+	}
+ 
+	
 }

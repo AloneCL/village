@@ -57,7 +57,7 @@
 			<span class="l"><a href="javascript:;" onclick="datadel()"
 				class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>
 					批量删除</a> <a href="javascript:;"
-				onclick="admin_add('添加管理员','admin-add.html','800','500')"
+				onclick="admin_add('添加管理员','${pageContext.request.contextPath}/backer/adminAdd.jsp','800','500')"
 				class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i>
 					添加审核员</a></span> <span class="r">共有数据：<strong>${auditorNum}</strong> 条
 			</span>
@@ -95,7 +95,7 @@
 							onClick="admin_start(this,'10001')" href="javascript:;"
 							title="启用"><i class="Hui-iconfont">&#xe615;</i></a> <a title="编辑"
 							href="javascript:;"
-							onclick="admin_edit('管理员编辑','admin-add.html','2','800','500')"
+							onclick="admin_edit('管理员编辑','${pageContext.request.contextPath}/editAuditor.action?id=${auditor.id}','2','800','500')"
 							class="ml-5" style="text-decoration: none"><i
 								class="Hui-iconfont">&#xe6df;</i></a> <a title="删除"
 							href="javascript:;" onclick="admin_del(this)" class="ml-5"
@@ -150,7 +150,6 @@
 		function admin_del(obj) {
 			/* $(obj).parent().prev().prev().prev().prev().prev().prev().prev().text() */
 			var a = $(obj).parents("tr").children("td:nth-child(2)").text();
-			alert(a);
 			layer.confirm('确认要删除吗？', function(index) {
 				$.ajax({
 					type : 'POST',

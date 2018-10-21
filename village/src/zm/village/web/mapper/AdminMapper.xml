@@ -7,7 +7,8 @@
 			property="username" />
 		<result column="admin_pass" jdbcType="VARCHAR"
 			property="password" />
-		<result column="admin_type" jdbcType="INTEGER" property="type" />
+		<result column="admin_type" jdbcType="INTEGER" 
+		property="type" />
 		<result column="auditor_phone" jdbcType="VARCHAR"
 			property="phone" />
 		<result column="auditor_rparea" jdbcType="VARCHAR"
@@ -33,7 +34,7 @@
 	<select id="selectByPrimaryKey"
 		parameterType="java.lang.Integer" resultMap="BaseResultMap">
 		select
-		<include refid="Base_Column_List" />
+		<include refid="Auditor_Column_List" />
 		from admin_inf
 		where admin_id = #{id,jdbcType=INTEGER}
 	</select>
@@ -46,9 +47,6 @@
 		parameterType="zm.village.dao.Admin">
 		insert into admin_inf
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				admin_id,
-			</if>
 			<if test="username != null">
 				admin_user,
 			</if>
@@ -66,23 +64,20 @@
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				#{id,jdbcType=INTEGER},
-			</if>
 			<if test="username != null">
 				#{username,jdbcType=VARCHAR},
 			</if>
 			<if test="password != null">
 				#{password,jdbcType=VARCHAR},
 			</if>
+			<if test="type != null">
+				#{type,jdbcType=INTEGER},
+			</if>
 			<if test="phone != null">
 				#{phone,jdbcType=VARCHAR},
 			</if>
 			<if test="rparea != null">
 				#{rparea,jdbcType=VARCHAR},
-			</if>
-			<if test="type != null">
-				#{type,jdbcType=INTEGER},
 			</if>
 		</trim>
 	</insert>

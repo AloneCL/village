@@ -166,4 +166,36 @@ public class AdminSetController implements BackstageConstant {
 		Integer[] id2 = {id};
 		service.deleteMany(id2);
 	}
+	
+	/**
+	 * 增加审核员
+	 * @param vo
+	 */
+	@AdminPermission
+	@RequestMapping(value="addAuditor")
+	public void addAuditor(Admin vo) {
+		service.addAdmin(vo);
+	}
+	
+	/**
+	 * 修改编辑审核员信息
+	 * @param vo
+	 * @param model
+	 */
+	@AdminPermission
+	@RequestMapping(value="editAuditor")
+	public String editAuditor(Integer id,Model model) {
+		System.out.println(id);
+		if(id == null)
+			throw new NullPointerException("没有传入要查找的主键id值！");
+		model.addAttribute("auditor", service.getById(id));
+		return "/backer/editAuditor.jsp";
+	}
+	
+	@AdminPermission
+	@RequestMapping(value="submitEditAuditor")
+	public void submitEditAuditor(Model model,Admin vo) {
+		System.out.println(vo);
+		service.changeSelect(vo); 
+	}
 }

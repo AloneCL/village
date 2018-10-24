@@ -39,16 +39,16 @@ public class LandSetController {
 	private UserService userservice;
 
 	@RequestMapping( value = "/setLand" )
-	public String diary( Model model )
-	{
+	public String diary( Model model ){
+		
 		model.addAttribute( "lands", service.selectAll() );
 		return("/backer/land.jsp");
 	}
 
 
 	@RequestMapping( value = "/editLand" )
-	public String edit( Model model, Integer id )
-	{
+	public String edit( Model model, Integer id ){
+		
 		model.addAttribute( "land", service.getById( id ) );
 		model.addAttribute( "land_user", userservice.selectAll() );
 		return("/backer/landSet.jsp");
@@ -56,33 +56,31 @@ public class LandSetController {
 
 
 	@RequestMapping( "/submitEditLand" )
-	public String submitEdit( Model model, Land vo )
-	{
+	public String submitEdit( Model model, Land vo ){
+		
 		model.addAttribute( "land_users", userservice.selectAll() );
 		return("/backer/addLand.jsp");
 	}
 
 
 	@RequestMapping( value = "/showLand" )
-	public String show( Model model, Integer id )
-	{
+	public String show( Model model, Integer id ){
+		
 		model.addAttribute( "land", service.getById( id ) );
 		return("/backer/landShow.jsp");
 	}
 
 
 	@RequestMapping( value = "/addLand" )
-	public String add( Model model, Land vo )
-	{
-		vo.setStatus( 1 );
+	public String add( Model model, Land vo ){
+		
 		service.insert(vo);
 		return(diary( model ) );
 	}
 
 
 	@RequestMapping( "/modifyLand" )
-	public String modify( Model model, Land vo )
-	{
+	public String modify( Model model, Land vo ){
 		
 		service.update(vo);
 		return(edit( model, vo.getId() ) );
@@ -90,8 +88,7 @@ public class LandSetController {
 
 
 	@RequestMapping( "/deleteLand" )
-	public String deleteDiary( Model model, Integer id )
-	{
+	public String deleteDiary( Model model, Integer id ){
 		
 		service.delete(id);
 		return(diary( model ) );
@@ -99,8 +96,7 @@ public class LandSetController {
 
 
 	@RequestMapping( "/deleteManyLand" )
-	public String deleteManyLand( Model model, Integer[] id )
-	{
+	public String deleteManyLand( Model model, Integer[] id ){
 		if ( id != null ){
 			
 			service.deleteMany(id);
@@ -110,8 +106,7 @@ public class LandSetController {
 
 
 	@RequestMapping( value = "/UpdateLand", method = RequestMethod.POST )
-	public void userHead( HttpServletRequest request, HttpServletResponse response )
-	{
+	public void userHead( HttpServletRequest request, HttpServletResponse response ){
 		//System.out.println( "收到图片!" );
 		MultipartHttpServletRequest	Murequest	= (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile>	files = Murequest.getFileMap();       /* 得到文件map对象 */

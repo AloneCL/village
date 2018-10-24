@@ -1,0 +1,52 @@
+.gallery .img-item {
+	position: relative;
+}
+
+.gallery .img-item .delete {
+	position: absolute;
+	display: block;
+	width: 20px;
+	height: 20px;
+	color: #fff;
+	background: rgba(0, 0, 0, 0.7);
+	line-height: 20px;
+	text-align: center;
+	border-radius: 50%;
+	top: 25px;
+	right: 25px;
+	cursor: pointer;
+}
+
+.img {
+	width: 300px;
+	margin: 20px;
+}
+
+.file {
+	position: relative;
+	display: inline-block;
+	background: #D0EEFF;
+	border: 1px solid #99D3F5;
+	border-radius: 4px;
+	padding: 4px 12px;
+	overflow: hidden;
+	color: #1E88C7;
+	text-decoration: none;
+	text-indent: 0;
+	line-height: 20px;
+}
+
+.file input {
+	position: absolute;
+	font-size: 100px;
+	right: 0;
+	top: 0;
+	opacity: 0;
+}
+
+.file:hover {
+	background: #AADFFD;
+	border-color: #78C3F3;
+	color: #004974;
+	text-decoration: none;
+}

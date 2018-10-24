@@ -23,7 +23,7 @@
 	href="static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css"
 	href="static/h-ui.admin/css/style.css" />
-<link href="lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
+<link href="lib/upload/upload.css" rel="stylesheet" type="text/css" />
 
 <title>添加土地 - H-ui.admin v3.1</title>
 <meta name="keywords"
@@ -131,26 +131,25 @@
 		</div>
 		
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3">图片上传：</label>
+			<label class="form-label col-xs-4 col-sm-3"><span
+				class="c-red">*</span>土地图片：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<div class="uploader-list-container"> 
-					<div class="queueList">
-						<div id="dndArea" class="placeholder">
-							<div id="filePicker-2"></div>
-							<p>或将照片拖到这里，单次最多可选300张</p>
-						</div>
-					</div>
-					<div class="statusBar" style="display:none;">
-						<div class="progress"> <span class="text">0%</span> <span class="percentage"></span> </div>
-						<div class="info"></div>
-						<div class="btns">
-							<div id="filePicker2"></div>
-							<div class="uploadBtn">开始上传</div>
-						</div>
-					</div>
-				</div>
+				<a href="javascript:;" class="file">上传土地图片
+                 <input type="text" name="imgURL" id="imgurl"></a>
+                 <div class="gallery" id="gallery"></div>
 			</div>
 		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span
+				class="c-red">*</span>土地证书图片：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<a href="javascript:;" class="file">上传土地证书图片
+                 <input type="text" name="certificateURL" id="certificateURL"></a>
+                 <div class="gallery" id="gallery1"></div>
+			</div>
+		</div>
+		
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
 				<input class="btn btn-primary radius" type="submit"
@@ -159,13 +158,25 @@
 		</div>
 	</form>
 	</article>
+	<div hidden>
+		<!--    input[file]标签的accept属性可用于指定上传文件的 MIME类型 。 -->
+		<input type="file" name="upfile" id="file" accept="image/*"
+			 multiple="multiple"/>
+	</div>
+	
+	<div hidden>
+		<!--    input[file]标签的accept属性可用于指定上传文件的 MIME类型 。 -->
+		<input type="file" name="upfile" id="file1" accept="image/*"
+			 multiple="multiple"/>
+	</div>
+	
 	<!--_footer 作为公共模版分离出去-->
 	<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
 	<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
 	<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
-	<script type="text/javascript" src="lib/webuploader/0.1.5/webuploader.min.js"></script>
-	<script type="text/javascript" src="js/upload.js"></script> 
+	<script type="text/javascript" src="lib/upload/upload-ueditor.js"></script> 
+	
 	<!--请在下方写此页面业务相关的脚本-->
 	<script type="text/javascript"
 		src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
@@ -176,6 +187,7 @@
 	<script type="text/javascript"
 		src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
 	<script type="text/javascript">
+	//document.getElementById("form-member-add").onsubmit = function() {upload()};
 		$(function() {
 			$('.skin-minimal input').iCheck({
 				checkboxClass : 'icheckbox-blue',
@@ -204,7 +216,11 @@
 					},
 					userId : {
 						required : true
+					},
+					status : {
+						required : true
 					}
+					
 				},
 				onkeyup : false,
 				focusCleanup : true,
@@ -218,6 +234,13 @@
 				}
 			});
 		});
+		document.getElementById("form-member-add").onsubmit = function() {
+		    //$("#form-member-add").valid()
+			if($("#form-member-add").validate().form()){
+				upload();
+				upload1();
+			}
+		};
 	</script>
 	<!--/请在上方写此页面业务相关的脚本-->
 </body>

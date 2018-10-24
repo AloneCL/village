@@ -22,6 +22,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import zm.village.dao.Land;
 import zm.village.dao.User;
+import zm.village.service.DictionaryService;
 import zm.village.service.LandService;
 import zm.village.util.tools.HttpReturn;
 
@@ -38,6 +39,9 @@ public class LandController {
 
 	@Autowired
 	private LandService service;
+	
+	@Autowired
+	private DictionaryService dicService;
 
 	@RequestMapping(value = "/getAll", method = RequestMethod.POST)
 	public void getAll(HttpServletResponse response, int start, int end) throws IOException {
@@ -70,23 +74,44 @@ public class LandController {
 		HttpReturn.reponseBody(response, jsonObject);
 	}
 	
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public void add(HttpServletResponse response, @RequestBody Land vo
-			) throws IOException {
+	@RequestMapping(value = "/getPlant", method = RequestMethod.POST)
+	public void getPlant(HttpServletResponse response, @RequestBody Land vo) throws IOException {
+
+		vo = service.select(vo);
+		JSONArray jsonArray = new JSONArray().fromObject(dicService.getByType(vo.getType()));
+		HttpReturn.reponseBody(response, jsonArray);
+	}
+	
+	@RequestMapping(value = "/addLand", method = RequestMethod.POST)
+	public void add(HttpServletResponse response, @RequestBody Land vo) throws IOException {
 
 		service.insert(vo);
 		HttpReturn.reponseBody(response, "添加成功");
 		
 	}
 
-	@RequestMapping(value = "/addImage", method = RequestMethod.POST)
-	public void addImage(HttpServletResponse response, @RequestBody Land vo,@RequestParam(name="imgURL", required = false) MultipartFile[] file1,
-			@RequestParam(name="certificateURL", required = false) 
-	MultipartFile[] file2
-			) throws IOException {
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public void addImage(HttpServletResponse response, @RequestParam(name="userId", required = true) Integer userId,
+			@RequestParam(name="name", required = true) String name,@RequestParam(name="type", required = true) Integer type,
+			@RequestParam(name="address", required = false) String address,@RequestParam(name="size", required = false) Double size,
+			@RequestParam(name="unusedSize", required = false) Double unusedSize,@RequestParam(name="basicPrice", required = false) Double basicPrice,
+			@RequestParam(name="introduce", required = false) String introduce,@RequestParam(name="split", required = false) Integer split,
+			@RequestParam(name="minLease", required = false) String minLease,@RequestParam(name="status", required = true) Integer status,
+			@RequestParam(name="imgURL", required = false) MultipartFile[] file1,@RequestParam(name="certificateURL", required = false) 
+	        MultipartFile[] file2) throws IOException {
 
-		System.out.println(vo);
-		System.out.println(file1.length);
+		Land vo = new Land();
+		vo.setUserId(userId);
+		vo.setName(name);
+		vo.setType(type);
+		vo.setStatus(status);
+		vo.setAddress(address);
+		vo.setSize(size);
+		vo.setUnusedSize(unusedSize);
+		vo.setBasicPrice(basicPrice);
+		vo.setIntroduce(introduce);
+		vo.setMinLease(minLease);
+		vo.setSplit(split);
 		if(file1 != null && file1.length > 0){
 			String	upaloadUrl	= System.getProperty( "evan.webappvillage" ) + "..\\img\\";
 			String	img_url = upaloadUrl;
@@ -106,10 +131,9 @@ public class LandController {
 			intFlag	= (int) (Math.random() * 1000000);
 			image	= String.valueOf( intFlag );
 			time	= String.valueOf( new Date().getTime() );       
-			img_url=img_url1;
-			img_url	= img_url + data;
+			upaloadUrl=img_url;
 			upaloadUrl	= upaloadUrl + data;
-			File tagetFile = new File( img_url );                        
+			File tagetFile = new File( upaloadUrl );                        
 			if ( !tagetFile.isDirectory() )
 					tagetFile.mkdirs();
 			upaloadUrl = upaloadUrl + "\\" + time + image + ".jpg";
@@ -128,10 +152,11 @@ public class LandController {
 						e.printStackTrace();
 					}
 			}
+			img_url1 +="../img/"+data+"/"+time + image + ".jpg";
 			 if(file1.length>1 && i<file1.length-1)
-			  upaloadUrl += "&";
+				 img_url1 += "&";
 			}
-			vo.setImgURL(upaloadUrl);
+			vo.setImgURL(img_url1);
 		}
 		if(file2 != null && file2.length > 0){
 			String	upaloadUrl	= System.getProperty( "evan.webappvillage" ) + "..\\img\\";
@@ -152,10 +177,9 @@ public class LandController {
 			intFlag	= (int) (Math.random() * 1000000);
 			image	= String.valueOf( intFlag );
 			time	= String.valueOf( new Date().getTime() );       
-			img_url=img_url1;
-			img_url	= img_url + data;
+			upaloadUrl=img_url;
 			upaloadUrl	= upaloadUrl + data;
-			File tagetFile = new File( img_url );                       
+			File tagetFile = new File( upaloadUrl );                       
 			if ( !tagetFile.isDirectory() )
 					tagetFile.mkdirs();
 			upaloadUrl = upaloadUrl + "\\" + time + image + ".jpg";
@@ -174,19 +198,20 @@ public class LandController {
 						e.printStackTrace();
 					}
 			}
+			img_url1 +="../img/"+data+"/"+time + image + ".jpg";
 			 if(file2.length>1 && i<file2.length-1)
-			  upaloadUrl += "&";
+				 img_url1 += "&";
 			}
-			vo.setCertificateURL(upaloadUrl);
+			vo.setCertificateURL(img_url1);
 		}
-		//service.insert(vo);
+		service.insert(vo);
 		HttpReturn.reponseBody(response, "添加成功");
 		
 	}
 
 	@RequestMapping(value = "/updateImage", method = RequestMethod.POST)
-	public void updateImage(HttpServletRequest request,HttpServletResponse response,@RequestParam("imgURL") 
-	MultipartFile[] file1,@RequestParam("certificateURL") MultipartFile[] file2) throws IOException {
+	public void updateImage(HttpServletRequest request,HttpServletResponse response,@RequestParam(name="imgURL", required = false) 
+	MultipartFile[] file1,@RequestParam(name="certificateURL", required = false) MultipartFile[] file2) throws IOException {
 
 		String Id = request.getParameter("id");
 		int id = Integer.parseInt(Id);
@@ -283,6 +308,7 @@ public class LandController {
 			}
 			vo.setCertificateURL(img_url1);
 		}
+		service.update(vo);
 		HttpReturn.reponseBody(response, "修改成功");
 	}
 	

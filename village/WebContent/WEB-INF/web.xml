@@ -20,8 +20,6 @@
 			<param-value>/WEB-INF/spring-*.xml</param-value>
 		</init-param>
 	</servlet>
-	<!-- <servlet> <servlet-name>loadServlet</servlet-name> <servlet-class>zhumeng.zyhs.wechat.link.GetAccessTokenServlet</servlet-class> 
-		<load-on-startup>1</load-on-startup> </servlet> -->
 
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>

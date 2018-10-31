@@ -1,19 +1,15 @@
 package zm.village.web.controller.backstage;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import zm.village.dao.Admin;
 import zm.village.service.AdminService;
@@ -192,6 +188,11 @@ public class AdminSetController implements BackstageConstant {
 		return "/backer/editAuditor.jsp";
 	}
 	
+	/**
+	 * 接收修改信息并对数据库进行修改
+	 * @param model
+	 * @param vo
+	 */
 	@AdminPermission
 	@RequestMapping(value="submitEditAuditor")
 	public void submitEditAuditor(Model model,Admin vo) {

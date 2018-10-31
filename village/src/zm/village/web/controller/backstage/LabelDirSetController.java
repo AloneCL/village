@@ -11,10 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import zm.village.dao.Collect;
 import zm.village.dao.LabelDir;
 import zm.village.service.LabelDirService;
-import zm.village.web.aop.backstage.AdminPermission;
 import zm.village.web.aop.backstage.AdminPermissionController;
 
 /**

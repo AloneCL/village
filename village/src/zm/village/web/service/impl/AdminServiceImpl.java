@@ -9,38 +9,43 @@ import org.springframework.stereotype.Service;
 
 import zm.village.dao.Admin;
 import zm.village.service.AdminService;
-
+import zm.village.web.mapper.AdminMapper;
 
 /**
-* @ClassName: AdminServiceImpl.java
-* @Description: 管理员逻辑实现类
-* @version: v1.0.0
-* @author: 陈光磊
-* @date: 2018年7月21日 下午8:09:53 
+ * @ClassName: AdminServiceImpl.java
+ * @Description: 管理员逻辑实现类
+ * @version: v1.0.0
+ * @author: 陈光磊
+ * @date: 2018年7月21日 下午8:09:53
  */
 @Service
-public class AdminServiceImpl implements AdminService{
-    
+public class AdminServiceImpl implements AdminService {
+
 	@Autowired
-	private zm.village.web.mapper.AdminMapper mapper;
-	/* 管理员登录实现方法
+	private AdminMapper mapper;
+
+	/*
+	 * 管理员登录实现方法
+	 * 
 	 * @see zm.village.service.AdminService#login(zm.village.dao.Admin)
 	 */
 	@Override
 	public boolean login(Admin vo) {
 		Admin admin;
-		Map<String,String> map = new HashMap<>();
+		Map<String, String> map = new HashMap<>();
 		map.put("type", vo.getType().toString());
 		map.put("name", vo.getUsername());
-		if((admin = mapper.selectByUsername(map))==null) {
+		if ((admin = mapper.selectByUsername(map)) == null) {
 			return false;
-		}else if(admin.getPassword().equals(vo.getPassword())&&admin.getType().equals(vo.getType())) {
+		} else if (admin.getPassword().equals(vo.getPassword()) && admin.getType().equals(vo.getType())) {
 			return true;
 		}
 		return false;
 	}
 
-	/* 主要用来修改管理员密码
+	/*
+	 * 主要用来修改管理员密码
+	 * 
 	 * @see zm.village.service.AdminService#changeSelect(zm.village.dao.Admin)
 	 */
 	@Override
@@ -48,7 +53,9 @@ public class AdminServiceImpl implements AdminService{
 		return mapper.updateByPrimaryKeySelective(vo);
 	}
 
-	/* 根据类型选取相应管理员
+	/*
+	 * 根据类型选取相应管理员
+	 * 
 	 * @see zm.village.service.AdminService#getByType(java.lang.Integer)
 	 */
 	@Override
@@ -56,7 +63,9 @@ public class AdminServiceImpl implements AdminService{
 		return mapper.selectByType(type);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.AdminService#deleteMany(java.lang.Integer[])
 	 */
 	@Override
@@ -67,19 +76,23 @@ public class AdminServiceImpl implements AdminService{
 		return id.length;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.AdminService#addAdmin(zm.village.dao.Admin)
 	 */
 	@Override
 	public int addAdmin(Admin vo) {
-		if(vo==null)
+		if (vo == null)
 			throw new NullPointerException("传入的管理员信息为空");
-		if(vo.getType()==null)
+		if (vo.getType() == null)
 			vo.setType(2);
 		return mapper.insertSelective(vo);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.AdminService#getById(java.lang.Integer)
 	 */
 	@Override

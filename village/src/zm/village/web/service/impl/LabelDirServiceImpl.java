@@ -13,18 +13,21 @@ import zm.village.service.LabelDirService;
 import zm.village.web.mapper.LabelDirMapper;
 
 /**
-* @ClassName: LabelDirServiceImpl.java
-* @Description: 标签数据字典类逻辑层实现
-* @version: v1.0.0
-* @author: 陈光磊
-* @date: 2018年7月22日 下午5:15:36 
+ * @ClassName: LabelDirServiceImpl.java
+ * @Description: 标签数据字典类逻辑层实现
+ * @version: v1.0.0
+ * @author: 陈光磊
+ * @date: 2018年7月22日 下午5:15:36
  */
 @Service
 public class LabelDirServiceImpl implements LabelDirService {
-    
+
 	@Autowired
 	private LabelDirMapper mapper;
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.LabelDirService#getAll()
 	 */
 	@Override
@@ -32,8 +35,9 @@ public class LabelDirServiceImpl implements LabelDirService {
 		return mapper.selectAll();
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.LabelDirService#getInfo(java.lang.Integer)
 	 */
 	@Override
@@ -41,7 +45,9 @@ public class LabelDirServiceImpl implements LabelDirService {
 		return mapper.selectByPrimaryKey(id);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.LabelDirService#update(zm.village.dao.LabelDir)
 	 */
 	@Override
@@ -49,19 +55,22 @@ public class LabelDirServiceImpl implements LabelDirService {
 		return mapper.updateByPrimaryKeySelective(vo);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.LabelDirService#deleteMany(java.lang.Integer[])
 	 */
 	@Override
 	public int deleteMany(Integer[] id) {
-		for(int labelId : id) {
-     		mapper.deleteByPrimaryKey(labelId);
-     	}
+		for (int labelId : id) {
+			mapper.deleteByPrimaryKey(labelId);
+		}
 		return id.length;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.LabelDirService#addLabelDir(zm.village.dao.LabelDir)
 	 */
 	@Override

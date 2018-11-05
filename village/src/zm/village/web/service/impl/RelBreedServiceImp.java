@@ -22,31 +22,26 @@ public class RelBreedServiceImp implements RelBreedService {
 
 	@Override
 	public int delete(Breed record) {
-
 		return mapper.deleteByPrimaryKey(record.getId());
 	}
 
 	@Override
 	public int insert(Breed record) {
-
 		return mapper.insertSelective(record);
 	}
 
 	@Override
 	public Breed select(Breed record) {
-
 		return mapper.selectByPrimaryKey(record.getId());
 	}
 
 	@Override
 	public int update(Breed record) {
-
 		return mapper.updateByPrimaryKeySelective(record);
 	}
 
 	@Override
 	public List<Breed> selectAll() {
-
 		return mapper.selectAll();
 	}
 
@@ -60,19 +55,16 @@ public class RelBreedServiceImp implements RelBreedService {
 
 	@Override
 	public Breed getById(Integer record) {
-		
 		return mapper.selectByPrimaryKey(record);
 	}
 
 	@Override
 	public int delete(Integer record) {
-		
 		return mapper.deleteByPrimaryKey(record);
 	}
 
 	@Override
 	public List<Breed> getByLandId(Integer landId) {
-		
 		return mapper.selectByLand(landId);
 	}
 

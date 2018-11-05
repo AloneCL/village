@@ -14,17 +14,17 @@ import zm.village.service.EvaluateService;
 import zm.village.util.tools.SystemTimeUtil;
 import zm.village.web.mapper.EvaInfMapper;
 
-
 /**
-* @author 李子帆
-* @version 1.0
-* @date 2018年10月16日 下午3:37:20
-* @Description 评价服务层实现类
-*/
+ * @author 李子帆
+ * @version 1.0
+ * @date 2018年10月16日 下午3:37:20
+ * @Description 评价服务层实现类
+ */
 @Service
 public class EvaluateServiceImpl implements EvaluateService {
-	
-	@Autowired private EvaInfMapper mapper;
+
+	@Autowired
+	private EvaInfMapper mapper;
 
 	@Override
 	public int addOne(Evaluate evaluate) {
@@ -50,7 +50,7 @@ public class EvaluateServiceImpl implements EvaluateService {
 	public List<Evaluate> getByUserId(Integer userId) {
 		return mapper.selectByUserId(userId);
 	}
-	
+
 	@Override
 	public List<Evaluate> getByUserIdWithDetail(Integer userId) {
 		return mapper.selectByUserIdWithDetail(userId);
@@ -69,17 +69,17 @@ public class EvaluateServiceImpl implements EvaluateService {
 	@Override
 	public List<Evaluate> getWithRoles(@Nullable String startTime, @Nullable String endTime, 
 			@Nullable Integer userId, @Nullable Integer star) {
-		if(startTime == null && endTime == null && userId == null && star == null)
+		if (startTime == null && endTime == null && userId == null && star == null)
 			return getAll();
-		
+
 		try {
 			Timestamp start = null, end = null;
 			boolean s = startTime.equals(""), e = endTime.equals("");
-			if(!(s && e)) {
+			if (!(s && e)) {
 				start = s ? SystemTimeUtil.getYMDTime(startTime) : SystemTimeUtil.getYMDTime("2000-01-01");
 				end = e ? SystemTimeUtil.getYMDTime(endTime) : SystemTimeUtil.getTime();
 			}
-			
+
 			return mapper.selectByRole(start, end, userId, star);
 		} catch (ParseException e) {
 			return null;

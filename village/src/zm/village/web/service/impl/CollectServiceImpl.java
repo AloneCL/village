@@ -15,31 +15,36 @@ import zm.village.service.CollectService;
 import zm.village.web.mapper.CollectMapper;
 
 /**
-* @ClassName: CollectServiceImpl.java
-* @Description: 该类的功能描述
-* @version: v1.0.0
-* @author: 陈光磊
-* @date: 2018年7月22日 下午5:44:23 
+ * @ClassName: CollectServiceImpl.java
+ * @Description: 该类的功能描述
+ * @version: v1.0.0
+ * @author: 陈光磊
+ * @date: 2018年7月22日 下午5:44:23
  */
 
 @Service
 public class CollectServiceImpl implements CollectService {
-    
+
 	@Autowired
 	private CollectMapper mapper;
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.CollectService#deleteMany(java.lang.Integer[])
 	 */
 	@Override
 	public int deleteMany(Integer[] Id) {
-		for(int labelId : Id) {
-     		mapper.deleteByPrimaryKey(labelId);
-     	}
+		for (int labelId : Id) {
+			mapper.deleteByPrimaryKey(labelId);
+		}
 		return Id.length;
-	
+
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.CollectService#addCollect(zm.village.dao.Collect)
 	 */
 	@Override
@@ -48,7 +53,9 @@ public class CollectServiceImpl implements CollectService {
 		return mapper.insertSelective(record);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.CollectService#getInfo(java.lang.Integer)
 	 */
 	@Override
@@ -56,7 +63,9 @@ public class CollectServiceImpl implements CollectService {
 		return mapper.selectByPrimaryKey(collectId);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.CollectService#getAll()
 	 */
 	@Override
@@ -64,7 +73,9 @@ public class CollectServiceImpl implements CollectService {
 		return mapper.selectAll();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.CollectService#update(zm.village.dao.Collect)
 	 */
 	@Override
@@ -72,7 +83,9 @@ public class CollectServiceImpl implements CollectService {
 		return mapper.updateByPrimaryKeySelective(record);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.CollectService#getByUserId(java.lang.Integer)
 	 */
 	@Override

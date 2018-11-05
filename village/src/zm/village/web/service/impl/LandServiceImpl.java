@@ -14,46 +14,39 @@ import zm.village.web.mapper.LandInfMapper;
  * @version 1.0
  */
 
-
 @Service
 public class LandServiceImpl implements LandService {
-    
+
 	@Autowired
 	private LandInfMapper mapper;
 
 	@Override
 	public int delete(Land record) {
-		
 		return mapper.deleteByPrimaryKey(record.getId());
 	}
 
 	@Override
 	public int insert(Land record) {
-		
 		return mapper.insertSelective(record);
 	}
 
 	@Override
 	public List<Land> selectAll() {
-		
 		return mapper.selectAll();
 	}
 
 	@Override
 	public Land select(Land record) {
-		
 		return mapper.selectByPrimaryKey(record.getId());
 	}
 
 	@Override
 	public int update(Land record) {
-		
 		return mapper.updateByPrimaryKeySelective(record);
 	}
 
 	@Override
 	public Land getById(Integer record) {
-		
 		return mapper.selectByPrimaryKey(record);
 	}
 
@@ -67,9 +60,7 @@ public class LandServiceImpl implements LandService {
 
 	@Override
 	public int delete(Integer record) {
-		
 		return mapper.deleteByPrimaryKey(record);
 	}
-	
-       
+
 }

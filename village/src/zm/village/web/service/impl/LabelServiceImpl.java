@@ -13,19 +13,21 @@ import zm.village.service.LabelService;
 import zm.village.web.mapper.LabelMapper;
 
 /**
-* @ClassName: LabelServiceImpl.java
-* @Description: 标签类逻辑层具体实现
-* @version: v1.0.0
-* @author: 陈光磊
-* @date: 2018年7月22日 下午4:17:11 
+ * @ClassName: LabelServiceImpl.java
+ * @Description: 标签类逻辑层具体实现
+ * @version: v1.0.0
+ * @author: 陈光磊
+ * @date: 2018年7月22日 下午4:17:11
  */
 @Service
 public class LabelServiceImpl implements LabelService {
-    
+
 	@Autowired
 	private LabelMapper mapper;
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.LabelService#getAll()
 	 */
 	@Override
@@ -33,7 +35,9 @@ public class LabelServiceImpl implements LabelService {
 		return mapper.selectAll();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.LabelService#getByEvaId(java.lang.Integer)
 	 */
 	@Override
@@ -41,7 +45,9 @@ public class LabelServiceImpl implements LabelService {
 		return mapper.selectByEvaId(id);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.LabelService#getInfo(java.lang.Integer)
 	 */
 	@Override
@@ -49,7 +55,9 @@ public class LabelServiceImpl implements LabelService {
 		return mapper.selectByPrimaryKey(id);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.LabelService#addLabel(zm.village.dao.Label)
 	 */
 	@Override
@@ -57,14 +65,16 @@ public class LabelServiceImpl implements LabelService {
 		return mapper.insertSelective(vo);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.LabelService#deleteMany(java.lang.Integer[])
 	 */
 	@Override
 	public int deleteMany(Integer[] id) {
-     	for(int labelId : id) {
-     		mapper.deleteByPrimaryKey(labelId);
-     	}
+		for (int labelId : id) {
+			mapper.deleteByPrimaryKey(labelId);
+		}
 		return id.length;
 	}
 

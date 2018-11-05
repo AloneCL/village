@@ -13,38 +13,46 @@ import zm.village.service.DictionaryService;
 import zm.village.web.mapper.DictionaryMapper;
 
 /**
-* @ClassName: DictionaryServiceImpl.java
-* @Description: 数据字典类逻辑层实现
-* @version: v1.0.0
-* @author: 陈光磊
-* @date: 2018年7月22日 下午7:59:07 
+ * @ClassName: DictionaryServiceImpl.java
+ * @Description: 数据字典类逻辑层实现
+ * @version: v1.0.0
+ * @author: 陈光磊
+ * @date: 2018年7月22日 下午7:59:07
  */
 
 @Service
 public class DictionaryServiceImpl implements DictionaryService {
-    
+
 	@Autowired
 	private DictionaryMapper mapper;
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.DictionaryService#deleteMany(java.lang.Integer)
 	 */
 	@Override
 	public int deleteMany(Integer[] dirId) {
-	    for (Integer integer : dirId) {
+		for (Integer integer : dirId) {
 			mapper.deleteByPrimaryKey(integer);
 		}
 		return dirId.length;
 	}
 
-	/* (non-Javadoc)
-	 * @see zm.village.service.DictionaryService#addDictionary(zm.village.dao.Dictionary)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * zm.village.service.DictionaryService#addDictionary(zm.village.dao.Dictionary)
 	 */
 	@Override
 	public int addDictionary(Dictionary record) {
 		return mapper.insertSelective(record);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.DictionaryService#getInfo(java.lang.Integer)
 	 */
 	@Override
@@ -52,7 +60,9 @@ public class DictionaryServiceImpl implements DictionaryService {
 		return mapper.selectByPrimaryKey(dirId);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.DictionaryService#getByType(java.lang.Integer)
 	 */
 	@Override
@@ -60,7 +70,9 @@ public class DictionaryServiceImpl implements DictionaryService {
 		return mapper.selectByType(type);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.DictionaryService#getAll()
 	 */
 	@Override
@@ -68,7 +80,9 @@ public class DictionaryServiceImpl implements DictionaryService {
 		return mapper.selectAll();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see zm.village.service.DictionaryService#update(zm.village.dao.Dictionary)
 	 */
 	@Override

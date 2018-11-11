@@ -71,8 +71,10 @@
 						<th width="25">
 						<th width="100">用户名</th>
 						<th width="90">手机号码</th>
-						<th width="150">所在地</th>
-						<th width=" ">收货地址</th>
+						<th width="70">省</th>
+						<th width="70">市</th>
+						<th width="70">区</th>
+						<th width="150">详细地址</th>
 						<th width="130">加入时间</th>
 						<th width="70">状态</th>
 						<th width="100">用户星级</th>
@@ -86,8 +88,10 @@
 							<td><u style="cursor: pointer" class="text-primary"
 								onclick="user_show('用户信息','showUser.action?id=${user.id}','360','500')">${user.name}</u></td>
 							<td>${user.telephone}</td>
+							<td>${user.province}</td>
+							<td>${user.city}</td>
+							<td>${user.district}</td>
 							<td>${user.address}</td>
-							<td>${user.postAddress}</td>
 							<td>${user.regTime}</td>
 							<c:if test="${user.userType eq 0}">
 								<td class="user-status"><span class="label label-success">农民</span></td>
@@ -131,7 +135,7 @@
 				//{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
 				{
 					"orderable" : false,
-					"aTargets" : [ 0, 8 ]
+					"aTargets" : [ 0, 10 ]
 				} // 制定列不参与排序
 				]
 			});

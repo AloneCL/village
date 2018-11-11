@@ -84,7 +84,18 @@
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span
-				class="c-red">*</span>所在城市：</label>
+				class="c-red">*</span>用户地址：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div id="target">
+					<select  name="province"></select> 
+					<select name="city"></select> 
+					<select name="district"></select>
+				</div>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span
+				class="c-red">*</span>用户详细地址：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder=""
 					id="address" name="address">
@@ -218,6 +229,12 @@
 		src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
 	<script type="text/javascript">
 		$(function() {
+			$('#target').distpicker({
+				province : '--请选择省份--',
+				city : '--请选择市--',
+				district : '--请选择区/县--',
+				autoSelect:false
+			});
 			$('.skin-minimal input').iCheck({
 				checkboxClass : 'icheckbox-blue',
 				radioClass : 'iradio-blue',
@@ -273,5 +290,10 @@
 						}, "请正确填写您的手机号码");
 	</script>
 	<!--/请在上方写此页面业务相关的脚本-->
+	
+	<!-- distpicker地址插件-->
+	<script type="text/javascript"
+		src="lib/distpicker/dist/distpicker.min.js"></script>
+	
 </body>
 </html>

@@ -2,6 +2,7 @@ package zm.village.web.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import zm.village.dao.Land;
-import zm.village.dao.User;
 import zm.village.service.DictionaryService;
 import zm.village.service.LandService;
 import zm.village.util.tools.HttpReturn;
@@ -47,6 +47,29 @@ public class LandController {
 	public void getAll(HttpServletResponse response, int start, int end) throws IOException {
 
 		List<Land> lands = service.selectAll();
+		List<Land> vo = new LinkedList<Land>();
+		if (start < lands.size()) {
+			if (end > lands.size()) {
+				for (int i = start; i < lands.size(); i++) {
+					vo.add(lands.get(i));
+				}
+			}
+			else {
+				for (int i = start; i < end; i++) {
+					vo.add(lands.get(i));
+				}
+			}
+		}
+		@SuppressWarnings("static-access")
+		JSONArray jsonArray = new JSONArray().fromObject(vo);
+
+		HttpReturn.reponseBody(response, jsonArray);
+	}
+	
+	@RequestMapping(value = "/getByuserId", method = RequestMethod.POST)
+	public void getByuserId(HttpServletResponse response, int userId, int start, int end) throws IOException {
+
+		List<Land> lands = service.getByuserId(userId);
 		List<Land> vo = new LinkedList<Land>();
 		if (start < lands.size()) {
 			if (end > lands.size()) {
@@ -93,11 +116,15 @@ public class LandController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public void addImage(HttpServletResponse response, @RequestParam(name="userId", required = true) Integer userId,
 			@RequestParam(name="name", required = true) String name,@RequestParam(name="type", required = true) Integer type,
-			@RequestParam(name="address", required = false) String address,@RequestParam(name="size", required = false) Double size,
-			@RequestParam(name="unusedSize", required = false) Double unusedSize,@RequestParam(name="basicPrice", required = false) Double basicPrice,
-			@RequestParam(name="introduce", required = false) String introduce,@RequestParam(name="split", required = false) Integer split,
-			@RequestParam(name="minLease", required = false) String minLease,@RequestParam(name="status", required = true) Integer status,
-			@RequestParam(name="imgURL", required = false) MultipartFile[] file1,@RequestParam(name="certificateURL", required = false) 
+			@RequestParam(name="province", required = false) String province,@RequestParam(name="city", required = false) String city,
+			@RequestParam(name="district", required = false) String district,@RequestParam(name="address", required = false) String address,
+			@RequestParam(name="size", required = false) Double size,@RequestParam(name="unusedSize", required = false) Double unusedSize,
+			@RequestParam(name="basicPrice", required = false) Double basicPrice,@RequestParam(name="introduce", required = false) String introduce,
+			@RequestParam(name="split", required = false) Integer split,@RequestParam(name="minLease", required = false) String minLease,
+			@RequestParam(name="status", required = true) Integer status,@RequestParam(name="startTime", required = false) Timestamp startTime,
+			@RequestParam(name="endTime", required = false) Timestamp endTime,@RequestParam(name="size", required = false) Double latitude,
+			@RequestParam(name="size", required = false) Double longitude,@RequestParam(name="imgURL", required = false) MultipartFile[] file1,
+			@RequestParam(name="certificateURL", required = false) 
 	        MultipartFile[] file2) throws IOException {
 
 		Land vo = new Land();
@@ -105,13 +132,20 @@ public class LandController {
 		vo.setName(name);
 		vo.setType(type);
 		vo.setStatus(status);
+		vo.setProvince(province);
+		vo.setCity(city);
+		vo.setDistrict(district);
 		vo.setAddress(address);
 		vo.setSize(size);
 		vo.setUnusedSize(unusedSize);
 		vo.setBasicPrice(basicPrice);
 		vo.setIntroduce(introduce);
 		vo.setMinLease(minLease);
+		vo.setStartTime(startTime);
+		vo.setEndTime(endTime);
 		vo.setSplit(split);
+		vo.setLatitude(latitude);
+		vo.setLongitude(longitude);
 		if(file1 != null && file1.length > 0){
 			String	upaloadUrl	= System.getProperty( "evan.webappvillage" ) + "..\\img\\";
 			String	img_url = upaloadUrl;

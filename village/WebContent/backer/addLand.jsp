@@ -125,31 +125,75 @@
 			<label class="form-label col-xs-4 col-sm-3"><span
 				class="c-red">*</span>土地地址：</label>
 			<div class="formControls col-xs-8 col-sm-9">
+				<div id="target">
+					<select id="eprovinceName" name="province"></select> <select
+						id="ecityName" name="city"></select> <select id="edistrictName"
+						name="district"></select>
+				</div>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span
+				class="c-red">*</span>土地详细地址：</label>
+			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder=""
 					id="address" name="address">
 			</div>
 		</div>
-		
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span
+				class="c-red">*</span>最早时间：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder=""
+					id="date1" name="startTime">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span
+				class="c-red">*</span>最晚时间：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder=""
+					id="date2" name="endTime">
+			</div>
+		</div>
+
+        <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span
+				class="c-red">*</span>土地纬度：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" 
+				id="latitude" name="latitude">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span
+				class="c-red">*</span>土地经度：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" 
+				id="longitude" name="longitude">
+			</div>
+		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span
 				class="c-red">*</span>土地图片：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<a href="javascript:;" class="file">上传土地图片
-                 <input type="text" name="imgURL" id="imgurl"></a>
-                 <div class="gallery" id="gallery"></div>
+				<a href="javascript:;" class="file">上传土地图片 <input type="text"
+					name="imgURL" id="imgurl"></a>
+				<div class="gallery" id="gallery"></div>
 			</div>
 		</div>
-		
+
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span
 				class="c-red">*</span>土地证书图片：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<a href="javascript:;" class="file">上传土地证书图片
-                 <input type="text" name="certificateURL" id="certificateURL"></a>
-                 <div class="gallery" id="gallery1"></div>
+				<a href="javascript:;" class="file">上传土地证书图片 <input type="text"
+					name="certificateURL" id="certificateURL"></a>
+				<div class="gallery" id="gallery1"></div>
 			</div>
 		</div>
-		
+
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
 				<input class="btn btn-primary radius" type="submit"
@@ -161,22 +205,34 @@
 	<div hidden>
 		<!--    input[file]标签的accept属性可用于指定上传文件的 MIME类型 。 -->
 		<input type="file" name="upfile" id="file" accept="image/*"
-			 multiple="multiple"/>
+			multiple="multiple" />
 	</div>
-	
+
 	<div hidden>
 		<!--    input[file]标签的accept属性可用于指定上传文件的 MIME类型 。 -->
 		<input type="file" name="upfile" id="file1" accept="image/*"
-			 multiple="multiple"/>
+			multiple="multiple" />
 	</div>
-	
+
+	<script src="lib/laydate/laydate.js"></script>
+	<script>
+		laydate.render({
+			elem : '#date1',
+			type : 'datetime'
+		});
+		laydate.render({
+			elem : '#date2',
+			type : 'datetime'
+		});
+	</script>
+
 	<!--_footer 作为公共模版分离出去-->
 	<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
 	<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
 	<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
-	<script type="text/javascript" src="lib/upload/upload-ueditor.js"></script> 
-	
+	<script type="text/javascript" src="lib/upload/upload-ueditor.js"></script>
+
 	<!--请在下方写此页面业务相关的脚本-->
 	<script type="text/javascript"
 		src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
@@ -187,8 +243,14 @@
 	<script type="text/javascript"
 		src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
 	<script type="text/javascript">
-	//document.getElementById("form-member-add").onsubmit = function() {upload()};
+		//document.getElementById("form-member-add").onsubmit = function() {upload()};
 		$(function() {
+			$('#target').distpicker({
+				province : '--请选择省份--',
+				city : '--请选择市--',
+				district : '--请选择区/县--',
+				autoSelect:false
+			});
 			$('.skin-minimal input').iCheck({
 				checkboxClass : 'icheckbox-blue',
 				radioClass : 'iradio-blue',
@@ -205,6 +267,12 @@
 					type : {
 						required : true
 					},
+					latitude : {
+						number : true
+					},
+					longitude : {
+						number : true
+					},
 					size : {
 						number : true
 					},
@@ -220,7 +288,7 @@
 					status : {
 						required : true
 					}
-					
+
 				},
 				onkeyup : false,
 				focusCleanup : true,
@@ -235,13 +303,18 @@
 			});
 		});
 		document.getElementById("form-member-add").onsubmit = function() {
-		    //$("#form-member-add").valid()
-			if($("#form-member-add").validate().form()){
+			//$("#form-member-add").valid()
+			if ($("#form-member-add").validate().form()) {
 				upload();
 				upload1();
 			}
 		};
 	</script>
 	<!--/请在上方写此页面业务相关的脚本-->
+	
+	<!-- distpicker地址插件-->
+	<script type="text/javascript"
+		src="lib/distpicker/dist/distpicker.min.js"></script>
+
 </body>
 </html>

@@ -1,5 +1,8 @@
 package zm.village.dao;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
 /**
  * @author 伍伴
  * @Date 2018年7月21日
@@ -19,7 +22,13 @@ public final class Land implements java.io.Serializable {
 	private String name;
 	//土地类型，对应land_type
 	private Integer type;
-	//土地地址,land_address
+	//土地地址_省,land_province
+	private String province;
+	//土地地址_市,land_city
+	private String city;
+	//土地地址_区,land_district
+	private String district;
+	//土地详细地址,land_address
 	private String address;
 	//土地大小，对应land_size
 	private Double size;
@@ -39,21 +48,15 @@ public final class Land implements java.io.Serializable {
 	private String certificateURL;
 	//该土地的状态，是否可种植，对应land_status
 	private Integer status;
+	//最早时间，对应land_starttime
+	private Timestamp startTime;
+	//最晚时间，对应land_endtime
+	private Timestamp endTime;
+	//土地纬度，对应land_latitude
+	private Double latitude;
+	//土地经度，对应land_longitude
+	private Double longitude;
 	
-	public Land() {
-	}
-	
-	public Land(Integer userId, String name, Integer type, Double size, String introduce, 
-			Integer status, Integer split) {
-		this.userId = userId;
-		this.name = name;
-		this.type = type;
-		this.size = size;
-		this.introduce = introduce;
-		this.status = status;
-		this.unusedSize = 0.0;
-		this.split = split;
-	}
 
 	public Integer getId() {
 		return id;
@@ -109,14 +112,59 @@ public final class Land implements java.io.Serializable {
 	}
 
 	/**
-	 * @return 土地地址
+	 * 获得土地地址省份 
+	 */
+	public String getProvince() {
+		return province;
+	}
+
+	/**
+	 * 修改土地土地地址省份 
+	 * @param province
+	 */
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	/**
+	 * 获得土地地址城市
+	 */
+	public String getCity() {
+		return city;
+	}
+
+	/**
+	 * 修改土地土地地址城市 
+	 * @param city
+	 */
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	/**
+	 * 获得土地地址市区
+	 */
+	public String getDistrict() {
+		return district;
+	}
+
+	/**
+	 * 修改土地土地地址市区
+	 * @param district
+	 */
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+
+	/**
+	 * 获得土地详细地址
 	 */
 	public String getAddress() {
 		return address;
 	}
 
 	/**
-	 * 修改土地地址
+	 * 修改土地土地详细地址
 	 * @param address
 	 */
 	public void setAddress(String address) {
@@ -260,13 +308,84 @@ public final class Land implements java.io.Serializable {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	  
+	
+	/**
+	 * 获取土地最早时间
+	 * @return java.sql.Timestamp时间对象
+	 */
+	public String getStartTime() {
+		if(startTime==null){
+			return null;
+		}
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return sdf.format(startTime);
+	}
+	
+	/**
+	 * 设置土地最早时间
+	 * @param startTime java.sql.Timestamp时间对象
+	 */
+	public void setStartTime(Timestamp startTime) {
+		this.startTime = startTime;
+	}
+	
+	/**
+	 * 获取土地最晚时间
+	 * @return java.sql.Timestamp时间对象
+	 */
+	public String getEndTime() {
+		if(endTime==null){
+			return null;
+		}
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return sdf.format(endTime);
+	}
+	
+	/**
+	 * 设置土地最晚耕种时间
+	 * @param startTime java.sql.Timestamp时间对象
+	 */
+	public void setEndTime(Timestamp endTime) {
+		this.endTime = endTime;
+	}
+	
+	/**
+	 * 获取土地纬度
+	 */
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	/**
+	 * 设置土地纬度
+	 * @param Double latitude
+	 */
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	/**
+	 * 获取土地经度
+	 */
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	/**
+	 * 设置土地经度
+	 * @param Double longitude
+	 */
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
 	@Override
 	public String toString() {
 		return "Land [id=" + id + ", userId=" + userId + ", name=" + name + ", type=" + type
-				+",address="+ address +", size=" + size + ", unusedSize=" + unusedSize 
-				+ ",basicPrice="+basicPrice+ ", introduce=" + introduce +",minLease="+minLease 
-				+", split=" + split + ",imgURL="+ imgURL + ",certificateURL="+certificateURL +
-				", status=" + status + "]";
+				+",province="+ province +",city="+ city +",district="+ district +",address="+ address +
+				", size=" + size + ", unusedSize=" + unusedSize + ",basicPrice="+basicPrice+ ", introduce=" 
+				+ introduce +",minLease="+minLease +", split=" + split + ",imgURL="+ imgURL + 
+				",certificateURL="+certificateURL +", status=" + status + ",startTime="+startTime +
+				",endTime="+endTime+",latitude="+latitude+",longitude="+longitude+"]";
 	}
 }

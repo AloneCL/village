@@ -34,11 +34,17 @@ public final class User implements java.io.Serializable {
 	// 用户昵称，对应user_name
 	private String name;
 
-	// 用户所在地，对应user_address
+	//用户地址_省,user_province
+	private String province;
+	
+	//用户地址_市,user_city
+	private String city;
+	
+	//用户地址_区,user_district
+	private String district;
+	
+	// 用户所在详细地址，对应user_address
 	private String address;
-
-	// 用户收货地址集合,对应user_post_address
-	private String postAddress;
 
 	// 注册时间，对应user_regtime
 	private Timestamp regTime;
@@ -167,6 +173,53 @@ public final class User implements java.io.Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+
+	/**
+	 * 获得用户省份 
+	 */
+	public String getProvince() {
+		return province;
+	}
+
+	/**
+	 * 修改用户地址省份 
+	 * @param province
+	 */
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	/**
+	 * 获得用户地址城市
+	 */
+	public String getCity() {
+		return city;
+	}
+
+	/**
+	 * 修改用户土地地址城市 
+	 * @param city
+	 */
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	/**
+	 * 获得用户地址市区
+	 */
+	public String getDistrict() {
+		return district;
+	}
+
+	/**
+	 * 修改用户土地地址市区
+	 * @param district
+	 */
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+	
 
 	/**
 	 * 获取用户所在地集合
@@ -296,85 +349,10 @@ public final class User implements java.io.Serializable {
 		this.idCardNumber = idCardNumber;
 	}
 
-	/**
-	 * 获取完整的收件地址集合
-	 * 
-	 * @sql user_post_address
-	 * @return String类型收货地址集合
-	 */
-	@Deprecated
-	public String getPostAddress() {
-		return postAddress;
-	}
-
-	/**
-	 * 设置完整的收件地址集合，此方法一般用于MyBatis反射调用
-	 * 
-	 * @sql user_post_address
-	 * @param postAddress
-	 *            String类型收货地址集合
-	 */
-	@Deprecated
-	public void setPostAddress(String postAddress) {
-		this.postAddress = postAddress;
-	}
-
-	/**
-	 * 添加收件地址，如果已经有设置的记录不会覆盖
-	 * 
-	 * @sql user_post_address
-	 * @param postAddress
-	 *            String类型收货地址
-	 */
-	public void addPostAddress(String newPostAddress) {
-		if (this.postAddress == null || this.postAddress.equals("")) {
-			this.postAddress = newPostAddress;
-		} else {
-			this.postAddress += ADDRESS_SPERATOR + newPostAddress;
-		}
-	}
-
-	/**
-	 * 获取该用户所有的收件地址数组，如果已经有设置的记录不会覆盖
-	 * 
-	 * @sql user_post_address
-	 * @return 包含该用户设置的收件地址数组
-	 */
-	public String[] getPostAddressArray() {
-		if (postAddress != null)
-			return postAddress.split(ADDRESS_SPERATOR);
-		return null;
-	}
-
-	/**
-	 * 移除收货地址
-	 * 
-	 * @sql user_post_address
-	 * @param 需要移除的收货地址
-	 */
-	public void removePostAddress(String remove) {
-		if (getPostAddressArray() != null) {
-			String[] addressArray = getPostAddressArray();
-
-			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < addressArray.length; i++) {
-				if (addressArray[i].equals(remove)) {
-					continue;
-				}
-				if (i == addressArray.length - 1) {
-					sb.append(addressArray[i]);
-					continue;
-				}
-				sb.append(addressArray[i] + ADDRESS_SPERATOR);
-			}
-			this.postAddress = sb.toString();
-		}
-	}
-
 	public String toString() {
 		return "User[id=" + id + ",telephone=" + telephone + ",password=" + password + ",imagePath=" + imagePath
-				+ ",name=" + name + ",address=" + address + ",postAddress=" + postAddress + ",regTime=" + regTime
+				+ ",name=" + name + ",regTime=" + regTime
 				+ ",userType=" + userType + ",realName=" + realName + ",idCardNumber=" + idCardNumber + ",starLevel="
-				+ starLevel + "]";
+				+ starLevel + ",province="+ province +",city="+ city +",district="+ district +",address="+ address+ "]";
 	}
 }

@@ -93,10 +93,21 @@
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span
-				class="c-red">*</span>所在城市：</label>
+				class="c-red">*</span>用户地址：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${user.address}"
-					placeholder="" id="address" name="address">
+				<div data-toggle="distpicker">
+					<select data-province="${user.province}" name="province"></select> 
+					<select data-city="${user.city}" name="city"></select> 
+					<select data-district="${user.district}" name="district"></select>
+				</div>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span
+				class="c-red">*</span>用户详细地址：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${user.address}" placeholder=""
+					id="address" name="address">
 			</div>
 		</div>
 		<div class="row cl">
@@ -147,14 +158,6 @@
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="${user.idCardNumber}"
 					placeholder="" id="idCardNumber" name="idCardNumber">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span
-				class="c-red">*</span>收获地址：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${user.postAddress}"
-					placeholder="" id="postAddress" name="postAddress">
 			</div>
 		</div>
 		<div class="row cl">
@@ -276,20 +279,20 @@
 						maxlength : 16
 					},
 					userType : {
-						required : true,
+						required : true
 					},
 					telephone : {
 						required : true,
-						isMobile : true,
+						isMobile : true
 					},
 					password : {
-						required : true,
+						required : true
 					},
 					starLevel : {
-						number : true,
+						number : true
 					},
 					idCardNumber : {
-						isIdCardNo : true,
+						isIdCardNo : true
 					},
 				},
 				onkeyup : false,
@@ -319,5 +322,9 @@
 		}, "请正确输入您的身份证号码");
 	</script>
 	<!--/请在上方写此页面业务相关的脚本-->
+	
+	<!-- distpicker地址插件-->
+	<script type="text/javascript"
+		src="lib/distpicker/dist/distpicker.min.js"></script>
 </body>
 </html>

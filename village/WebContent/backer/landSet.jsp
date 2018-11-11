@@ -168,6 +168,17 @@
 			<label class="form-label col-xs-4 col-sm-3"><span
 				class="c-red">*</span>土地地址：</label>
 			<div class="formControls col-xs-8 col-sm-9">
+				<div data-toggle="distpicker">
+					<select data-province="${land.province}" name="province"></select> 
+					<select data-city="${land.city}" name="city"></select> 
+					<select data-district="${land.district}" name="district"></select>
+				</div>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span
+				class="c-red">*</span>土地详细地址：</label>
+			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="${land.address}" placeholder=""
 					id="address" name="address">
 			</div>
@@ -177,6 +188,38 @@
 			<div class="formControls col-xs-8 col-sm-9">
 				<textarea name="introduce"  value="${land.introduce}"  cols="" rows="" class="textarea"></textarea>
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span
+				class="c-red">*</span>最早时间：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${land.startTime}" placeholder=""
+					id="date1" name="startTime">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span
+				class="c-red">*</span>最晚时间：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${land.endTime}" placeholder=""
+					id="date2" name="endTime">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span
+				class="c-red">*</span>土地纬度：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${land.latitude}" 
+				id="latitude" name="latitude">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span
+				class="c-red">*</span>土地经度：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${land.longitude}" 
+				id="longitude" name="longitude">
 			</div>
 		</div>
 		<div class="row cl">
@@ -205,6 +248,17 @@
 		<input type="file" name="upfile" id="file" accept="image/*"
 			onchange="upload()">
 	</div>
+	<script src="lib/laydate/laydate.js"></script>
+	<script>
+		laydate.render({
+			elem : '#date1',
+			type : 'datetime'
+		});
+		laydate.render({
+			elem : '#date2',
+			type : 'datetime'
+		});
+	</script>
 	<!--_footer 作为公共模版分离出去-->
 	<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
@@ -300,6 +354,12 @@
 					type : {
 						required : true
 					},
+					latitude : {
+						number : true
+					},
+					longitude : {
+						number : true
+					},
 					size : {
 						number : true
 					},
@@ -330,5 +390,9 @@
 		});
 	</script>
 	<!--/请在上方写此页面业务相关的脚本-->
+	
+	<!-- distpicker地址插件-->
+	<script type="text/javascript"
+		src="lib/distpicker/dist/distpicker.min.js"></script>
 </body>
 </html>

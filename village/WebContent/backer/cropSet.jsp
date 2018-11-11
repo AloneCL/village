@@ -98,7 +98,7 @@
 		</div>
 	</form>
 	</article>
-	<script src="laydate/laydate.js"></script>
+	<script src="lib/laydate/laydate.js"></script>
 	<script>
 		laydate.render({
 			elem : '#date1',

@@ -7,8 +7,10 @@
 		<result column="user_pass" jdbcType="VARCHAR" property="password" />
 		<result column="user_img" jdbcType="VARCHAR" property="imagePath" />
 		<result column="user_name" jdbcType="VARCHAR" property="name" />
+		<result column="user_province" jdbcType="VARCHAR" property="province" />
+		<result column="user_city" jdbcType="VARCHAR" property="city" />
+		<result column="user_district" jdbcType="VARCHAR" property="district" />
 		<result column="user_address" jdbcType="VARCHAR" property="address" />
-		<result column="user_post_address" jdbcType="VARCHAR" property="postAddress" />
 		<result column="user_regtime" jdbcType="TIMESTAMP" property="regTime" />
 		<result column="user_type" jdbcType="INTEGER" property="userType" />
 		<result column="user_real_name" jdbcType="VARCHAR" property="realName" />
@@ -18,8 +20,7 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		user_id, user_tel, user_pass, user_img, user_name,
-		user_address,
-		user_post_address,
+		user_address,user_province,user_city,user_district
 		user_regtime, user_type,
 		user_real_name, user_id_card_number, user_starlevel
 	</sql>
@@ -79,11 +80,17 @@
 			<if test="name != null">
 				user_name,
 			</if>
+			<if test="province != null">
+				user_province,
+			</if>
+			<if test="city != null">
+				user_city,
+			</if>
+			<if test="district != null">
+				user_district,
+			</if>
 			<if test="address != null">
 				user_address,
-			</if>
-			<if test="postAddress != null">
-				user_post_address,
 			</if>
 			<if test="regTime != null">
 				user_regtime,
@@ -117,11 +124,17 @@
 			<if test="name != null">
 				#{name,jdbcType=VARCHAR},
 			</if>
+			<if test="province != null">
+				#{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="district != null">
+				#{district,jdbcType=VARCHAR},
+			</if>
 			<if test="address != null">
 				#{address,jdbcType=VARCHAR},
-			</if>
-			<if test="postAddress != null">
-				#{postAddress,jdbcType=VARCHAR},
 			</if>
 			<if test="regTime != null">
 				#{regTime,jdbcType=TIMESTAMP},
@@ -155,11 +168,17 @@
 			<if test="name != null">
 				user_name = #{name,jdbcType=VARCHAR},
 			</if>
+			<if test="province != null">
+				user_province = #{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				user_city = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="district != null">
+				user_district = #{district,jdbcType=VARCHAR},
+			</if>
 			<if test="address != null">
 				user_address = #{address,jdbcType=VARCHAR},
-			</if>
-			<if test="postAddress != null">
-				user_post_address = #{postAddress,jdbcType=VARCHAR},
 			</if>
 			<if test="regTime != null">
 				user_regtime = #{regTime,jdbcType=TIMESTAMP},
@@ -191,11 +210,17 @@
 			<if test="name != null">
 				user_name = #{name,jdbcType=VARCHAR},
 			</if>
+			<if test="province != null">
+				user_province = #{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				user_city = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="district != null">
+				user_district = #{district,jdbcType=VARCHAR},
+			</if>
 			<if test="address != null">
 				user_address = #{address,jdbcType=VARCHAR},
-			</if>
-			<if test="postAddress != null">
-				user_post_address = #{postAddress,jdbcType=VARCHAR},
 			</if>
 			<if test="regTime != null">
 				user_regtime = #{regTime,jdbcType=TIMESTAMP},

@@ -45,5 +45,11 @@ public interface LandInfMapper {
      * @return 更新行数
      */
     int updateByPrimaryKeySelective(Land record);
+    
+    /**
+     * @param 用户ID
+     * @return 用户发布的土地
+     */
+    List<Land> getByUserId(Integer userId);
 
 }

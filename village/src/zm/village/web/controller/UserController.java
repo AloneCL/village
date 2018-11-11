@@ -158,6 +158,22 @@ public class UserController {
 		HttpReturn.reponseBody(response, jsonObject);
 	}
 	
+	@RequestMapping(value = "/updateAddress", method = RequestMethod.POST)
+	public void updateAddress(HttpServletResponse response, @RequestParam(name="userId", required = true) Integer userId,
+			@RequestParam(name="province", required = false) String province,@RequestParam(name="city", required = false) String city,
+			@RequestParam(name="district", required = false) String district,@RequestParam(name="address", required = false) String address
+			) throws IOException {
+
+		User vo = new User();
+		vo.setId(userId);
+		vo.setProvince(province);
+		vo.setCity(city);
+		vo.setDistrict(district);
+		vo.setAddress(address);
+		service.update(vo);
+		HttpReturn.reponseBody(response, "修改成功");
+	}
+	
 	@RequestMapping(value = "/UpdateHead", method = RequestMethod.POST)
 	public void userHead(HttpServletRequest request, HttpServletResponse response
 			,@RequestParam("files") MultipartFile file) {

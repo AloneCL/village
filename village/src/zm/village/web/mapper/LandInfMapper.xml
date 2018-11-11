@@ -8,6 +8,9 @@
 		<result column="land_type" jdbcType="INTEGER" property="type" />
 		<result column="land_size" jdbcType="DOUBLE" property="size" />
 		<result column="land_basic_price" jdbcType="DOUBLE" property="basicPrice" />
+		<result column="land_province" jdbcType="VARCHAR" property="province" />
+		<result column="land_city" jdbcType="VARCHAR" property="city" />
+		<result column="land_district" jdbcType="VARCHAR" property="district" />
 		<result column="land_address" jdbcType="VARCHAR" property="address" />
 		<result column="land_unused_size" jdbcType="DOUBLE" property="unusedSize" />
 		<result column="land_split" jdbcType="INTEGER" property="split" />
@@ -15,6 +18,12 @@
 		<result column="land_picture" jdbcType="VARCHAR" property="imgURL" />
 		<result column="land_certificate" jdbcType="VARCHAR" property="certificateURL" />
 		<result column="land_status" jdbcType="INTEGER" property="status" />
+	    <result column="land_latitude" jdbcType="DOUBLE" property="latitude" />
+	     <result column="land_longitude" jdbcType="DOUBLE" property="longitude" />
+	    <result column="land_startTime" jdbcType="DATE"
+	    property="startTime" />
+		<result column="land_endTime" jdbcType="DATE"
+			property="endTime" />
 	</resultMap>
 	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
 		type="zm.village.dao.Land">
@@ -23,11 +32,10 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		land_id, land_user_id, land_name, land_type, land_size,
-		land_basic_price,
-		land_address,
-		land_unused_size, land_split,
+		land_basic_price,land_province,land_city,land_district
+		land_address,land_unused_size, land_split,
 		land_min_lease, land_picture, land_certificate,
-		land_status
+		land_status,land_startTime,land_endTime,land_latitude,land_longitude
 	</sql>
 	<sql id="Blob_Column_List">
 		land_introduce
@@ -48,6 +56,16 @@
 		<include refid="Blob_Column_List" />
 		from land_inf
 		where land_id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<select id="getByUserId" parameterType="java.lang.Integer"
+		resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from land_inf
+		where land_user_id = #{userId,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
@@ -75,6 +93,15 @@
 			<if test="basicPrice != null">
 				land_basic_price,
 			</if>
+			<if test="province != null">
+				land_province,
+			</if>
+			<if test="city != null">
+				land_city,
+			</if>
+			<if test="district != null">
+				land_district,
+			</if>
 			<if test="address != null">
 				land_address,
 			</if>
@@ -99,6 +126,18 @@
 			<if test="introduce != null">
 				land_introduce,
 			</if>
+			<if test="startTime != null">
+				land_startTime,
+			</if>
+			<if test="endTime != null">
+				land_endTime,
+			</if>
+			<if test="latitude != null">
+				land_latitude,
+			</if>
+			<if test="longitude != null">
+				land_longitude,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -118,6 +157,15 @@
 			</if>
 			<if test="basicPrice != null">
 				#{basicPrice,jdbcType=DOUBLE},
+			</if>
+			<if test="province != null">
+				#{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="district != null">
+				#{district,jdbcType=VARCHAR},
 			</if>
 			<if test="address != null">
 				#{address,jdbcType=VARCHAR},
@@ -143,6 +191,18 @@
 			<if test="introduce != null">
 				#{introduce,jdbcType=LONGVARCHAR},
 			</if>
+			<if test="startTime != null">
+				#{startTime,jdbcType=DATE},
+			</if>
+			<if test="endTime != null">
+				#{endTime,jdbcType=DATE},
+			</if>
+			<if test="latitude != null">
+				#{latitude,jdbcType=DOUBLE},
+			</if>
+			<if test="longitude != null">
+				#{longitude,jdbcType=DOUBLE},
+			</if>
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="zm.village.dao.Land">
@@ -162,6 +222,15 @@
 			</if>
 			<if test="basicPrice != null">
 				land_basic_price = #{basicPrice,jdbcType=DOUBLE},
+			</if>
+			<if test="province != null">
+				land_province = #{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				land_city = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="district != null">
+				land_district = #{district,jdbcType=VARCHAR},
 			</if>
 			<if test="address != null">
 				land_address = #{address,jdbcType=VARCHAR},
@@ -186,6 +255,18 @@
 			</if>
 			<if test="introduce != null">
 				land_introduce = #{introduce,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="startTime != null">
+				land_startTime = #{startTime,jdbcType=DATE},
+			</if>
+			<if test="endTime != null">
+				land_endTime = #{endTime,jdbcType=DATE},
+			</if>
+			<if test="latitude != null">
+				land_latitude = #{latitude,jdbcType=DOUBLE},
+			</if>
+			<if test="longitude != null">
+				land_longitude = #{longitude,jdbcType=DOUBLE},
 			</if>
 		</set>
 		where land_id = #{id,jdbcType=INTEGER}

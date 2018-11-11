@@ -315,3 +315,11 @@ $(function(){
 		$(window.frames.document).contents().find("#skin").attr("href",hrefRes);
 	});
 }); 
+
+
+function close(){    
+	var index = parent.layer.getFrameIndex(window.name);
+	window.parent.location.reload();
+	parent.layer.close(index);
+}
+

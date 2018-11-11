@@ -175,20 +175,22 @@ $(function(){
 			
 		} ,
 		submitHandler:function(form){
-			save();
-			alert("增加成功");
+			$.ajax({
+	            type:"post",
+	            url:"${pageContext.request.contextPath}/addDictionary.action",
+	            data: $("#form-member-add").serialize(),//序列化表单数据
+	            complete: function() {
+	            	layer.msg('添加成功!',{icon:1,time:1000});
+					setTimeout(close,1000);
+	            }
+	        });
 		}
 	});
 	
-	function save(){    
-        $.ajax({
-            type:"post",
-            url:"${pageContext.request.contextPath}/addDictionary.action",
-            data: $("#form-member-add").serialize(),//序列化表单数据
-            complete: function() {
-            	window.parent.location.reload();//关闭弹窗
-            }
-        });
+	function close(){    
+		var index = parent.layer.getFrameIndex(window.name);
+		window.parent.location.reload();
+		parent.layer.close(index);
     }
 
 });

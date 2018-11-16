@@ -21,9 +21,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import zm.village.dao.Dictionary;
 import zm.village.dao.Land;
 import zm.village.service.DictionaryService;
 import zm.village.service.LandService;
+import zm.village.service.RelBreedService;
+import zm.village.service.RelLandService;
 import zm.village.util.tools.HttpReturn;
 
 /**
@@ -42,6 +45,12 @@ public class LandController {
 	
 	@Autowired
 	private DictionaryService dicService;
+	
+	@Autowired
+	private RelLandService relLandService;
+	
+	@Autowired
+	private RelBreedService relBreedService;
 
 	@RequestMapping(value = "/getAll", method = RequestMethod.POST)
 	public void getAll(HttpServletResponse response, int start, int end) throws IOException {
@@ -97,13 +106,71 @@ public class LandController {
 		HttpReturn.reponseBody(response, jsonObject);
 	}
 	
-	@RequestMapping(value = "/getPlant", method = RequestMethod.POST)
-	public void getPlant(HttpServletResponse response, @RequestBody Land vo) throws IOException {
+	@RequestMapping(value = "/getFoodstuffLand ", method = RequestMethod.POST)
+	public void getFoodstuffLand(HttpServletResponse response,int start,int end) throws IOException {
 
-		vo = service.select(vo);
-		JSONArray jsonArray = new JSONArray().fromObject(dicService.getByType(vo.getType()));
+		
+		List<Land> dir = service.getByType(0);
+		List<Land> vo = new LinkedList<Land>();
+		if (start < dir.size()) {
+			if (end > dir.size()) {
+				for (int i = start; i < dir.size(); i++) {
+					vo.add(dir.get(i));
+				}
+			}
+			else {
+				for (int i = start; i < end; i++) {
+					vo.add(dir.get(i));
+				}
+			}
+		}
+		JSONArray jsonArray = new JSONArray().fromObject(vo);
 		HttpReturn.reponseBody(response, jsonArray);
 	}
+	
+	@RequestMapping(value = "/getVegetablesLand", method = RequestMethod.POST)
+	public void getVegetablesLand(HttpServletResponse response,int start,int end) throws IOException {
+
+		List<Land> land = service.getByType(1);
+		List<Land> vo = new LinkedList<Land>();
+		if (start < land.size()) {
+			if (end > land.size()) {
+				for (int i = start; i < land.size(); i++) {
+					vo.add(land.get(i));
+				}
+			}
+			else {
+				for (int i = start; i < end; i++) {
+					vo.add(land.get(i));
+				}
+			}
+		}
+		JSONArray jsonArray = new JSONArray().fromObject(vo);
+		HttpReturn.reponseBody(response, jsonArray);
+	}
+	
+	@RequestMapping(value = "/getFruitsLand", method = RequestMethod.POST)
+	public void getFruitsLand(HttpServletResponse response,int start,int end) throws IOException {
+
+		
+		List<Land> land = service.getByType(2);
+		List<Land> vo = new LinkedList<Land>();
+		if (start < land.size()) {
+			if (end > land.size()) {
+				for (int i = start; i < land.size(); i++) {
+					vo.add(land.get(i));
+				}
+			}
+			else {
+				for (int i = start; i < end; i++) {
+					vo.add(land.get(i));
+				}
+			}
+		}
+		JSONArray jsonArray = new JSONArray().fromObject(vo);
+		HttpReturn.reponseBody(response, jsonArray);
+	}
+	
 	
 	@RequestMapping(value = "/addLand", method = RequestMethod.POST)
 	public void add(HttpServletResponse response, @RequestBody Land vo) throws IOException {
@@ -112,6 +179,8 @@ public class LandController {
 		HttpReturn.reponseBody(response, "添加成功");
 		
 	}
+	
+	
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public void addImage(HttpServletResponse response, @RequestParam(name="userId", required = true) Integer userId,
@@ -346,6 +415,71 @@ public class LandController {
 		HttpReturn.reponseBody(response, "修改成功");
 	}
 	
+	@RequestMapping(value = "/getFoodstuff ", method = RequestMethod.POST)
+	public void getFoodstuff(HttpServletResponse response,int start,int end) throws IOException {
+
+		
+		List<Dictionary> dir = dicService.getByType(0);
+		List<Dictionary> vo = new LinkedList<Dictionary>();
+		if (start < dir.size()) {
+			if (end > dir.size()) {
+				for (int i = start; i < dir.size(); i++) {
+					vo.add(dir.get(i));
+				}
+			}
+			else {
+				for (int i = start; i < end; i++) {
+					vo.add(dir.get(i));
+				}
+			}
+		}
+		JSONArray jsonArray = new JSONArray().fromObject(vo);
+		HttpReturn.reponseBody(response, jsonArray);
+	}
+	
+	@RequestMapping(value = "/getVegetables", method = RequestMethod.POST)
+	public void getVegetables(HttpServletResponse response,int start,int end) throws IOException {
+
+		List<Dictionary> dir = dicService.getByType(1);
+		List<Dictionary> vo = new LinkedList<Dictionary>();
+		if (start < dir.size()) {
+			if (end > dir.size()) {
+				for (int i = start; i < dir.size(); i++) {
+					vo.add(dir.get(i));
+				}
+			}
+			else {
+				for (int i = start; i < end; i++) {
+					vo.add(dir.get(i));
+				}
+			}
+		}
+		JSONArray jsonArray = new JSONArray().fromObject(vo);
+		HttpReturn.reponseBody(response, jsonArray);
+	}
+	
+	@RequestMapping(value = "/getFruits", method = RequestMethod.POST)
+	public void getFruits(HttpServletResponse response,int start,int end) throws IOException {
+
+		
+		List<Dictionary> dir = dicService.getByType(2);
+		List<Dictionary> vo = new LinkedList<Dictionary>();
+		if (start < dir.size()) {
+			if (end > dir.size()) {
+				for (int i = start; i < dir.size(); i++) {
+					vo.add(dir.get(i));
+				}
+			}
+			else {
+				for (int i = start; i < end; i++) {
+					vo.add(dir.get(i));
+				}
+			}
+		}
+		JSONArray jsonArray = new JSONArray().fromObject(vo);
+		HttpReturn.reponseBody(response, jsonArray);
+	}
+	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public void update(HttpServletResponse response, @RequestBody Land vo) throws IOException {
 
@@ -359,4 +493,5 @@ public class LandController {
 		service.delete(vo);
 		HttpReturn.reponseBody(response, "删除成功");
 	}
+	
 }

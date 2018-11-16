@@ -71,7 +71,9 @@
 						<th width="25">
 						<th width="100">土地名称</th>
 						<th width="100">土地类型</th>
-						<th width="">土地地址</th>
+						<th width="70">省</th>
+						<th width="70">市</th>
+						<th width="70">区</th>
 						<th width="100">土地大小</th>
 						<th width="100">基础价格</th>
 						<th width="100">是否整块出售</th>
@@ -94,7 +96,9 @@
 							<c:if test="${land.type eq 3}">
 								<td class="user-status"><span class="label label-success">池塘</span></td>
 							</c:if>
-							<td>${land.address}</td>
+							<td>${land.province}</td>
+							<td>${land.city}</td>
+							<td>${land.district}</td>
 							<td>${land.size}</td>
 							<td>${land.basicPrice}</td>
 							<c:if test="${land.split eq 1}">
@@ -145,7 +149,7 @@
 				//{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
 				{
 					"orderable" : false,
-					"aTargets" : [ 0, 8]
+					"aTargets" : [ 0, 10]
 				} // 制定列不参与排序
 				]
 			});

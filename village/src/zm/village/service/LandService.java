@@ -56,6 +56,12 @@ public interface  LandService {
      * @return 用户发布的土地
      */
     List<Land> getByuserId(Integer record);
+    
+    /**
+     * @param 土地类型type
+     * @return 土地信息
+     */
+    List<Land> getByType(Integer type);
 
     /**
      * @param 土地信息ID

@@ -24,6 +24,8 @@ import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 import zm.village.dao.Land;
 import zm.village.dao.User;
+import zm.village.dao.UserAddress;
+import zm.village.service.UserAddressService;
 import zm.village.service.UserService;
 import zm.village.util.tools.HttpReturn;
 import zm.village.util.tools.JsonDateValueProcessor;
@@ -42,6 +44,9 @@ public class UserController {
 
 	@Autowired
 	private UserService service;
+	
+	@Autowired
+	private UserAddressService addressService;
 	
 	@RequestMapping(value = "/getAll", method = RequestMethod.POST)
 	public void getAll(HttpServletResponse response, int start, int end) throws IOException {
@@ -90,6 +95,47 @@ public class UserController {
 			service.insert(vo);
 			HttpReturn.reponseBody(response, String.valueOf("添加成功"));
 		}
+	}
+	
+	@RequestMapping(value = "/addAddress", method = RequestMethod.POST)
+	public void addAddress(HttpServletResponse response, @RequestBody UserAddress vo) throws IOException {
+
+		addressService.insert(vo);
+		HttpReturn.reponseBody(response, String.valueOf("添加地址成功"));
+	}
+	
+	@RequestMapping(value = "/getAddress", method = RequestMethod.POST)
+	public void getAddress(HttpServletResponse response, Integer userId) throws IOException {
+
+		JSONArray jsonArray= new JSONArray().fromObject(addressService.getByUser(userId));
+		HttpReturn.reponseBody(response, jsonArray);
+	}
+	
+	@RequestMapping(value = "/setUserAddress", method = RequestMethod.POST)
+	public void setUserAddress(HttpServletResponse response, Integer id) throws IOException {
+
+		UserAddress address = addressService.select(id);
+		User vo = new User();
+		vo.setProvince(address.getProvince());
+		vo.setCity(address.getCity());
+		vo.setDistrict(address.getDistrict());
+		vo.setAddress(address.getAddress());
+		service.update(vo);
+		HttpReturn.reponseBody(response, String.valueOf("修改主地址成功"));
+	}
+	
+	@RequestMapping(value = "/setAddress", method = RequestMethod.POST)
+	public void setAddress(HttpServletResponse response, @RequestBody UserAddress vo) throws IOException {
+
+		addressService.update(vo);
+		HttpReturn.reponseBody(response, String.valueOf("修改地址成功"));
+	}
+	
+	@RequestMapping(value = "/deleteAddress", method = RequestMethod.POST)
+	public void setAddress(HttpServletResponse response, Integer id) throws IOException {
+
+		addressService.delete(id);
+		HttpReturn.reponseBody(response, String.valueOf("删除地址成功"));
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -156,22 +202,6 @@ public class UserController {
 
 		JSONObject jsonObject = new JSONObject().fromObject(service.getByUserTel(vo));
 		HttpReturn.reponseBody(response, jsonObject);
-	}
-	
-	@RequestMapping(value = "/updateAddress", method = RequestMethod.POST)
-	public void updateAddress(HttpServletResponse response, @RequestParam(name="userId", required = true) Integer userId,
-			@RequestParam(name="province", required = false) String province,@RequestParam(name="city", required = false) String city,
-			@RequestParam(name="district", required = false) String district,@RequestParam(name="address", required = false) String address
-			) throws IOException {
-
-		User vo = new User();
-		vo.setId(userId);
-		vo.setProvince(province);
-		vo.setCity(city);
-		vo.setDistrict(district);
-		vo.setAddress(address);
-		service.update(vo);
-		HttpReturn.reponseBody(response, "修改成功");
 	}
 	
 	@RequestMapping(value = "/UpdateHead", method = RequestMethod.POST)

@@ -20,7 +20,7 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		user_id, user_tel, user_pass, user_img, user_name,
-		user_address,user_province,user_city,user_district
+		user_address,user_province,user_city,user_district,
 		user_regtime, user_type,
 		user_real_name, user_id_card_number, user_starlevel
 	</sql>

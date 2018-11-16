@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import zm.village.dao.Crop;
-import zm.village.dao.Land;
 import zm.village.service.RelLandService;
 import zm.village.util.tools.HttpReturn;
 

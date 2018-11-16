@@ -52,6 +52,18 @@
 					<td>${user.password}</td>
 				</tr>
 				<tr>
+					<th class="text-r">省：</th>
+					<td>${user.province}</td>
+				</tr>
+				<tr>
+					<th class="text-r">市：</th>
+					<td>${user.city}</td>
+				</tr>
+				<tr>
+					<th class="text-r">区：</th>
+					<td>${user.district}</td>
+				</tr>
+				<tr>
 					<th class="text-r">地址：</th>
 					<td>${user.address}</td>
 				</tr>
@@ -80,10 +92,6 @@
 				<tr>
 					<th class="text-r">身份证号：</th>
 					<td>${user.idCardNumber}</td>
-				</tr>
-				<tr>
-					<th class="text-r">收获地址：</th>
-					<td>${user.postAddress}</td>
 				</tr>
 			</tbody>
 		</table>

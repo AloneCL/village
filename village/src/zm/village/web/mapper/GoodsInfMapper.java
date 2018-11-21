@@ -1,5 +1,7 @@
 package zm.village.web.mapper;
 
+import java.util.List;
+
 import zm.village.dao.Goods;
 
 public interface GoodsInfMapper {
@@ -16,4 +18,6 @@ public interface GoodsInfMapper {
     int updateByPrimaryKeyWithBLOBs(Goods record);
 
     int updateByPrimaryKey(Goods record);
+    
+    List<Goods> getByType(Integer type);
 }

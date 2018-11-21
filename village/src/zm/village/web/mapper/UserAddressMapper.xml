@@ -6,7 +6,7 @@
     <result column="userId" jdbcType="INTEGER" property="userId" />
      <result column="user_address_name" jdbcType="VARCHAR" property="name" />
     <result column="user_address_tel" jdbcType="VARCHAR" property="telephone" />
-    <result column="user_address_province" jdbcType="VARCHAR" property="userAddressProvince" />
+    <result column="user_address_province" jdbcType="VARCHAR" property="province" />
     <result column="user_address_city" jdbcType="VARCHAR" property="city" />
     <result column="user_address_district" jdbcType="VARCHAR" property="district" />
     <result column="user_address_address" jdbcType="VARCHAR" property="address" />
@@ -35,9 +35,6 @@
   <insert id="insertSelective" parameterType="zm.village.dao.UserAddress">
     insert into user_address
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
       <if test="userId != null">
         userId,
       </if>
@@ -47,7 +44,7 @@
       <if test="telephone != null">
         user_address_tel,
       </if>
-      <if test="userAddressProvince != null">
+      <if test="province != null">
         user_address_province,
       </if>
       <if test="city != null">
@@ -61,9 +58,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
       </if>
@@ -73,8 +67,8 @@
       <if test="telephone != null">
         #{telephone,jdbcType=VARCHAR},
       </if>
-      <if test="userAddressProvince != null">
-        #{userAddressProvince,jdbcType=VARCHAR},
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
       </if>
       <if test="city != null">
         #{city,jdbcType=VARCHAR},
@@ -99,8 +93,8 @@
       <if test="telephone != null">
         user_address_tel = #{telephone,jdbcType=VARCHAR},
       </if>
-      <if test="userAddressProvince != null">
-        user_address_province = #{userAddressProvince,jdbcType=VARCHAR},
+      <if test="province != null">
+        user_address_province = #{province,jdbcType=VARCHAR},
       </if>
       <if test="city != null">
         user_address_city = #{city,jdbcType=VARCHAR},

@@ -22,8 +22,10 @@ import org.springframework.web.multipart.MultipartFile;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import zm.village.dao.Dictionary;
+import zm.village.dao.Goods;
 import zm.village.dao.Land;
 import zm.village.service.DictionaryService;
+import zm.village.service.GoodsService;
 import zm.village.service.LandService;
 import zm.village.service.RelBreedService;
 import zm.village.service.RelLandService;
@@ -45,6 +47,9 @@ public class LandController {
 	
 	@Autowired
 	private DictionaryService dicService;
+	
+	@Autowired
+	private GoodsService  goodsService;
 	
 	@Autowired
 	private RelLandService relLandService;
@@ -459,25 +464,70 @@ public class LandController {
 	}
 	
 	@RequestMapping(value = "/getFruits", method = RequestMethod.POST)
-	public void getFruits(HttpServletResponse response,int start,int end) throws IOException {
+	public void getFruits(HttpServletResponse response,Integer type,int start,int end) throws IOException {
 
-		
-		List<Dictionary> dir = dicService.getByType(2);
-		List<Dictionary> vo = new LinkedList<Dictionary>();
-		if (start < dir.size()) {
-			if (end > dir.size()) {
-				for (int i = start; i < dir.size(); i++) {
-					vo.add(dir.get(i));
+		//0代表去获得果树，1代表去获得果实
+		if(type==0){
+			List<Dictionary> dir = dicService.getByType(2);
+			List<Dictionary> vo = new LinkedList<Dictionary>();
+			if (start < dir.size()) {
+				if (end > dir.size()) {
+					for (int i = start; i < dir.size(); i++) {
+						vo.add(dir.get(i));
+					}
+				}
+				else {
+					for (int i = start; i < end; i++) {
+						vo.add(dir.get(i));
+					}
 				}
 			}
-			else {
-				for (int i = start; i < end; i++) {
-					vo.add(dir.get(i));
-				}
-			}
+			JSONArray jsonArray = new JSONArray().fromObject(vo);
+			HttpReturn.reponseBody(response, jsonArray);
 		}
-		JSONArray jsonArray = new JSONArray().fromObject(vo);
-		HttpReturn.reponseBody(response, jsonArray);
+		else if(type==1){
+			List<Goods> goods = goodsService.getByType(1);
+			List<Goods> vo = new LinkedList<Goods>();
+			if (start < goods.size()) {
+				if (end > goods.size()) {
+					for (int i = start; i < goods.size(); i++) {
+						vo.add(goods.get(i));
+					}
+				}
+				else {
+					for (int i = start; i < end; i++) {
+						vo.add(goods.get(i));
+					}
+				}
+			}
+			JSONArray jsonArray = new JSONArray().fromObject(vo);
+			HttpReturn.reponseBody(response, jsonArray);
+		}
+		else{
+			HttpReturn.reponseBody(response, "未找到该类型");
+		}
+		
+	}
+	
+	@RequestMapping(value = "/getGoods", method = RequestMethod.POST)
+	public void getGoods(HttpServletResponse response,int start,int end) throws IOException {
+
+			List<Goods> goods = goodsService.getByType(0);
+			List<Goods> vo = new LinkedList<Goods>();
+			if (start < goods.size()) {
+				if (end > goods.size()) {
+					for (int i = start; i < goods.size(); i++) {
+						vo.add(goods.get(i));
+					}
+				}
+				else {
+					for (int i = start; i < end; i++) {
+						vo.add(goods.get(i));
+					}
+				}
+			}
+			JSONArray jsonArray = new JSONArray().fromObject(vo);
+			HttpReturn.reponseBody(response, jsonArray);
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)

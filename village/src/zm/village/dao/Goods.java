@@ -122,7 +122,9 @@ public final class Goods implements java.io.Serializable {
 	}
 	
 	public String[] getImgURLArray() {
-		return imgURL.split(ADDRESS_SPERATOR);
+		if(imgURL==null)
+			return null;
+		else return imgURL.split(ADDRESS_SPERATOR);
 	}
 
 	/**

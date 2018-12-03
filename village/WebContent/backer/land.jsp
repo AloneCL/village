@@ -87,14 +87,14 @@
 							<td><input name="id" type="checkbox" value="${land.id}" /></td>
 							<td><u style="cursor: pointer" class="text-primary"
 								onclick="land_show('土地信息','showLand.action?id=${land.id}','360','500')">${land.name}</u></td>
+							<c:if test="${land.type eq 0}">
+								<td class="user-status"><span class="label label-success">粮食</span></td>
+							</c:if>
 							<c:if test="${land.type eq 1}">
-								<td class="user-status"><span class="label label-success">耕地</span></td>
+								<td class="user-status"><span class="label label-success">蔬菜</span></td>
 							</c:if>
 							<c:if test="${land.type eq 2}">
-								<td class="user-status"><span class="label label-success">养殖地</span></td>
-							</c:if>
-							<c:if test="${land.type eq 3}">
-								<td class="user-status"><span class="label label-success">池塘</span></td>
+								<td class="user-status"><span class="label label-success">水果</span></td>
 							</c:if>
 							<td>${land.province}</td>
 							<td>${land.city}</td>

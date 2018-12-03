@@ -22,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
-import zm.village.dao.Land;
 import zm.village.dao.User;
 import zm.village.dao.UserAddress;
 import zm.village.service.UserAddressService;

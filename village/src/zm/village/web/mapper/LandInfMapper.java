@@ -57,5 +57,11 @@ public interface LandInfMapper {
      * @return 土地信息
      */
     List<Land> getByType(Integer type);
+    
+    /**
+     * @param 土地类型
+     * @return 土地信息
+     */
+    List<Land> getByTypePrice(Integer type);
 
 }

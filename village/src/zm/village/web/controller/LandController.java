@@ -111,11 +111,62 @@ public class LandController {
 		HttpReturn.reponseBody(response, jsonObject);
 	}
 	
-	@RequestMapping(value = "/getFoodstuffLand ", method = RequestMethod.POST)
-	public void getFoodstuffLand(HttpServletResponse response,int start,int end) throws IOException {
+	@RequestMapping(value = "/getFoodstuffLand", method = RequestMethod.POST)
+	public void getFoodstuffLand(HttpServletResponse response,int sort,int start,int end) throws IOException {
 
+		List<Land> dir = null;
+		//0代表不排序，1升序，2降序
+		if(sort==0){
+			dir = service.getByType(0);
+			
+		}
+		if(sort==1){
+			dir = service.getByTypePrice(0);
+		}
+		if(sort==2){
+			List<Land> dirs = service.getByTypePrice(0);
+			for(int i= dirs.size()-1;i>=0;i--){
+				dir.add(dirs.get(i));
+			}
+			
+		}
+		List<Land> vo = new LinkedList<Land>();
+		if (start < dir.size()) {
+			if (end > dir.size()) {
+				for (int i = start; i < dir.size(); i++) {
+					vo.add(dir.get(i));
+				}
+			}
+			else {
+				for (int i = start; i < end; i++) {
+					vo.add(dir.get(i));
+				}
+			}
+		}
+		JSONArray jsonArray = new JSONArray().fromObject(vo);
+		HttpReturn.reponseBody(response, jsonArray);
 		
-		List<Land> dir = service.getByType(0);
+	}
+	
+	@RequestMapping(value = "/getVegetablesLand", method = RequestMethod.POST)
+	public void getVegetablesLand(HttpServletResponse response,int sort,int start,int end) throws IOException {
+
+		List<Land> dir = null;
+		//0代表不排序，1升序，2降序
+		if(sort==0){
+			dir = service.getByType(1);
+			
+		}
+		if(sort==1){
+			dir = service.getByTypePrice(1);
+		}
+		if(sort==2){
+			List<Land> dirs = service.getByTypePrice(1);
+			for(int i= dirs.size()-1;i>=0;i--){
+				dir.add(dirs.get(i));
+			}
+			
+		}
 		List<Land> vo = new LinkedList<Land>();
 		if (start < dir.size()) {
 			if (end > dir.size()) {
@@ -133,42 +184,36 @@ public class LandController {
 		HttpReturn.reponseBody(response, jsonArray);
 	}
 	
-	@RequestMapping(value = "/getVegetablesLand", method = RequestMethod.POST)
-	public void getVegetablesLand(HttpServletResponse response,int start,int end) throws IOException {
-
-		List<Land> land = service.getByType(1);
-		List<Land> vo = new LinkedList<Land>();
-		if (start < land.size()) {
-			if (end > land.size()) {
-				for (int i = start; i < land.size(); i++) {
-					vo.add(land.get(i));
-				}
-			}
-			else {
-				for (int i = start; i < end; i++) {
-					vo.add(land.get(i));
-				}
-			}
-		}
-		JSONArray jsonArray = new JSONArray().fromObject(vo);
-		HttpReturn.reponseBody(response, jsonArray);
-	}
-	
 	@RequestMapping(value = "/getFruitsLand", method = RequestMethod.POST)
-	public void getFruitsLand(HttpServletResponse response,int start,int end) throws IOException {
+	public void getFruitsLand(HttpServletResponse response,int sort,int start,int end) throws IOException {
 
 		
-		List<Land> land = service.getByType(2);
+		List<Land> dir = null;
+		//0代表不排序，1升序，2降序
+		if(sort==0){
+			dir = service.getByType(2);
+			
+		}
+		if(sort==1){
+			dir = service.getByTypePrice(2);
+		}
+		if(sort==2){
+			List<Land> dirs = service.getByTypePrice(2);
+			for(int i= dirs.size()-1;i>=0;i--){
+				dir.add(dirs.get(i));
+			}
+			
+		}
 		List<Land> vo = new LinkedList<Land>();
-		if (start < land.size()) {
-			if (end > land.size()) {
-				for (int i = start; i < land.size(); i++) {
-					vo.add(land.get(i));
+		if (start < dir.size()) {
+			if (end > dir.size()) {
+				for (int i = start; i < dir.size(); i++) {
+					vo.add(dir.get(i));
 				}
 			}
 			else {
 				for (int i = start; i < end; i++) {
-					vo.add(land.get(i));
+					vo.add(dir.get(i));
 				}
 			}
 		}
@@ -464,9 +509,9 @@ public class LandController {
 	}
 	
 	@RequestMapping(value = "/getFruits", method = RequestMethod.POST)
-	public void getFruits(HttpServletResponse response,Integer type,int start,int end) throws IOException {
+	public void getFruits(HttpServletResponse response,int type,int sort,int start,int end) throws IOException {
 
-		//0代表去获得果树，1代表去获得果实
+		//type 0代表去获得果树，1代表去获得果实
 		if(type==0){
 			List<Dictionary> dir = dicService.getByType(2);
 			List<Dictionary> vo = new LinkedList<Dictionary>();
@@ -486,7 +531,20 @@ public class LandController {
 			HttpReturn.reponseBody(response, jsonArray);
 		}
 		else if(type==1){
-			List<Goods> goods = goodsService.getByType(1);
+			List<Goods> goods =null;
+			//sort为是否排序
+			if(sort==0){
+				goods = goodsService.getByType(1);
+				
+			}else if(sort==1){
+				goods = goodsService.getByTypePrice(1);
+			}
+			else if(sort==2){
+				List<Goods> good = goodsService.getByTypePrice(1);
+				for(int i = good.size()-1; i>=0; i--){
+					goods.add(good.get(i));
+				}
+			}
 			List<Goods> vo = new LinkedList<Goods>();
 			if (start < goods.size()) {
 				if (end > goods.size()) {
@@ -510,24 +568,38 @@ public class LandController {
 	}
 	
 	@RequestMapping(value = "/getGoods", method = RequestMethod.POST)
-	public void getGoods(HttpServletResponse response,int start,int end) throws IOException {
-
-			List<Goods> goods = goodsService.getByType(0);
-			List<Goods> vo = new LinkedList<Goods>();
-			if (start < goods.size()) {
-				if (end > goods.size()) {
-					for (int i = start; i < goods.size(); i++) {
-						vo.add(goods.get(i));
-					}
-				}
-				else {
-					for (int i = start; i < end; i++) {
-						vo.add(goods.get(i));
-					}
+	public void getGoods(HttpServletResponse response,int sort,int start,int end) throws IOException {
+        
+		List<Goods> goods = null;
+		//sort为是否排序
+		if(sort==0){
+			goods = goodsService.getByType(0);
+			
+		}else if(sort==1){
+			goods = goodsService.getByTypePrice(0);
+		}
+		else if(sort==2){
+			List<Goods> good = goodsService.getByTypePrice(0);
+			for(int i = good.size()-1; i>=0; i--){
+				goods.add(good.get(i));
+			}
+		}
+		List<Goods> vo = new LinkedList<Goods>();
+		if (start < goods.size()) {
+			if (end > goods.size()) {
+				for (int i = start; i < goods.size(); i++) {
+					vo.add(goods.get(i));
 				}
 			}
-			JSONArray jsonArray = new JSONArray().fromObject(vo);
-			HttpReturn.reponseBody(response, jsonArray);
+			else {
+				for (int i = start; i < end; i++) {
+					vo.add(goods.get(i));
+				}
+			}
+		}
+		JSONArray jsonArray = new JSONArray().fromObject(vo);
+		HttpReturn.reponseBody(response, jsonArray);
+			
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)

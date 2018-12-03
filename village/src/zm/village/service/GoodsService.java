@@ -14,5 +14,7 @@ public interface GoodsService {
 	
 	List<Goods> getByType(Integer type);
 	
+	List<Goods> getByTypePrice(Integer type);
+	
 	int delete(Integer id);
 }

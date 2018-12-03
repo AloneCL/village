@@ -45,4 +45,10 @@ public class GoodsServiceImpl implements GoodsService{
 		return mapper.deleteByPrimaryKey(id);
 	}
 
+	@Override
+	public List<Goods> getByTypePrice(Integer type) {
+		
+		return mapper.getByTypePrice(type);
+	}
+
 }

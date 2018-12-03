@@ -20,4 +20,6 @@ public interface GoodsInfMapper {
     int updateByPrimaryKey(Goods record);
     
     List<Goods> getByType(Integer type);
+    
+    List<Goods> getByTypePrice(Integer type);
 }

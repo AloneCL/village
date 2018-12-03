@@ -68,6 +68,17 @@
 		where land_type = #{type,jdbcType=INTEGER}
 	</select>
 	
+	<select id="getByTypePrice" parameterType="java.lang.Integer"
+		resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from land_inf
+		where land_type = #{type,jdbcType=INTEGER}
+		order by land_basic_price
+	</select>
+	
 	<select id="getByUserId" parameterType="java.lang.Integer"
 		resultMap="ResultMapWithBLOBs">
 		select

@@ -71,7 +71,9 @@
 						<th width="25">
 						<th width="100">土地名称</th>
 						<th width="100">土地类型</th>
-						<th width="">土地地址</th>
+						<th width="70">省</th>
+						<th width="70">市</th>
+						<th width="70">区</th>
 						<th width="100">土地大小</th>
 						<th width="100">基础价格</th>
 						<th width="100">是否整块出售</th>
@@ -85,16 +87,18 @@
 							<td><input name="id" type="checkbox" value="${land.id}" /></td>
 							<td><u style="cursor: pointer" class="text-primary"
 								onclick="land_show('土地信息','showLand.action?id=${land.id}','360','500')">${land.name}</u></td>
+							<c:if test="${land.type eq 0}">
+								<td class="user-status"><span class="label label-success">粮食</span></td>
+							</c:if>
 							<c:if test="${land.type eq 1}">
-								<td class="user-status"><span class="label label-success">耕地</span></td>
+								<td class="user-status"><span class="label label-success">蔬菜</span></td>
 							</c:if>
 							<c:if test="${land.type eq 2}">
-								<td class="user-status"><span class="label label-success">养殖地</span></td>
+								<td class="user-status"><span class="label label-success">水果</span></td>
 							</c:if>
-							<c:if test="${land.type eq 3}">
-								<td class="user-status"><span class="label label-success">池塘</span></td>
-							</c:if>
-							<td>${land.address}</td>
+							<td>${land.province}</td>
+							<td>${land.city}</td>
+							<td>${land.district}</td>
 							<td>${land.size}</td>
 							<td>${land.basicPrice}</td>
 							<c:if test="${land.split eq 1}">
@@ -145,7 +149,7 @@
 				//{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
 				{
 					"orderable" : false,
-					"aTargets" : [ 0, 8]
+					"aTargets" : [ 0, 10]
 				} // 制定列不参与排序
 				]
 			});

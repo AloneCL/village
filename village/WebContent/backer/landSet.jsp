@@ -111,20 +111,20 @@
 			<div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box"> <select class="select" size="1"
 					name="type" id="type">
+						<c:if test="${land.type eq 0}">
+							<option value="0" selected>粮食</option>
+							<option value="1">蔬菜</option>
+						     <option value="2">水果</option>
+						</c:if>
 						<c:if test="${land.type eq 1}">
-							<option value="1" selected>耕地</option>
-							<option value="2">养殖地</option>
-						     <option value="3">池塘</option>
+							<option value="1" selected>蔬菜</option>
+							<option value="0">粮食</option>
+						     <option value="2">水果</option>
 						</c:if>
 						<c:if test="${land.type eq 2}">
-							<option value="2" selected>养殖地</option>
-							<option value="1">耕地</option>
-						     <option value="3">池塘</option>
-						</c:if>
-						<c:if test="${land.type eq 3}">
-							<option value="3" selected>池塘</option>
-							<option value="1">耕地</option>
-						     <option value="2">养殖地</option>
+							<option value="2" selected>水果</option>
+							<option value="0">粮食</option>
+						     <option value="1">蔬菜</option>
 						</c:if>
 				</select>
 				</span>
@@ -374,6 +374,12 @@
 					},
 					userId : {
 						required : true
+					},
+					data1 :{
+						date :true
+					},
+					data2 :{
+						date :true
 					}
 				},
 				onkeyup : false,

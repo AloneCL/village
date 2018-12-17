@@ -76,6 +76,18 @@ public class LandServiceImpl implements LandService {
 		
 		return mapper.getByUserId(record);
 	}
+
+	@Override
+	public List<Land> getByType(Integer type) {
+		
+		return mapper.getByType(type);
+	}
+
+	@Override
+	public List<Land> getByTypePrice(Integer type) {
+		
+		return mapper.getByTypePrice(type);
+	}
 	
        
 }

@@ -32,7 +32,7 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		land_id, land_user_id, land_name, land_type, land_size,
-		land_basic_price,land_province,land_city,land_district
+		land_basic_price,land_province,land_city,land_district,
 		land_address,land_unused_size, land_split,
 		land_min_lease, land_picture, land_certificate,
 		land_status,land_startTime,land_endTime,land_latitude,land_longitude
@@ -56,6 +56,27 @@
 		<include refid="Blob_Column_List" />
 		from land_inf
 		where land_id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<select id="getByType" parameterType="java.lang.Integer"
+		resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from land_inf
+		where land_type = #{type,jdbcType=INTEGER}
+	</select>
+	
+	<select id="getByTypePrice" parameterType="java.lang.Integer"
+		resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from land_inf
+		where land_type = #{type,jdbcType=INTEGER}
+		order by land_basic_price
 	</select>
 	
 	<select id="getByUserId" parameterType="java.lang.Integer"

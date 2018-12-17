@@ -210,7 +210,7 @@
 	</script>
 
 
-	<script src="laydate/laydate.js"></script>
+	<script src="lib/laydate/laydate.js"></script>
 	<script>
 		laydate.render({
 			elem : '#date',
@@ -256,12 +256,6 @@
 						isMobile : true
 					},
 					password : {
-						required : true
-					},
-					address : {
-						required : true
-					},
-					date : {
 						required : true
 					}
 				},

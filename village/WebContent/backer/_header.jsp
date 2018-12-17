@@ -9,8 +9,8 @@
 				<ul class="cl">
 					<li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
-							<li><a href="javascript:;" onclick="article_add('添加资讯','article-add.html')"><i class="Hui-iconfont">&#xe62c;</i> 用户</a></li>
-							<li><a href="javascript:;" onclick="picture_add('添加资讯','picture-add.html')"><i class="Hui-iconfont">&#xe643;</i> 土地</a></li>
+							<li><a href="javascript:;" onclick="user_add('添加用户','submitEditUser.action','','510')"><i class="Hui-iconfont">&#xe62c;</i> 用户</a></li>
+							<li><a href="javascript:;" onclick="land_add('添加土地','submitEditLand.action')"><i class="Hui-iconfont">&#xe643;</i> 土地</a></li>
 							<li><a href="javascript:;" onclick="product_add('添加资讯','product-add.html')"><i class="Hui-iconfont">&#xe620;</i> 商品</a></li>
 							<li><a href="javascript:;" onclick="member_add('添加数据',' ${pageContext.request.contextPath}/addDictionary.jsp','','510')"><i class="Hui-iconfont">&#xe623;</i>数据字典</a></li>
 					</ul>
@@ -101,5 +101,16 @@ function myselfinfo(){
 		});
 	}); */
 
+	function user_add(title, url, w, h) {
+		layer_show(title, url, w, h);
+	}
+	function land_add(title, url) {
+		var index = layer.open({
+			type: 2,
+			title: title,
+			content: url
+		});
+		layer.full(index);
+	}
 </script> 
 </header>

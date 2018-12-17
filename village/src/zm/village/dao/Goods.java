@@ -17,6 +17,9 @@ public final class Goods implements java.io.Serializable {
 	//农产品名称，goods_name
 	private String name;
 	
+	//农产品类型，goods_type
+	private Integer type;
+	
 	//农产品价格，goods_price
 	private Double price;
 	
@@ -42,6 +45,15 @@ public final class Goods implements java.io.Serializable {
 	@Deprecated
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
 	}
 
 	/**
@@ -110,7 +122,9 @@ public final class Goods implements java.io.Serializable {
 	}
 	
 	public String[] getImgURLArray() {
-		return imgURL.split(ADDRESS_SPERATOR);
+		if(imgURL==null)
+			return null;
+		else return imgURL.split(ADDRESS_SPERATOR);
 	}
 
 	/**

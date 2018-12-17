@@ -90,9 +90,9 @@
 				<span class="select-box"> <select class="select" size="1"
 					name="type" id="type">
 						<option value="" selected>请选择类型</option>
-						<option value="1">耕地</option>
-						<option value="2">养殖地</option>
-						<option value="3">池塘</option>
+						<option value="0">粮食</option>
+						<option value="1">蔬菜</option>
+						<option value="2">水果</option>
 				</select>
 				</span>
 			</div>
@@ -287,8 +287,14 @@
 					},
 					status : {
 						required : true
+					},
+					date1 : {
+						date:true
+					},
+					date2 : {
+						date:true
 					}
-
+					
 				},
 				onkeyup : false,
 				focusCleanup : true,

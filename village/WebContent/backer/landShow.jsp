@@ -97,9 +97,36 @@
 					</c:if>
 				</tr>
 				<tr>
+					<th class="text-r">省：</th>
+					<td>${land.province}</td>
+				</tr>
+				<tr>
+					<th class="text-r">市：</th>
+					<td>${land.city}</td>
+				</tr>
+				<tr>
+					<th class="text-r">区：</th>
+					<td>${land.district}</td>
+				</tr>
+				<tr>
 					<th class="text-r">土地地址：</th>
-
 					<td>${land.address}</td>
+				</tr>
+				<tr>
+					<th class="text-r">纬度：</th>
+					<td>${land.latitude}</td>
+				</tr>
+				<tr>
+					<th class="text-r">经度：</th>
+					<td>${land.longitude}</td>
+				</tr>
+				<tr>
+					<th class="text-r">最早时间：</th>
+					<td>${land.startTime}</td>
+				</tr>
+				<tr>
+					<th class="text-r">最晚时间：</th>
+					<td>${land.endTime}</td>
 				</tr>
 				<tr>
 					<th class="text-r">土地简介：</th>

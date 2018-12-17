@@ -19,6 +19,7 @@
         http://www.springframework.org/schema/task/spring-task-4.2.xsd">
         
     <context:annotation-config />
+    
 	<!-- 开启包扫描(扫描生成bean的注解) -->
     <context:component-scan base-package="zm.village"/>
     

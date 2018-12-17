@@ -40,12 +40,12 @@
 	<form action="" method="post" class="form form-horizontal" id="form-member-add">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>标签名称：</label>
-			<div class="formControls col-xs-8 col-sm-9">
+			<div class="formControls col-xs-4 col-sm-4">
 				<input type="text" class="input-text" value="" placeholder="" id="name" name="name">
 			</div>
 		</div>
 		<div class="row cl">
-			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+			<div class="col-xs-4 col-sm-5 col-xs-offset-4 col-sm-offset-3">
 				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
 			</div>
 		</div>
@@ -81,7 +81,7 @@ $(function(){
 		} ,
 		submitHandler:function(form){
 			save();
-			alert("增加成功");
+			//alert("增加成功");
 		}
 	});
 	
